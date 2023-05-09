@@ -1,0 +1,130 @@
+{% extends 'examsolution/base.html' %}
+{% load static %}
+
+{% block title %}{{subject_selected}} questions{% endblock title %}
+
+{% block content %}
+
+<section class="question_answer">
+    
+
+{% if selected_topic_paper_set %}
+
+    <div class="view_panel_heading">
+        <p class="individual_reselect" >You're doing {{topic_paper_object.topic}} questions paper {{topic_paper_object.paper_num_key}} <p>
+        <a class="individual_reselect" href="{% url 'examsolution:topics_topical_past_paper' exam_board subject_selected %}">Reselect Topic</a>
+    </div>
+
+    <form action="{% url 'examsolution:view_topical_past_paper' exam_board subject_selected topic_paper_object.id %}" method="post" class="form">
+        
+        {% csrf_token %}
+        <fieldset id="topical_search_panel">
+
+            <legend><h1>Want specific questions? Choose below</h1></legend>
+
+            <select name="year" id="year_select" class="fielset_select">
+                <option value="" disabled selected hidden>year</option>
+                {% for year in year_set%}
+                    <option value="{{year.id}}" id="year{{forloop.counter}}"> {{year.year}} </option>
+                {% endfor %}
+            </select>
+
+            <select name="session" id="session_select" class="fielset_select">
+                <option value="" disabled selected hidden>Session</option>
+                {% for session in session_set %}
+                    <option value="{{session.id}}" id="session{{forloop.counter}}"> {{session.session}} </option>
+                {% endfor %}
+            </select>
+                
+            <input type="submit" value="Search">
+            
+        </fieldset>
+
+    </form>
+
+    <div class="row">
+
+        <div id="" class="question_answer_select_panel">
+            {% if new_selected_topic_paper_set %}
+
+                <p class="message_above">Below are {{topic_paper_object.topic}} questions for "session you selected" "year you selected". </p>
+
+                <br>
+
+                {% for question in new_selected_topic_paper_set %}
+                    <button class="questions" id="question{{forloop.counter}}" onclick="view_question('{% static question.question_directory %}','question{{forloop.counter}}')" >Question{{forloop.counter}}</button>
+                    <button class="answers" id="answer{{forloop.counter}}" onclick="view_answer('{% static question.answer_directory %}','answer{{forloop.counter}}')">Answer{{forloop.counter}}</button>
+                    <button class="questions" id="exam_report_comment{{forloop.counter}}" onclick="view_er_comment('{{question.exam_report_comment}}','exam_report_comment{{forloop.counter}}')">ExamReport Cmnt</button>
+                    <br>
+                {% endfor %}
+
+
+            {% else %}
+
+                <p class="message_above">Below are all {{topic_paper_object.topic}} questions. If you selected a year and session means not yet available.</p>
+
+                <br>
+
+                {% for question in selected_topic_paper_set %}
+                    <button class="questions" id="question{{forloop.counter}}" onclick="view_question('{% static question.question_directory %}','question{{forloop.counter}}')" >Question{{forloop.counter}}</button>
+                    <button class="answers" id="answer{{forloop.counter}}" onclick="view_answer('{% static question.answer_directory %}','answer{{forloop.counter}}')">Answer{{forloop.counter}}</button>
+                    <button class="questions" id="exam_report_comment{{forloop.counter}}" onclick="view_er_comment('{{question.exam_report_comment}}','exam_report_comment{{forloop.counter}}')">ExamReport Cmnt</button>
+                    <br>
+                {% endfor %}
+
+            {% endif %}
+        </div>
+
+        <div id="view_panel" class="question_answer_viewing_panel">
+            <p id="initial_message">enjoy your studying with Pii_Learn!</p>
+        </div>
+
+        <script>
+
+            function view_question(question_url,question_id) {
+                var view_panel,question_button;
+                view_panel = document.getElementById('view_panel');
+                view_panel.innerHTML = "<embed src='" + question_url + "' type='' height='600' width='900'>";
+                question_button = document.getElementById(question_id);
+                question_button.style.color = "purple";
+            }
+
+            function view_answer(answer_url,answer_id) {
+                var view_panel,answer_button;
+                view_panel = document.getElementById('view_panel');
+                view_panel.innerHTML = "<embed src='" + answer_url + "' type='' height='600' width='900'>";
+                answer_button = document.getElementById(answer_id);
+                answer_button.style.color = "purple";
+            }
+            function view_er_comment(com_ment,com_ment_id) {
+                var com_ment_button, view_panel
+                view_panel = document.getElementById('view_panel');
+                if (com_ment == "") {
+                    com_ment = "No report for this question";
+                }
+                else {
+                    com_ment = com_ment;
+                }
+                view_panel.innerHTML = "<p id='er_comment'>"+ com_ment + "</p>"
+                com_ment_button = document.getElementById(com_ment_id);
+                com_ment_button.style.color = "purple";
+
+            }
+        </script>
+            
+    </div>
+
+
+
+{% else %}
+</section>
+<section class="no_question_answer">
+    <div class="panel_heading">
+    <p>{{topic_paper_object.topic}} questions ~ paper {{topic_paper_object.paper_num_key}} are <strong>Coming Soon!</strong><p>
+    <a href="{% url 'examsolution:topics_topical_past_paper' exam_board subject_selected %}">Reselect Topic</a>
+    <div>
+</section>
+{% endif %}
+
+{% endblock content %}
+

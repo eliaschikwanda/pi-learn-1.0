@@ -1,0 +1,33 @@
+{% extends 'examsolution/base.html' %}
+{% load static %}
+{% block title %}Home{% endblock title%}
+
+{% block content %}
+
+<section class="home">
+
+    <section class="examboard">
+
+        {% if all_exam_boards %}
+
+            <h3> There are <span id="exam_board_num">{{ all_exam_boards.count }}</span> examboards available! </h3>
+
+            {% for exam_board in all_exam_boards  %}
+
+                <a href="" id="exam_board_names"> {{ exam_board.exam_board }} </a>
+            
+            
+            {% endfor %}
+
+        {% else %}
+
+            <p> Sorry No exam boards available to show</p>
+
+        {% endif %}
+
+
+    </section>
+
+</section>
+
+{% endblock content %}

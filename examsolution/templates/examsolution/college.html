@@ -1,0 +1,12 @@
+{% extends 'examsolution/base.html' %}
+{% load static %}
+{% block title %}Collge{% endblock title %}
+
+
+{% block content %}
+
+<a href=" {% url 'examsolution:home' %} ">Back To Home Page</a>
+
+<h1> {{exam_board_searched}} </h1>
+
+{% endblock content %}

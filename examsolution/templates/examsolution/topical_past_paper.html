@@ -1,0 +1,30 @@
+{% extends 'examsolution/base.html' %}
+{% load static %}
+
+{% block title %}Topical Past Paper{% endblock title %}
+
+
+{% block content %}
+
+
+<section class="exam_boards">
+    {% if exam_board_list %}
+
+            {% for exam_board in exam_board_list %}
+            
+                    <a class="exam_board" href="{% url 'examsolution:subject_topical_past_paper' exam_board.exam_board %}">{{exam_board.exam_board}} </a>
+
+            {% endfor %}
+
+    {% endif %}
+</section>
+
+
+<script src=" {% static 'examsolution/js/script.js' %} "></script>
+
+{% endblock content %}
+
+
+
+
+

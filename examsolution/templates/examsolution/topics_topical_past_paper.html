@@ -1,0 +1,31 @@
+{% extends 'examsolution/base.html' %}
+{% load static %}
+
+{% block title %}{{subject_selected}} questions{% endblock title %}
+
+
+{% block content %}
+
+<section class="topics">
+
+
+{% if topic_paper_list %}
+    <div class="panel_heading">
+        <p>You're seeing {{subject_selected}} topics</p>
+        <a href="{% url 'examsolution:subject_topical_past_paper' exam_board %}">Reselect subject</a>
+    </div>
+
+
+    {% for topic in topic_paper_list %}
+        <a class="topic" href="{% url 'examsolution:view_topical_past_paper' exam_board subject_selected topic.id %}">{{topic.topic}} ~ Paper {{topic.paper_num_key}}</a>
+    {% endfor %}
+
+{% else %}
+    <div class="panel_heading">
+        <p>{{subject_selected}} topical questions <strong>Coming Soon!</strong></p>
+        <a href="{% url 'examsolution:subject_topical_past_paper' exam_board %}">Reselect subject</a>
+    </div>
+{% endif %}
+</section>
+
+{% endblock content %}

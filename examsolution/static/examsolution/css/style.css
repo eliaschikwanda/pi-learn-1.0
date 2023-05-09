@@ -1,0 +1,406 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,800;1,900&display=swap');
+
+:root {
+    --main-color: #ececec;
+    --black: #222;
+    --white: #fff;
+    --light--black: #777;
+    --dark-bg: #eee;
+    --border: .1rem solid var(--black);
+    --box-shadow: 0 .5rem 1rem rgba(20, 16, 20, 1);
+    --text-shadow: 0 1.5rem 3rem rgba(0,0,0,.3);
+}
+
+
+* {
+    font-family: 'Poppins', sans-serif;
+    margin: 0; padding: 0;
+    box-sizing: border-box;
+    outline: none; border: none;
+    text-decoration: none;
+    text-transform: capitalize;
+}
+
+html {
+    font-size: 62.5%;
+    overflow-x: hidden;
+    background-color: var(--main-color);
+
+}
+
+html::-webkit-scrollbar {
+    width: 1rem;
+}
+
+html::-webkit-scrollbar-track {
+    background-color: white;
+}
+
+html::-webkit-scrollbar-thumb {
+    background-color: var(--main-color);
+}
+
+/* base header syling */
+
+section {
+    padding: 1rem;
+}
+
+
+.header {
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    position: sticky, absolute;
+    display: flex;
+    box-shadow: var(--box-shadow);
+    padding-bottom: 2rem;
+    padding-top: 2rem;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.header .logo {
+    font-size: 3rem;
+    color: var(--black);
+    padding: 1.5rem;
+
+}
+
+.header .navbar a, .header .loginask a {
+    font-size: 1.75rem;
+    color: var(--black);
+    margin-left: 2rem;
+    background-color: var(--main-color);
+    border: 5px solid var(--white) hidden;
+    padding: .2rem;
+    border-radius: 2.5rem hidden;
+    background-color: var(--white) hidden;
+    border: 5px solid var(--main-color);
+
+}
+
+.header .navbar a:hover, .header .loginask a:hover {
+    border: 5px solid var(--white);
+    border-radius: 2.5rem;
+    background-color: var(--white);
+
+}
+
+#menu-btn {
+    font-size: 2.5rem;
+    cursor: pointer;
+    color: yellow;
+    display: none;
+
+}
+
+/* base header syling ends */
+
+
+
+/* Home page styling here */
+
+#exam_board_num {
+    font-size: 2.5rem;
+}
+
+#exam_board_names {
+    font-size: 2.5rem;
+    color: var(--white);
+}
+
+/* Home page styling ends here */
+
+/* topical_past_paper.html styling starts here */
+.exam_boards, .subjects, .topics,.no_question_answer {
+    overflow: auto;
+    margin-top: 5rem;
+    margin-left: 2.5rem;
+    margin-right: 2.5rem;
+    border-radius: 2rem 8rem 2rem 8rem / 1rem 4rem 1rem 4rem;
+    -moz-border-radius:2rem 8rem 2rem 8rem / 1rem 4rem 1rem 4rem;
+    -webkit-border-radius:2rem 8rem 2rem 8rem / 1rem 4rem 1rem 4rem;
+    height: 60rem;
+    background-color: var(--white);
+    padding-bottom: auto;
+  
+}
+
+.exam_boards .exam_board {
+    border: solid blue 1px;
+    border-radius: 2rem;
+    color: black;
+    font-size: 5rem;
+    display: inline;
+    margin: 2.5rem;
+    padding: 7rem;
+    float: left;
+    background-color: white;    
+}
+
+.exam_boards .exam_board:hover, .subjects .subject:hover, .topics .topic:hover {
+    color: purple;
+}
+/* topical_past_paper.html styling ends here */
+/* subject_topical_past_paper.html styling starts here */
+.subjects .subject, .topics .topic {
+    color: black;
+    background-color: white;
+    font-size: 1.75rem;
+    border: solid blue 1px;
+    margin: 1.75rem;
+    margin-top: 3rem;
+    padding: 1.75rem;
+    border-radius: 2.5rem;
+    float: left;
+}
+.topics .panel_heading,.subjects .panel_heading,.no_question_answer .panel_heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    z-index:10;
+}
+.subjects .panel_heading p,.subjects .panel_heading a,.topics .panel_heading p, .topics .panel_heading a,.no_question_answer .panel_heading a,.no_question_answer .panel_heading p {
+    border-top-right-radius: 8rem 5rem;
+    border-bottom-right-radius: 8rem 5rem;
+    border-bottom-left-radius: 8rem 5rem;
+    border-top-left-radius: 8rem 5rem;
+    padding: 1.2rem;
+    font-size: 1.75rem;
+    color: black;
+    background-color: var(--main-color);
+    margin-left: 1.75rem;
+    margin-right: 1.75rem;
+}
+
+/* subject_topical_past_paper.html styling ends here */
+/* topics_topical_past_paper.html styling starts here */
+/* styling above in subject_topical_past_paper */
+/* topics_topical_past_paper.html styling ends here */
+
+
+/* view_topical_past_paper.html styling starts here */
+
+.question_answer .row {
+    display: flex;
+    margin-left: 2.5rem;
+    margin-right: 2.5rem;
+    margin-top: 5rem;
+    background-color: rgba(174, 223, 200, 0.322);
+    padding: 1.5rem;
+    border-radius: 2rem 8rem 2rem 8rem / 1rem 4rem 1rem 4rem;
+    -moz-border-radius:2rem 8rem 2rem 8rem / 1rem 4rem 1rem 4rem;
+    -webkit-border-radius:2rem 8rem 2rem 8rem / 1rem 4rem 1rem 4rem;
+}
+
+.question_answer .row .question_answer_select_panel {
+    flex: 30%;
+    height: 60rem;
+    overflow: auto;
+    margin-right: 1.5rem;
+    background-color: var(--main-color);
+    border-radius: 2.5rem;
+    
+}
+.question_answer .row .question_answer_viewing_panel {
+    flex: 70%;
+    height: 60rem;
+    overflow: auto;
+    margin-left: 1.5rem;
+    background-color: var(--main-color);
+    border-radius: 2.5rem;
+}
+.question_answer .row .question_answer_select_panel .questions,.question_answer .row .question_answer_select_panel .answers {
+    margin-left: 1rem;
+    margin-top: 1rem;
+    background-color: white;
+    padding: 0.5rem;
+    font-size: 1.50rem;
+    border-radius: 2.5rem;
+    color: black;
+}
+
+.question_answer .row .question_answer_viewing_panel #initial_message {
+    margin: 2rem;
+    font-size: 3rem;
+    color: black;
+    text-transform: capitalize;
+}
+
+.question_answer .row .question_answer_viewing_panel p {
+    margin: 2rem;
+    font-size: 2rem;
+    color: rgb(22, 173, 40);
+    text-transform: none;
+}
+
+
+.question_answer .view_panel_heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index:10;
+    margin-left: 2.5rem;
+    margin-right: 2.5rem;
+}
+
+.question_answer .view_panel_heading .individual_reselect {
+    border-top-right-radius: 8rem 5rem;
+    border-bottom-right-radius: 8rem 5rem;
+    border-bottom-left-radius: 8rem 5rem;
+    border-top-left-radius: 8rem 5rem;
+    padding: 1rem;
+    font-size: 1.75rem;
+    color: black;
+    background-color: white;
+    margin-top: 2.5rem;
+}
+
+.form {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    background-color: #fff;
+    padding:2rem;
+    border-radius: 20px;
+    position: relative;
+    margin-top: 2rem;
+    margin-left: 2.5rem;
+    margin-right: 2.5rem;
+  }
+
+.question_answer legend {
+    background-color: var(--main-color);
+    color:black;
+    padding: 5px 10px;
+    border-radius: 2rem;
+}
+.question_answer select {
+    margin: 2rem;
+}
+
+.question_answer input {
+    background-color: rgba(128, 0, 128, 0.66);
+    padding: 0.5rem;
+    border-radius: 2rem;
+}
+
+.question_answer .fielset_select {
+    border: 2px rgba(128, 0, 128, 0.66) solid;
+    padding: 0.5rem;
+    border-radius: 2rem;
+}
+
+.row .question_answer_select_panel .message_above {
+    padding: 1rem;
+    font-size: 1.5rem;
+}
+
+/* view_topical_past_paper.html styling ends here here  */
+
+
+/* base footer styling starts here*/
+.footer {
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-color: rgba(63, 28, 221, 0.133);
+}
+
+.footer .box-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(25rem,1fr));
+}
+
+.footer .box-container .box h3 {
+    color: var(--white);
+    font-size: 2.5rem;
+    padding-bottom: 2rem;
+}
+
+.footer .box-container .box a {
+    color: blue;
+    font-size: 1.5rem;
+    padding-bottom: 1rem;
+    display: block;
+}
+
+.footer .box-container .box a {
+    color: blue;
+    padding-right: .5rem;
+    transition: 2s linear;
+    
+}
+.footer .box-container .box .lower_case {
+    text-transform: lowercase;
+}
+
+.footer .box-container .box a:hover i {
+    padding-right: 1rem;
+}
+
+.footer .copy_right {
+    text-align: center;
+    padding-top: 1.75rem;
+    margin-top: 3rem;
+    border-top: .1rem solid black;
+    font-size: 1.5rem;
+    color: black;
+}
+
+.footer .copy_right span {
+    color: blue;
+}
+
+/* base footer styling ends here */
+
+/* media queries */
+
+@media (max-width:1215px) {
+
+    #menu-btn {
+        display: inline-block;
+        transition: .2s linear;
+    }
+
+    #menu-btn.fa-times {
+        transform: rotate(180deg);
+    }
+
+    .header .navbar {
+        position: absolute;
+        top: 99%; left: 0; right: 0;
+        background-color: var(--white);
+        border-top: var(--border);
+        padding: 2rem;
+        transition: 2s linear;
+        clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+    }
+
+    .header .navbar.activate {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    }
+
+    .header .header a {
+        display: block;
+        margin: 2rem;
+        text-align: center;
+        color: black;
+    }
+}
+
+@media (max-width:991px) {
+    
+    html {
+        font-size: 55%;
+    }
+ 
+}
+
+
+
+
+
+
