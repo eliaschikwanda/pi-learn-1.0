@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure-ktbd414+vzeg81t+!ca0)mznwdyjnegocvnyu3$fb!u#3f&(6z
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['pilearn01.pythonanywhere.com']
 
 
 # Application definition
