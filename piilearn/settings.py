@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'examsolution',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -71,8 +72,7 @@ TEMPLATES = [
         },
     },
 ]
-STATICFILES_DIRS = [MEDIA_DIR,]
-MEDIA_ROOT = MEDIA_DIR
+
 
 WSGI_APPLICATION = 'piilearn.wsgi.application'
 
@@ -122,8 +122,6 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = '/static/'
-STATIC_ROOT = '/home/pilearn01/Pi-Learn/static/'
 
 
 
@@ -133,6 +131,28 @@ STATIC_ROOT = '/home/pilearn01/Pi-Learn/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
+MEDIA_ROOT = MEDIA_DIR
+STATIC_URL = 'static/'
+STATICFILES_DIRS = [MEDIA_DIR,]
+
+
+
+# #Amazon S3 Bucket configuration
+# AWS_ACCESS_KEY_ID = 'AKIAXI45RQDI5RQG66HB'
+# AWS_SECRET_ACCESS_KEY = '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'
+# AWS_STORAGE_BUCKET_NAME = 'pilearn01'
+# AWS_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+# AWS_S3_OBJECT_PARAMETERS = {'CacheControl':'max-age=86400'}
+# AWS_LOCATION = 'static'
+# # STATIC_URL = 'https://%s/%s/' % (AWS_CUSTOM_DOMAIN, AWS_LOCATION)
+# STATIC_URL = 'https://s3.console.aws.amazon.com/s3/buckets/pilearn01/'
+# MEDIA_URL = '/media/'
+
+
+# AWS_S3_FILE_OVERWRITE = False
+# AWS_DEFAULT_ACL = None
+# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
 
 
 
