@@ -18,11 +18,11 @@ urlpatterns = [
     path('pastpapers/<exam_board>/<subject_selected>/<year>', views.view_past_paper , name='view_past_paper'),
     path('testyourself', views.index_test_yourself, name='test_yourself'),
     path('testyourself/<question_id>/', views.taking_test, name='taking_test'),
+    path('testyourself/<question_id>/grading/', views.test_grading, name='test_grading'),
     path('college', views.college, name='college'),
     path('contactpiilearn', views.contactpiilearn, name='contact_piilearn'),
      
 ] 
-
 
 
 

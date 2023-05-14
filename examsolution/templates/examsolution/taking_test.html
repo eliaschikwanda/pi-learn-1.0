@@ -4,12 +4,36 @@
 
 {% block content %}
 
-    {% if mcq_paper_selected %}
-    
-        {% for question in mcq_paper_selected %}
-            <h1>{{question.question_number_key.question_number}}</h1>
-        {% endfor %}
 
-    {% endif %}
+    <form action="{% url 'examsolution:test_grading' question_id%}" method="post">
+        {% csrf_token %}
+        <fieldset>
+            <legend><h1>{{mcq_paper_selected.full_question_name}}</h1></legend>
+            {% if error_message %}<p><strong>{{error_message}}</strong></p>{% endif %}
+
+            {% for question in mcq_paper_selected_set %}
+
+                
+                <p>{{question.question_number_key.question_number}}
+
+                        <input type="radio" name="{{question.question_number_key.question_number}}" id="answer{{possible_answer1.id}}" value="{{possible_answer1.id}}" required>
+                        <label for="answer{{possible_answer1.id}}"> {{possible_answer1.letter}} </label>
+                        <input type="radio" name="{{question.question_number_key.question_number}}" id="answer{{possible_answer2.id}}" value="{{possible_answer2.id}}">
+                        <label for="answer{{possible_answer2.id}}"> {{possible_answer2.letter}} </label>
+                        <input type="radio" name="{{question.question_number_key.question_number}}" id="answer{{possible_answer3.id}}" value="{{possible_answer3.id}}">
+                        <label for="answer{{possible_answer3.id}}"> {{possible_answer3.letter}} </label>
+                        <input type="radio" name="{{question.question_number_key.question_number}}" id="answer{{possible_answer4.id}}" value="{{possible_answer4.id}}">
+                        <label for="answer{{possible_answer4.id}}"> {{possible_answer4.letter}} </label>
+                        
+                </p><br>
+
+                
+            {% endfor %}
+
+        </fieldset>
+        <input type="submit" value="Submit">
+   
+    </form>
+
 
 {% endblock content %}

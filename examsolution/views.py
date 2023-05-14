@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse
+from django.http import HttpResponseRedirect, HttpResponse
+from django.urls import reverse
 from .models import *
 
 
@@ -179,13 +180,74 @@ def index_test_yourself(request):
 
 def taking_test(request,question_id):
     
-    mcq_paper_selected = FullQuestionAnswer.objects.get(id=question_id).paperoneanswers_set.all()
+    mcq_paper_selected = FullQuestionAnswer.objects.get(id=question_id)
+    mcq_paper_selected_set = FullQuestionAnswer.objects.get(id=question_id).paperoneanswers_set.all()
+    possible_answer1 = PossibleLetters.objects.get(pk=1)
+    possible_answer2 = PossibleLetters.objects.get(pk=2)
+    possible_answer3 = PossibleLetters.objects.get(pk=3)
+    possible_answer4 = PossibleLetters.objects.get(pk=4)
     
     context = {
         'mcq_paper_selected' : mcq_paper_selected,
+        'mcq_paper_selected_set' : mcq_paper_selected_set,
+        'possible_answer1':possible_answer1,
+        'possible_answer2' : possible_answer2,
+        'possible_answer3' : possible_answer3,
+        'possible_answer4' : possible_answer4,
+        'question_id' : question_id,
+        
+        
     }
     
     return render(request,'examsolution/taking_test.html',context)
+
+def test_grading(request,question_id):
+    mcq_paper_selected = get_object_or_404(FullQuestionAnswer,pk=question_id)
+    mcq_paper_selected_set = FullQuestionAnswer.objects.get(id=question_id).paperoneanswers_set.all()
+    score = 0
+    
+    submitted_answer1 = PossibleLetters.objects.get(pk=request.POST['1']).letter
+    question_1 = mcq_paper_selected_set.get(question_number_key__question_number = 1)
+    if str(submitted_answer1) == str(question_1.question_answer_key):
+        score += 1
+    
+    submitted_answer2 = PossibleLetters.objects.get(pk=request.POST['2']).letter
+    question_2 = mcq_paper_selected_set.get(question_number_key__question_number = 2)
+    if str(submitted_answer2) == str(question_2.question_answer_key):
+        score += 1
+        
+        
+    submitted_answer3 = PossibleLetters.objects.get(pk=request.POST['3']).letter
+    question_3 = mcq_paper_selected_set.get(question_number_key__question_number = 3)
+    if str(submitted_answer3) == str(question_3.question_answer_key):
+        score += 1
+    
+    submitted_answer4 = PossibleLetters.objects.get(pk=request.POST['4']).letter
+    question_4 = mcq_paper_selected_set.get(question_number_key__question_number = 4)
+    if str(submitted_answer4) == str(question_4.question_answer_key):
+        score += 1
+        
+    submitted_answer5 = PossibleLetters.objects.get(pk=request.POST['5']).letter
+    question_5 = mcq_paper_selected_set.get(question_number_key__question_number = 5)
+    if str(submitted_answer5) == str(question_5.question_answer_key):
+        score += 1
+        
+    submitted_answer6 = PossibleLetters.objects.get(pk=request.POST['6']).letter
+    question_6 = mcq_paper_selected_set.get(question_number_key__question_number = 6)
+    if str(submitted_answer6) == str(question_6.question_answer_key):
+        score += 1
+        
+    submitted_answer7 = PossibleLetters.objects.get(pk=request.POST['7']).letter
+    question_7 = mcq_paper_selected_set.get(question_number_key__question_number = 7)
+    if str(submitted_answer7) == str(question_7.question_answer_key):
+        score += 1
+    
+    context = {
+        'score' : score,
+    }
+            
+    return render(request,'examsolution/test_grading.html',context)
+
 
 # Test Yourself ends here
 
