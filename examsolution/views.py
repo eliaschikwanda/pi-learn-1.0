@@ -48,13 +48,10 @@ def notes(request):
 
 def index_topical_past_paper(request):
     
-    question_1 = QuestionAnswer.objects.all()
     exam_board_list = ExamBoard.objects.all()
            
-
     context = {
 
-        'question_1' : question_1,
         'exam_board_list' : exam_board_list,
 
     }
@@ -105,29 +102,97 @@ def view_topical_past_paper(request,exam_board,subject_selected,topic_id):
     return render(request,"examsolution/view_topical_past_paper.html",context)
 # Topical Past Paper views ends here
 
-# Past Paper view
+# Past Paper view starts here
 
-def past_papers(request):
+def index_past_papers(request):
+    
+    exam_board_list = ExamBoard.objects.all()
     
     context = {
-   
+        'exam_board_list': exam_board_list
     }
     
     return render(request, 'examsolution/past_papers.html', context)
 
-# Test Yourself view
+def subject_past_papers(request,exam_board):
+    
+    exam_board_selected = get_object_or_404(ExamBoard,exam_board=exam_board)
+    
+    context = {
+        'exam_board_selected' : exam_board_selected,
+    }
+    
+    return render(request,'examsolution/subject_past_papers.html',context)
 
-def test_yourself(request):
+def year_past_papers(request,exam_board,subject_selected):
+    
+    years_available_list = Year.objects.all()
+    
+    context = {
+        'years_available_list':years_available_list,
+        'exam_board' : exam_board,
+        'subject_selected':subject_selected,
+        
+    }
+    
+    return render(request,'examsolution/year_past_papers.html',context)
+
+def view_past_paper(request,exam_board,subject_selected,year):
+    
+    march_past_papers_selected_list = FullQuestionAnswer.objects.filter(session_key__session='March',year_key__year=year,subject_key__subject=subject_selected).order_by('full_question_name')
+    june_past_papers_selected_list = FullQuestionAnswer.objects.filter(session_key__session='June',year_key__year=year,subject_key__subject=subject_selected).order_by('full_question_name')
+    november_past_papers_selected_list = FullQuestionAnswer.objects.filter(session_key__session='November',year_key__year=year,subject_key__subject=subject_selected).order_by('full_question_name')
+    
+    march_extras = ReportThreshPrep.objects.filter(session_key__session='March',year_key__year = year,subject_key__subject=subject_selected).order_by('extra_name')
+    june_extras = ReportThreshPrep.objects.filter(session_key__session='June',year_key__year = year,subject_key__subject=subject_selected).order_by('extra_name')
+    november_extras = ReportThreshPrep.objects.filter(session_key__session='November',year_key__year = year,subject_key__subject=subject_selected).order_by('extra_name')
     
     context = {
         
+        'exam_board' : exam_board,
+        'subject_selected' : subject_selected,
+        'year':year,
+        'march_past_papers_selected_list' : march_past_papers_selected_list,
+        'june_past_papers_selected_list':june_past_papers_selected_list,
+        'november_past_papers_selected_list':november_past_papers_selected_list,
+        'march_extras' : march_extras,
+        'june_extras':june_extras,
+        'november_extras':november_extras,
+       
+    }
+    
+    return render(request,'examsolution/view_past_paper.html',context)
+
+# Past Paper view ends here
+
+# Test Yourself starts here
+
+def index_test_yourself(request):
+    
+    multiple_choice_available_list = FullQuestionAnswer.objects.filter(paper_number__paper_num='1')
+    
+    context = {
+        'multiple_choice_available_list' : multiple_choice_available_list,
     }
     
     return render(request, 'examsolution/test_yourself.html', context)
 
+def taking_test(request,question_id):
+    
+    mcq_paper_selected = FullQuestionAnswer.objects.get(id=question_id).paperoneanswers_set.all()
+    
+    context = {
+        'mcq_paper_selected' : mcq_paper_selected,
+    }
+    
+    return render(request,'examsolution/taking_test.html',context)
+
+# Test Yourself ends here
+
 # College view
 
 def college(request):
+
     
     context = {
         

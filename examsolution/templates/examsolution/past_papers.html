@@ -7,5 +7,17 @@
 
 <a href=" {% url 'examsolution:home' %} ">Back To Home Page</a>
 
+<section class="exam_boards">
+    {% if exam_board_list %}
+
+            {% for exam_board in exam_board_list %}
+            
+                    <a class="exam_board" href="{% url 'examsolution:subject_past_papers' exam_board.exam_board %}">{{exam_board.exam_board}} </a>
+
+            {% endfor %}
+
+    {% endif %}
+</section>
+
 
 {% endblock content %}

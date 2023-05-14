@@ -65,11 +65,47 @@ class FullQuestionAnswer(models.Model):
     year_key = models.ForeignKey(Year, on_delete=models.CASCADE)
     session_key = models.ForeignKey(Session, on_delete=models.CASCADE)
     full_question_name = models.CharField(max_length=200)
-    full_question_link = models.CharField(max_length=500)
+    full_question_directory = models.FileField(null=True,upload_to='FullQuestionPaper')
     full_answersheet_name = models.CharField(max_length=200)
-    full_answersheet_link = models.CharField(max_length=500)
+    full_answersheet_directory = models.FileField(null=True,upload_to='FullMarkScheme')
+    paper_number = models.ForeignKey(Paper,on_delete=models.CASCADE,blank=True,null=True)
+    
     
     def __str__(self):
-        return str(self.year_key.year) + " (" + self.full_question_name + ") " + " (" + self.full_answersheet_name + ") "
+        return str(self.year_key.year) + " ("+ self.session_key.session + ") "+ " " + self.subject_key.subject + " " + " (" + self.full_question_name + ") " + " (" + self.full_answersheet_name + ") "
 
-
+    
+class ReportThreshPrep(models.Model):
+    subject_key = models.ForeignKey(Subject,on_delete=models.CASCADE)
+    year_key = models.ForeignKey(Year, on_delete=models.CASCADE)
+    session_key = models.ForeignKey(Session, on_delete=models.CASCADE)
+    extra_name = models.CharField(max_length=500)
+    extra_directory = models.FileField(null=True,upload_to='ReportThreshPrep')
+    
+    def __str__(self):
+        return self.extra_name
+    
+class PossibleLetters(models.Model):
+    letter = models.CharField(max_length=1)
+    
+    def __str__(self):
+        return self.letter
+    
+class PossibleQuestionNumber(models.Model):
+    question_number = models.IntegerField()
+    
+    def __str__(self):
+        return str(self.question_number)
+    
+class PaperOneAnswers(models.Model):
+    paper_one_name_key = models.ForeignKey(FullQuestionAnswer,on_delete=models.CASCADE)
+    question_number_key = models.ForeignKey(PossibleQuestionNumber,on_delete=models.CASCADE)
+    question_answer_key = models.ForeignKey(PossibleLetters,on_delete=models.CASCADE)
+    question_category = models.CharField(max_length=500,null=True,blank=True)
+    question_examreportcmt = models.CharField(max_length=20000,null=True,blank=True)
+    question_video_explanation = models.URLField(max_length=1000,null=True,blank=True)
+    
+    def __str__(self):
+        return str(self.question_number_key.question_number) + " ("+ self.question_answer_key.letter +") " +" ("+ self.paper_one_name_key.full_question_name + ") "
+    
+    

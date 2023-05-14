@@ -1,0 +1,107 @@
+{% extends 'examsolution/base.html' %}
+{% load static %}
+
+{% block title %}{{subject_selected}} questions{% endblock title %}
+
+{% block content %}
+
+<section class="question_answer">
+
+    <div class="view_panel_heading">
+        <p class="individual_reselect" > {{subject_selected}} March {{year}} <p>
+        <a class="individual_reselect" href="{% url 'examsolution:year_past_papers' exam_board subject_selected %}">Reselect Year</a>
+    </div>
+
+    <div class="session_question_list">
+        {% if march_past_papers_selected_list %}
+
+            {% for extra in  march_extras %}
+            
+                <a href="{% static extra.extra_directory %}" class="extras"> {{extra.extra_name}} </a>
+                <br>
+
+            {% endfor %}
+
+            {% for question_answer in march_past_papers_selected_list %}
+
+                <div class="past_paper_mark_scheme_display">
+                    <a href="{% static question_answer.full_question_directory %}" class="past_paper_mark_scheme">{{question_answer.full_question_name}}</a>
+                    <a href="{% static question_answer.full_answersheet_directory %}" class="past_paper_mark_scheme">{{question_answer.full_answersheet_name}}</a>
+                </div>
+            
+            {% endfor %}
+            
+
+        {% else %}
+
+            <p>March Past papers not available.</p>
+
+        {% endif %}
+    </div>
+
+    <div class="view_panel_heading">
+        <p class="individual_reselect" > {{subject_selected}} June {{year}} <p>
+        <a class="individual_reselect" href="{% url 'examsolution:year_past_papers' exam_board subject_selected %}">Reselect Year</a>
+    </div>
+
+    <div class="session_question_list">
+    {% if june_past_papers_selected_list %}
+
+        {% for extra in  june_extras %}
+                
+            <a href="{% static extra.extra_directory %}" class="extras"> {{extra.extra_name}} </a>
+            <br>
+
+        {% endfor %}
+
+        {% for question_answer in june_past_papers_selected_list %}
+
+            <div class="past_paper_mark_scheme_display">
+                <a href="{% static question_answer.full_question_directory %}" class="past_paper_mark_scheme">{{question_answer.full_question_name}}</a>
+                <a href="{% static question_answer.full_answersheet_directory %}" class="past_paper_mark_scheme">{{question_answer.full_answersheet_name}}</a>
+            </div>
+        
+        {% endfor %}
+
+    {% else %}
+
+        <p>June Past papers not available.</p>
+
+    {% endif %}
+    </div>
+
+    <div class="view_panel_heading">
+        <p class="individual_reselect" > {{subject_selected}} November {{year}} <p>
+        <a class="individual_reselect" href="{% url 'examsolution:year_past_papers' exam_board subject_selected %}">Reselect Year</a>
+    </div>
+
+    <div class="session_question_list">
+    {% if november_past_papers_selected_list %}
+
+        {% for extra in  november_extras %}
+                    
+            <a href="{% static extra.extra_directory %}" class="extras"> {{extra.extra_name}} </a>
+            <br>
+
+        {% endfor %}
+
+        {% for question_answer in november_past_papers_selected_list %}
+
+            <div class="past_paper_mark_scheme_display">
+                <a href="{% static question_answer.full_question_directory %}" class="past_paper_mark_scheme">{{question_answer.full_question_name}}</a>
+                <a href="{% static question_answer.full_answersheet_directory %}" class="past_paper_mark_scheme">{{question_answer.full_answersheet_name}}</a>
+            </div>
+
+        {% endfor %}
+        
+
+    {% else %}
+
+        <p>November Past papers not available.</p>
+
+    {% endif %}
+    </div>
+
+</section>
+
+{% endblock content %}

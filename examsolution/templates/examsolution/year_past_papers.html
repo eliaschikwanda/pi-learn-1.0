@@ -1,0 +1,31 @@
+{% extends 'examsolution/base.html' %}
+{% load static %}
+
+{% block title %}{{subject_selected}} topical past papers{% endblock title %}
+
+
+{% block content %}
+
+<section class="topics">
+
+
+{% if years_available_list %}
+    <div class="panel_heading">
+        <p>You're seeing {{subject_selected}} available years</p>
+        <a href="{% url 'examsolution:subject_past_papers' exam_board %}">Reselect subject</a>
+    </div>
+
+
+    {% for year in years_available_list %}
+        <a class="topic" href="{% url 'examsolution:view_past_paper' exam_board subject_selected year.year %}"> {{year.year}} </a>
+    {% endfor %}
+
+{% else %}
+    <div class="panel_heading">
+        <p>{{subject_selected}} past papers <strong>Coming Soon!</strong></p>
+        <a href="{% url 'examsolution:subject_past_papers' exam_board %}">Reselect subject</a>
+    </div>
+{% endif %}
+</section>
+
+{% endblock content %}

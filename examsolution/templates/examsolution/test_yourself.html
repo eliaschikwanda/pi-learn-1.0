@@ -4,7 +4,18 @@
 
 {% block content %}
 
-<a href=" {% url 'examsolution:home' %} ">Back To Home Page</a>
+{% if multiple_choice_available_list %}
+
+    {% for mcq in multiple_choice_available_list %}
+    
+        <h1><a href="{% url 'examsolution:taking_test' mcq.id %}" class="multiple_choice_questions"> {{mcq.full_question_name}} </a></h1>
+    {% endfor %}
+
+{% else %}
+
+    <h1>No multiple questions available</h1>
+
+{% endif %}
 
 {% endblock content %}
 

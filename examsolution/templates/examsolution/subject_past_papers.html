@@ -1,0 +1,32 @@
+{% extends 'examsolution/base.html' %}
+{% load static %}
+
+{% block title %}{{exam_board_selected.exam_board}} full questions{% endblock title %}
+
+
+
+{% block content %}
+
+
+<section class="subjects">
+
+    {% if exam_board_selected.subject_set.all %}
+        <div class="panel_heading">
+            <p>You're looking at {{exam_board_selected.exam_board}} subjects</p>
+            <a href="{% url 'examsolution:past_papers' %}">Reselect exam board</a>
+        </div>
+
+        {% for subject in exam_board_selected.subject_set.all  %}
+                <a class="subject" href="{% url 'examsolution:year_past_papers' exam_board_selected.exam_board subject.subject %}">{{subject.subject}}</a>
+        {% endfor %}
+
+    {% else %}
+        <div class="panel_heading">
+            <p>{{exam_board_selected.exam_board}} past papers <strong>Coming soon!</strong></p>
+            <a href="{% url 'examsolution:past_papers' %}">Reselect exam board</a>
+        </div>
+    {% endif %}
+
+</section>
+
+{% endblock content %}

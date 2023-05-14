@@ -1,0 +1,15 @@
+{% extends 'examsolution/base.html' %}
+{% load static %}
+{% block title %}Test Yourself{% endblock title %}
+
+{% block content %}
+
+    {% if mcq_paper_selected %}
+    
+        {% for question in mcq_paper_selected %}
+            <h1>{{question.question_number_key.question_number}}</h1>
+        {% endfor %}
+
+    {% endif %}
+
+{% endblock content %}
