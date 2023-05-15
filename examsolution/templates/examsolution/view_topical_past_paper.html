@@ -84,7 +84,7 @@
             function view_question(question_url,question_id) {
                 var view_panel,question_button;
                 view_panel = document.getElementById('view_panel');
-                view_panel.innerHTML = "<embed src='" + question_url + "' type='' height='600' width='900'>";
+                view_panel.innerHTML = "<embed src='" + question_url + "' type='' height='100%' width='100%'>";
                 question_button = document.getElementById(question_id);
                 question_button.style.color = "purple";
             }
@@ -92,7 +92,7 @@
             function view_answer(answer_url,answer_id) {
                 var view_panel,answer_button;
                 view_panel = document.getElementById('view_panel');
-                view_panel.innerHTML = "<embed src='" + answer_url + "' type='' height='600' width='900'>";
+                view_panel.innerHTML = "<embed src='" + answer_url + "' type='' height='100%' width='100%'>";
                 answer_button = document.getElementById(answer_id);
                 answer_button.style.color = "purple";
             }

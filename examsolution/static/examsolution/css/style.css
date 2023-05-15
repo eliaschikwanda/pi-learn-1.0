@@ -246,7 +246,7 @@ section {
     margin-right: 2.5rem;
 }
 
-.question_answer .view_panel_heading .individual_reselect {
+.question_answer .view_panel_heading .individual_reselect, .multiple_choice_heading .view_panel_heading .individual_reselect{
     border-top-right-radius: 8rem 5rem;
     border-bottom-right-radius: 8rem 5rem;
     border-bottom-left-radius: 8rem 5rem;
@@ -300,6 +300,8 @@ section {
 
 /* view_topical_past_paper.html styling ends here here  */
 
+/* taking_test.html styling starts here */
+
 .form2 {
 
     display: flex;
@@ -342,12 +344,40 @@ section {
     
 }
 
-/* taking_test.html styling starts here */
-
-
 
 
 /* taking_test.html ends here */
+
+/* test_yourself.html styling starts here */
+.paperonequestions {
+    overflow: auto;
+    margin-top: 5rem;
+    margin-left: 2.5rem;
+    margin-right: 2.5rem;
+    border-radius: 2rem 8rem 2rem 8rem / 1rem 4rem 1rem 4rem;
+    -moz-border-radius:2rem 8rem 2rem 8rem / 1rem 4rem 1rem 4rem;
+    -webkit-border-radius:2rem 8rem 2rem 8rem / 1rem 4rem 1rem 4rem;
+    height: 60rem;
+    background-color: var(--white);
+    padding-bottom: auto;
+}
+
+.multiple_choice_heading .view_panel_heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index:10;
+    margin-left: 2.5rem;
+    margin-right: 2.5rem;
+    
+}
+
+.multiple_choice_heading .view_panel_heading .individual_reselect {
+    background-color: var(--main-color);
+}
+
+/* test_yourself.html styling ends here */
+
 
 
 /* base footer styling starts here*/

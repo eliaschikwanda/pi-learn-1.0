@@ -3,6 +3,12 @@
 {% block title %}Test Yourself{% endblock title %}
 
 {% block content %}
+<section class="question_answer">
+    <div class="view_panel_heading">
+        <p class="individual_reselect" >You're doing {{mcq_paper_selected.full_question_name}} <p>
+        <a class="individual_reselect" href="{% url 'examsolution:test_yourself' %}">Reselect Question Paper</a>
+    </div>
+</section>
 
 <div class="row">
 
@@ -43,6 +49,7 @@
 
     <div class="paper_one_question_ppr">
 
+        <embed src="{% static mcq_paper_selected.full_question_directory %}" type="" height='100%%' width='100%%'>
 
     </div>
 
