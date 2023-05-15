@@ -183,7 +183,7 @@ section {
 
 /* view_topical_past_paper.html styling starts here */
 
-.question_answer .row {
+.question_answer .row, .row{
     display: flex;
     margin-left: 2.5rem;
     margin-right: 2.5rem;
@@ -195,16 +195,16 @@ section {
     -webkit-border-radius:2rem 8rem 2rem 8rem / 1rem 4rem 1rem 4rem;
 }
 
-.question_answer .row .question_answer_select_panel {
+.question_answer .row .question_answer_select_panel, .row .answersheet {
     flex: 30%;
     height: 60rem;
     overflow: auto;
     margin-right: 1.5rem;
     background-color: var(--main-color);
     border-radius: 2.5rem;
-    
+   
 }
-.question_answer .row .question_answer_viewing_panel {
+.question_answer .row .question_answer_viewing_panel, .row .paper_one_question_ppr {
     flex: 70%;
     height: 60rem;
     overflow: auto;
@@ -271,7 +271,7 @@ section {
     margin-right: 2.5rem;
   }
 
-.question_answer legend {
+.question_answer legend, .row .answersheet legend {
     background-color: var(--main-color);
     color:black;
     padding: 5px 10px;
@@ -281,7 +281,7 @@ section {
     margin: 2rem;
 }
 
-.question_answer input {
+.question_answer input, .row input {
     background-color: rgba(128, 0, 128, 0.66);
     padding: 0.5rem;
     border-radius: 2rem;
@@ -299,6 +299,55 @@ section {
 }
 
 /* view_topical_past_paper.html styling ends here here  */
+
+.form2 {
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: #fff;
+    padding:2rem;
+    border-radius: 20px;
+    position: relative;
+    padding-top: 3rem;
+    
+}
+
+.row .answersheet legend {
+    background-color: var(--main-color);
+    color:black;
+    padding: 5px 10px;
+    border-radius: 2rem;
+    margin-bottom: 2rem;
+}
+
+
+.row .answersheet .form2 fieldset p,.row .answersheet .form2 fieldset p .letter_answer {
+    font-family: system-ui, sans-serif;
+    font-size: 2rem;
+    font-weight: bold;
+    line-height: 1.1;
+    display: flex;
+    flex-direction: row;
+    grid-template-columns: 1em auto;
+    gap: 0.5em;
+}
+
+.row .answersheet .form2 fieldset p span {
+    color: purple;
+}
+
+.row .answersheet .form2 fieldset p input[type="radio"] {
+    width: 2rem;
+    
+}
+
+/* taking_test.html styling starts here */
+
+
+
+
+/* taking_test.html ends here */
 
 
 /* base footer styling starts here*/
@@ -355,6 +404,8 @@ section {
 }
 
 /* base footer styling ends here */
+
+
 
 /* media queries */
 

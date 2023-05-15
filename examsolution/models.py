@@ -83,7 +83,7 @@ class ReportThreshPrep(models.Model):
     extra_directory = models.FileField(null=True,upload_to='ReportThreshPrep')
     
     def __str__(self):
-        return self.extra_name
+        return self.extra_name + " " + str(self.year_key.year) + " ("+ self.session_key.session + ") "+ " " + self.subject_key.subject + " "
     
 class PossibleLetters(models.Model):
     letter = models.CharField(max_length=1)
