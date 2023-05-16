@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'examsolution',
-    'storages',
 ]
 
 MIDDLEWARE = [
@@ -154,9 +153,3 @@ STATICFILES_DIRS = [MEDIA_DIR,]
 # AWS_DEFAULT_ACL = None
 # DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 # STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
-
-
-
-
-
-
