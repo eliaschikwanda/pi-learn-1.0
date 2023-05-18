@@ -27,7 +27,7 @@ MEDIA_DIR = os.path.join(BASE_DIR,'media')
 SECRET_KEY = 'django-insecure-ktbd414+vzeg81t+!ca0)mznwdyjnegocvnyu3$fb!u#3f&(6z'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['pilearn01.pythonanywhere.com','127.0.0.1']
 
@@ -133,7 +133,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_ROOT = MEDIA_DIR
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [MEDIA_DIR,]
-# STATIC_ROOT = os.path.join(BASE_DIR,'static')
+STATIC_ROOT = os.path.join(BASE_DIR,'static')
 
 
 
