@@ -108,4 +108,8 @@ class PaperOneAnswers(models.Model):
     def __str__(self):
         return str(self.question_number_key.question_number) + " ("+ self.question_answer_key.letter +") " +" ("+ self.paper_one_name_key.full_question_name + ") "
     
-    
+class website_pics(models.Model):
+    website_logo = models.ImageField(null=True,upload_to='WesbitePics')
+
+class home_image(models.Model):
+    home_logo = models.ImageField(null=True,upload_to='WesbitePics')

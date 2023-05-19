@@ -94,7 +94,9 @@ section {
     display: none;
 }
 
-
+.header a img#website_logo {
+    border-radius: 2rem;
+}
 
 
 
@@ -105,14 +107,42 @@ section {
 
 /* Home page styling here */
 
-#exam_board_num {
-    font-size: 2.5rem;
+.home .welcome, .home .why_pilearn, .home .examboard {
+    margin-left: 2.5rem;
+    margin-right: 2.5rem;
 }
 
-#exam_board_names {
-    font-size: 2.5rem;
-    color: var(--white);
+#why_pilearn_header {
+    margin-left: 2.5rem;
+    margin-right: 2.5rem;
 }
+
+.home .welcome {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3rem;
+}
+
+.home .welcome img#home_logo {
+    max-width: 50rem;
+    max-height: 30rem;
+}
+
+.home .why_pilearn{
+    display: flex;
+    flex-wrap:wrap;
+    gap: 3rem;
+    float: left;
+}
+
+.home .why_pilearn .services {
+    border: solid blue 1px;
+    border-radius: 2rem;
+    padding: 1.5rem;
+    max-width: 35rem;
+    height: 35rem;
+}
+
 
 /* Home page styling ends here */
 
@@ -460,7 +490,6 @@ section {
         background-color: var(--white);
         border-top: var(--border);
         padding: 2rem;
-        transition: 2s linear;
         clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
     }
 

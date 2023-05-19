@@ -10,17 +10,18 @@ from .models import *
 
 # Home page view with empty url
 
+
 def home(request):
     
-
-    
+    website_logo = website_pics.objects.get(id=1) 
     all_exam_boards = ExamBoard.objects.all()
-    
+    home_page_img = home_image.objects.get(id=1)
+   
     context = {
         
         'all_exam_boards' : all_exam_boards,
-        
-        
+        'website_logo' : website_logo,
+        'home_page_img': home_page_img,
     }
     
     return render(request, 'examsolution/home.html', context)
@@ -28,9 +29,11 @@ def home(request):
 # Syllabus page view
 
 def syllabi(request):
+    
+    website_logo = website_pics.objects.get(id=1)
    
     context = {
-
+        'website_logo':website_logo,
     }
     
     return render(request,'examsolution/syllabi.html',context)
@@ -39,8 +42,10 @@ def syllabi(request):
 
 def notes(request):
     
+    website_logo = website_pics.objects.get(id=1)
+    
     context = {
-        
+        'website_logo':website_logo,
     }
     
     return render(request, 'examsolution/notes.html', context)
@@ -49,11 +54,13 @@ def notes(request):
 
 def index_topical_past_paper(request):
     
+    website_logo = website_pics.objects.get(id=1)
     exam_board_list = ExamBoard.objects.all()
            
     context = {
 
         'exam_board_list' : exam_board_list,
+        'website_logo':website_logo,
 
     }
 
@@ -61,25 +68,30 @@ def index_topical_past_paper(request):
 
 def subject_topical_past_paper(request,exam_board):
     
+    website_logo = website_pics.objects.get(id=1)
     exam_board_selected = get_object_or_404(ExamBoard,exam_board=exam_board)
     
     context = {
         'exam_board_selected' : exam_board_selected,
+        'website_logo':website_logo,
     }
     
     return render(request,"examsolution/subject_topical_past_paper.html",context)
 
 def topics_topical_past_paper(request,exam_board,subject_selected):
+    website_logo = website_pics.objects.get(id=1)
     topic_paper_list = BoardSubTopic.objects.filter(subject_key__subject=subject_selected)
     context = {
         'subject_selected':subject_selected,
         'topic_paper_list':topic_paper_list,
         'exam_board' : exam_board,
+        'website_logo':website_logo,
     }
     
     return render(request,"examsolution/topics_topical_past_paper.html",context)
 
 def view_topical_past_paper(request,exam_board,subject_selected,topic_id):
+    website_logo = website_pics.objects.get(id=1)
     year_set = Year.objects.all()
     session_set = Session.objects.all()
     topic_paper_object = get_object_or_404(BoardSubTopic, pk=topic_id)
@@ -97,6 +109,7 @@ def view_topical_past_paper(request,exam_board,subject_selected,topic_id):
         'new_selected_topic_paper_set':new_selected_topic_paper_set,
         'year_set' : year_set,
         'session_set' : session_set,
+        'website_logo':website_logo,
         
     }
 
@@ -107,32 +120,38 @@ def view_topical_past_paper(request,exam_board,subject_selected,topic_id):
 
 def index_past_papers(request):
     
+    website_logo = website_pics.objects.get(id=1)
     exam_board_list = ExamBoard.objects.all()
     
     context = {
-        'exam_board_list': exam_board_list
+        'exam_board_list': exam_board_list,
+        'website_logo':website_logo,
     }
     
     return render(request, 'examsolution/past_papers.html', context)
 
 def subject_past_papers(request,exam_board):
     
+    website_logo = website_pics.objects.get(id=1)
     exam_board_selected = get_object_or_404(ExamBoard,exam_board=exam_board)
     
     context = {
         'exam_board_selected' : exam_board_selected,
+        'website_logo':website_logo,
     }
     
     return render(request,'examsolution/subject_past_papers.html',context)
 
 def year_past_papers(request,exam_board,subject_selected):
     
+    website_logo = website_pics.objects.get(id=1)
     years_available_list = Year.objects.all()
     
     context = {
         'years_available_list':years_available_list,
         'exam_board' : exam_board,
         'subject_selected':subject_selected,
+        'website_logo':website_logo,
         
     }
     
@@ -140,6 +159,7 @@ def year_past_papers(request,exam_board,subject_selected):
 
 def view_past_paper(request,exam_board,subject_selected,year):
     
+    website_logo = website_pics.objects.get(id=1)
     march_past_papers_selected_list = FullQuestionAnswer.objects.filter(session_key__session='March',year_key__year=year,subject_key__subject=subject_selected).order_by('full_question_name')
     june_past_papers_selected_list = FullQuestionAnswer.objects.filter(session_key__session='June',year_key__year=year,subject_key__subject=subject_selected).order_by('full_question_name')
     november_past_papers_selected_list = FullQuestionAnswer.objects.filter(session_key__session='November',year_key__year=year,subject_key__subject=subject_selected).order_by('full_question_name')
@@ -159,6 +179,7 @@ def view_past_paper(request,exam_board,subject_selected,year):
         'march_extras' : march_extras,
         'june_extras':june_extras,
         'november_extras':november_extras,
+        'website_logo':website_logo,
        
     }
     
@@ -170,16 +191,19 @@ def view_past_paper(request,exam_board,subject_selected,year):
 
 def index_test_yourself(request):
     
+    website_logo = website_pics.objects.get(id=1)
     multiple_choice_available_list = FullQuestionAnswer.objects.filter(paper_number__paper_num='1')
     
     context = {
         'multiple_choice_available_list' : multiple_choice_available_list,
+        'website_logo':website_logo,
     }
     
     return render(request, 'examsolution/test_yourself.html', context)
 
 def taking_test(request,question_id):
     
+    website_logo = website_pics.objects.get(id=1)
     mcq_paper_selected = FullQuestionAnswer.objects.get(id=question_id)
     mcq_paper_selected_set = FullQuestionAnswer.objects.get(id=question_id).paperoneanswers_set.all()
     possible_answer1 = PossibleLetters.objects.get(pk=1)
@@ -195,6 +219,7 @@ def taking_test(request,question_id):
         'possible_answer3' : possible_answer3,
         'possible_answer4' : possible_answer4,
         'question_id' : question_id,
+        'website_logo':website_logo,
         
         
     }
@@ -202,6 +227,8 @@ def taking_test(request,question_id):
     return render(request,'examsolution/taking_test.html',context)
 
 def test_grading(request,question_id):
+    
+    website_logo = website_pics.objects.get(id=1)
     mcq_paper_selected = get_object_or_404(FullQuestionAnswer,pk=question_id)
     mcq_paper_selected_set = FullQuestionAnswer.objects.get(id=question_id).paperoneanswers_set.all()
     score = 0
@@ -539,6 +566,7 @@ def test_grading(request,question_id):
     context = {
         'score' : score,
         'wrong_question':wrong_question,
+        'website_logo':website_logo,
     }
             
     return render(request,'examsolution/test_grading.html',context)
@@ -550,9 +578,9 @@ def test_grading(request,question_id):
 
 def college(request):
 
-    
+    website_logo = website_pics.objects.get(id=1)
     context = {
-        
+        'website_logo':website_logo,
     }
     
     return render(request, 'examsolution/college.html', context)
@@ -561,15 +589,19 @@ def college(request):
 
 def contactpiilearn(request):
     
+    website_logo = website_pics.objects.get(id=1)
     context = {
-       
+       'website_logo':website_logo,
     }
     
     return render(request, 'examsolution/contact_piilearn.html', context)
 
 def exam_board(request):
     
+    website_logo = website_pics.objects.get(id=1)
     context = {
+        
+        'website_logo':website_logo,
 
     }
     
