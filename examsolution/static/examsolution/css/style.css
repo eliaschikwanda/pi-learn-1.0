@@ -90,10 +90,14 @@ section {
 #menu-btn {
     font-size: 2.5rem;
     cursor: pointer;
-    color: yellow;
+    color: black;
     display: none;
-
 }
+
+
+
+
+
 
 /* base header syling ends */
 
@@ -464,7 +468,7 @@ section {
         clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
     }
 
-    .header .header a {
+    .header .navbar a {
         display: block;
         margin: 2rem;
         text-align: center;

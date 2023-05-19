@@ -1,8 +1,8 @@
-document.addEventListener('click',menuButton);
-function menuButton(){
-    let menu = document.getElementById('menu-btn');
+let menu = document.querySelector('#menu-btn');
+let navbar = document.querySelector('.header .navbar');
+
+menu.onclick = () => {
     menu.classList.toggle('fa-times');
-    let navbar = document.getElementById('navbar-1');
     navbar.classList.toggle('activate');
 }
 
