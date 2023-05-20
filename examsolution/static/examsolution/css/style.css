@@ -358,6 +358,19 @@ section {
     margin-top: 2rem;
     margin-right: 2rem;
 }
+.question_answer .session_question_list a:hover {
+    color: purple;
+}
+
+.question_answer .session_question_list a:visited{
+    color: blue;
+}
+
+.question_answer .session_question_list p {
+    font-size: 1.5rem;
+    color: black;
+}
+
 
 
 /* view_past_paper.html ends here */
