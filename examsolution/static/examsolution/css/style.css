@@ -337,6 +337,28 @@ section {
 
 /* view_past_paper.html styling starts here */
 
+.question_answer .session_question_list {
+    margin-left: 2.5rem;
+    margin-right: 2.5rem;
+    margin-top: 2.5rem;
+    margin-bottom: 2.5rem;
+    padding: 2rem;
+    border-radius: 2.5rem;
+    background-color: white;
+}
+
+.question_answer .session_question_list a {
+    display: inline-table;
+    font-size: 1.5rem;
+    background-color: white;
+    padding: 0.5rem;
+    color: black;
+    border: 2px solid blue;
+    border-radius: 2.5rem;
+    margin-top: 2rem;
+    margin-right: 2rem;
+}
+
 
 /* view_past_paper.html ends here */
 
