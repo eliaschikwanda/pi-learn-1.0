@@ -151,12 +151,12 @@ section {
 .exam_boards, .subjects, .topics,.no_question_answer {
     overflow: auto;
     margin-top: 5rem;
+    margin-bottom: 5rem;
     margin-left: 2.5rem;
     margin-right: 2.5rem;
     border-radius: 2rem 8rem 2rem 8rem / 1rem 4rem 1rem 4rem;
     -moz-border-radius:2rem 8rem 2rem 8rem / 1rem 4rem 1rem 4rem;
     -webkit-border-radius:2rem 8rem 2rem 8rem / 1rem 4rem 1rem 4rem;
-    height: 60rem;
     background-color: var(--white);
     padding-bottom: auto;
   
@@ -166,10 +166,10 @@ section {
     border: solid blue 1px;
     border-radius: 2rem;
     color: black;
-    font-size: 5rem;
+    font-size: 2.5rem;
     display: inline;
     margin: 2.5rem;
-    padding: 7rem;
+    padding: 3rem;
     float: left;
     background-color: white;    
 }
@@ -523,7 +523,7 @@ section {
 .grading_data h1 {
     font-size: 2.5rem;
     background-color: rgb(191, 72, 191);
-    padding: 0.5rem;
+    padding: 1.5rem;
     border-radius: 2.5rem;
     margin-bottom: 1rem;
     color: white;
