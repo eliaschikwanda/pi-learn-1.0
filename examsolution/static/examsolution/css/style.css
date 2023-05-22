@@ -133,6 +133,7 @@ section {
     flex-wrap:wrap;
     gap: 3rem;
     float: left;
+    overflow: auto;
 }
 
 .home .why_pilearn .services {
@@ -454,7 +455,86 @@ section {
 
 /* test_yourself.html styling ends here */
 
+/* test_grading.html styling starts here */
 
+.view_test_data, .general_comments {
+    background-color: white;
+    margin-left: 2.5rem;
+    margin-right: 2.5rem;
+    margin-top: 5rem;
+    border-radius: 2.5rem;
+    overflow: auto;
+
+}
+
+
+.further_question_explanation {
+    background-color: white;
+    margin-left: 2.5rem;
+    margin-right: 2.5rem;
+    border-radius: 2.5rem;
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+}
+
+.grading_page_heading {
+    background-color: var(--main-color);
+    font-size: 2rem;
+    border-radius: 2.5rem;
+    padding: 1rem;
+    margin: 1rem;
+    position: relative;
+    max-width: 60rem;
+}
+
+.grading_er_comment_heading {
+    font-size: 1.5rem;
+    background-color: rgb(191, 72, 191);
+    margin: 1.5rem;
+    padding: 1rem;
+    max-width: 13rem;
+    border-radius: 2.5rem;
+    color: white;
+}
+
+.grading_er_comment, .general_cmt_para {
+    font-size: 1.5rem;
+    margin: 1rem;
+    margin-left: 7rem;
+    text-transform: none;
+}
+
+
+.statistics {
+    display: flex;
+    flex-wrap:wrap;
+    gap: 3rem;
+    float: left;
+}
+
+.grading_data {
+    border: solid blue 1px;
+    border-radius: 2rem;
+    padding: 1.5rem;
+    max-width: 35rem;
+    overflow: auto;
+}
+
+.grading_data h1 {
+    font-size: 2.5rem;
+    background-color: rgb(191, 72, 191);
+    padding: 0.5rem;
+    border-radius: 2.5rem;
+    margin-bottom: 1rem;
+    color: white;
+
+}
+
+.grading_data p {
+    font-size: 1.5rem;
+    margin-top: 1;
+}
+/* test_grading.html stying ends here */
 
 /* base footer styling starts here*/
 .footer {

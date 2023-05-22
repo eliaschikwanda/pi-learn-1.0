@@ -563,10 +563,39 @@ def test_grading(request,question_id):
     else:
         wrong_question.append(question_40.question_number_key.question_number)
         
+    grade = ''
+    
+    if mcq_paper_selected.A_raw_mark_req:
+            
+        if score >= mcq_paper_selected.A_raw_mark_req:
+            grade = 'A'
+            
+        elif score >= mcq_paper_selected.B_raw_mar_req:
+            grade = 'B'
+            
+        elif score >= mcq_paper_selected.C_raw_mar_req:
+            grade = 'C'
+        
+        elif score >= mcq_paper_selected.D_raw_mar_req:
+            grade = 'D'
+            
+        elif score >= mcq_paper_selected.E_raw_mar_req:
+            grade = 'E'
+            
+        else:
+            grade = 'Ungraded'
+        
+    percentage = ''
+    percentage = (score/40)*100
+        
     context = {
         'score' : score,
+        'grade' : grade,
         'wrong_question':wrong_question,
         'website_logo':website_logo,
+        'mcq_paper_selected':mcq_paper_selected,
+        'mcq_paper_selected_set':mcq_paper_selected_set,
+        'percentage': percentage,
     }
             
     return render(request,'examsolution/test_grading.html',context)

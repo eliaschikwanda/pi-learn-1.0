@@ -69,6 +69,14 @@ class FullQuestionAnswer(models.Model):
     full_answersheet_name = models.CharField(max_length=200)
     full_answersheet_directory = models.FileField(null=True,upload_to='FullMarkScheme')
     paper_number = models.ForeignKey(Paper,on_delete=models.CASCADE,blank=True,null=True)
+    A_raw_mark_req = models.IntegerField(blank=True, null=True)
+    B_raw_mar_req = models.IntegerField(blank=True, null=True)
+    C_raw_mar_req = models.IntegerField(blank=True, null=True)
+    D_raw_mar_req = models.IntegerField(blank=True, null=True)
+    E_raw_mar_req = models.IntegerField(blank=True, null=True)
+    general_exam_report_cmnt = models.CharField(max_length=20000,blank=True, null=True)
+    
+    
     
     
     def __str__(self):

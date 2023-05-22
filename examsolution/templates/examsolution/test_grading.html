@@ -1,2 +1,106 @@
-<h1>Kana chikashanda wakaipa. You got {{score}}</h1><br>
-{{wrong_question}}
+{% extends 'examsolution/base.html' %}
+{% load static %}
+{% block title %}Test Yourself{% endblock title %}
+
+{% block content %}
+
+<section class="general_comments">
+    <p class="grading_page_heading">
+        Below are the general exam report comment for <strong> {{mcq_paper_selected.full_question_name}}</strong>
+    </p>
+ 
+    {% if mcq_paper_selected.general_exam_report_cmnt %}
+
+        <p class="general_cmt_para"> {{mcq_paper_selected.general_exam_report_cmnt}} </p>
+    
+    {% else %}
+
+        <p class="general_cmt_para">general comments for this paper not available</p>
+
+    {% endif %}
+
+</section>
+
+<section class="view_test_data" id="view_test_data_grading">
+    <p class="grading_page_heading">
+        Use the statics below to evaluate yourself
+    </p>
+    <div class="statistics">
+
+        <div class="grading_data">
+            <h1>You got {{score}} </h1>
+            <p>
+                {% if score == 40 %}
+                    You got everything correct!
+
+                {% else %}
+
+                    These are the questions you got wrong <br>
+                    {% for wrong_question in wrong_question %}
+                    
+                        <strong>{{wrong_question}},</strong>
+                    
+                    {% endfor %}
+
+                
+                {% endif %}
+                
+            </p>
+        </div>
+
+
+        <div class="grading_data">
+            <h1>Your percentage is  {{percentage}}%</h1>
+        </div>
+
+        <div class="grading_data">
+            {% if grade %}
+                <h1>Your grade is {{grade}} </h1>
+
+            {% else %}
+                <h1>Threshold Data for <strong> {{mcq_paper_selected.full_question_name}}</strong>  paper not available</h1>
+            {% endif %}
+            <p>Your grade is calucate based on the threshold of <strong> {{mcq_paper_selected.full_question_name}}</strong> paper. These are some of the values below <br>
+                A ~ {{mcq_paper_selected.A_raw_mark_req}} {% if mcq_paper_selected.A_raw_mark_req %} and above {% endif %} 
+                <br>
+                B ~ {{mcq_paper_selected.B_raw_mar_req}} {% if mcq_paper_selected.B_raw_mar_req %} and above {% endif %} 
+                <br>
+                C ~ {{mcq_paper_selected.C_raw_mar_req}} {% if mcq_paper_selected.C_raw_mar_req %} and above {% endif %} 
+                <br>
+                D ~ {{mcq_paper_selected.D_raw_mar_req}} {% if mcq_paper_selected.D_raw_mar_req %} and above {% endif %} 
+                <br>
+                E ~ {{mcq_paper_selected.E_raw_mar_req}} {% if mcq_paper_selected.E_raw_mar_req %} and above {% endif %} 
+                <br>
+            </p>
+           
+        </div>
+
+
+    </div>
+
+    
+</section>
+
+<section class="further_question_explanation">
+    <p class="grading_page_heading">
+       <strong> {{mcq_paper_selected.full_question_name}}</strong> questions with exam report comments
+    </p>
+
+    {% for mcq_question in mcq_paper_selected_set %}
+
+        {% if mcq_question.question_examreportcmt %}
+
+            <p class="grading_er_comment_heading"> Question {{mcq_question.question_number_key}}</p>
+            <p class="grading_er_comment">{{mcq_question.question_examreportcmt}}</p>
+
+        {% endif %}
+
+        
+
+    
+    {% endfor %}
+    
+</section>
+
+
+{% endblock content %}
