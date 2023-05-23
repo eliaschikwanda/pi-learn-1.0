@@ -431,28 +431,72 @@ section {
     margin-top: 5rem;
     margin-left: 2.5rem;
     margin-right: 2.5rem;
+    margin-bottom: 5rem;
     border-radius: 2rem 8rem 2rem 8rem / 1rem 4rem 1rem 4rem;
     -moz-border-radius:2rem 8rem 2rem 8rem / 1rem 4rem 1rem 4rem;
     -webkit-border-radius:2rem 8rem 2rem 8rem / 1rem 4rem 1rem 4rem;
-    height: 60rem;
-    background-color: var(--white);
-    padding-bottom: auto;
+    background-color: white;
 }
 
-.multiple_choice_heading .view_panel_heading {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    z-index:10;
-    margin-left: 2.5rem;
-    margin-right: 2.5rem;
-    
+.paperonequestions .test_yourself_board {
+    background-color: var(--main-color);
+    font-size: 3rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    margin-left: 0.5rem;
+    max-width: 60rem;
+    padding: 1.0rem;
+    border-radius: 2.5rem;
 }
 
-.multiple_choice_heading .view_panel_heading .individual_reselect {
+.paperonequestions .test_yourself_subject .test_yourself_subname {
+    font-size: 2.5rem;
+    margin-left: 3rem;
+    padding: 0.5rem;
+    padding-left: 1rem;
+    border-radius: 2rem;
+    max-width: 30rem;
+    margin-bottom: 1.5rem;
+    background-color: rgb(150, 150, 231);
+}
+
+.paperonequestions .test_yourself_subject .test_yourself_year {
+    font-size: 2rem;
+    margin-left: 6rem;
+    padding: 0.5rem;
+    border-radius: 2.5rem;
+    max-width: 10rem;
+    background-color: rgba(128, 0, 128, 0.66);
+    padding-left: 1rem;
+    color: white;
+}
+
+.paperonequestions .test_yourself_subject .test_yourself_session {
+    font-size: 1.75rem;
+    padding: 0.5rem;
+    margin-left: 8rem;
+    font-weight: bold;
+}
+
+.paperonequestions .test_yourself_subject .test_yourself_pp1_link {
+    display: inline-table;
+    font-size: 1.50rem;
+    margin-left: 12rem;
+    margin-bottom: 2rem;
+    margin-top: 0.5rem;
+    border: 1px blue solid;
+    padding: 0.5rem;
+    border-radius: 2.5rem;
+    color: black,
+}
+
+.paperonequestions .test_yourself_subject a {
+    color: black;
+}
+
+.paperonequestions .test_yourself_subject .test_yourself_pp1_link:hover {
     background-color: var(--main-color);
 }
-
 /* test_yourself.html styling ends here */
 
 /* test_grading.html styling starts here */

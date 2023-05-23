@@ -192,11 +192,52 @@ def view_past_paper(request,exam_board,subject_selected,year):
 def index_test_yourself(request):
     
     website_logo = website_pics.objects.get(id=1)
-    multiple_choice_available_list = FullQuestionAnswer.objects.filter(paper_number__paper_num='1')
     
+    # Chemistry ~ 9701 filters
+    
+    Chem_9701_2022_March_multiple_choice_available_list = FullQuestionAnswer.objects.filter(paper_number__paper_num='1',subject_key__subject='Chemistry ~ 9701',year_key__year='2022',session_key__session='March')
+    Chem_9701_2022_June_multiple_choice_available_list = FullQuestionAnswer.objects.filter(paper_number__paper_num='1',subject_key__subject='Chemistry ~ 9701',year_key__year='2022',session_key__session='June')
+    Chem_9701_2022_November_multiple_choice_available_list = FullQuestionAnswer.objects.filter(paper_number__paper_num='1',subject_key__subject='Chemistry ~ 9701',year_key__year='2022',session_key__session='November')
+    Chem_9701_2021_March_multiple_choice_available_list = FullQuestionAnswer.objects.filter(paper_number__paper_num='1',subject_key__subject='Chemistry ~ 9701',year_key__year='2021',session_key__session='March')
+    Chem_9701_2021_June_multiple_choice_available_list = FullQuestionAnswer.objects.filter(paper_number__paper_num='1',subject_key__subject='Chemistry ~ 9701',year_key__year='2021',session_key__session='June')
+    Chem_9701_2021_November_multiple_choice_available_list = FullQuestionAnswer.objects.filter(paper_number__paper_num='1',subject_key__subject='Chemistry ~ 9701',year_key__year='2021',session_key__session='November')
+    Chem_9701_2020_March_multiple_choice_available_list = FullQuestionAnswer.objects.filter(paper_number__paper_num='1',subject_key__subject='Chemistry ~ 9701',year_key__year='2020',session_key__session='March')
+    Chem_9701_2020_June_multiple_choice_available_list = FullQuestionAnswer.objects.filter(paper_number__paper_num='1',subject_key__subject='Chemistry ~ 9701',year_key__year='2020',session_key__session='June')
+    Chem_9701_2020_November_multiple_choice_available_list = FullQuestionAnswer.objects.filter(paper_number__paper_num='1',subject_key__subject='Chemistry ~ 9701',year_key__year='2020',session_key__session='November')
+    
+    # Physic ~ 9702 filters
+    Phy_9702_2022_March_multiple_choice_available_list = FullQuestionAnswer.objects.filter(paper_number__paper_num='1',subject_key__subject='Physics ~ 9702',year_key__year='2022',session_key__session='March')
+    Phy_9702_2022_June_multiple_choice_available_list = FullQuestionAnswer.objects.filter(paper_number__paper_num='1',subject_key__subject='Physics ~ 9702',year_key__year='2022',session_key__session='June')
+    Phy_9702_2022_November_multiple_choice_available_list = FullQuestionAnswer.objects.filter(paper_number__paper_num='1',subject_key__subject='Physics ~ 9702',year_key__year='2022',session_key__session='November')
+    Phy_9702_2021_March_multiple_choice_available_list = FullQuestionAnswer.objects.filter(paper_number__paper_num='1',subject_key__subject='Physics ~ 9702',year_key__year='2021',session_key__session='March')
+    Phy_9702_2021_June_multiple_choice_available_list = FullQuestionAnswer.objects.filter(paper_number__paper_num='1',subject_key__subject='Physics ~ 9702',year_key__year='2021',session_key__session='June')
+    Phy_9702_2021_November_multiple_choice_available_list = FullQuestionAnswer.objects.filter(paper_number__paper_num='1',subject_key__subject='Physics ~ 9702',year_key__year='2021',session_key__session='November')
+    Phy_9702_2020_March_multiple_choice_available_list = FullQuestionAnswer.objects.filter(paper_number__paper_num='1',subject_key__subject='Physics ~ 9702',year_key__year='2020',session_key__session='March')
+    Phy_9702_2020_June_multiple_choice_available_list = FullQuestionAnswer.objects.filter(paper_number__paper_num='1',subject_key__subject='Physics ~ 9702',year_key__year='2020',session_key__session='June')
+    Phy_9702_2020_November_multiple_choice_available_list = FullQuestionAnswer.objects.filter(paper_number__paper_num='1',subject_key__subject='Physics ~ 9702',year_key__year='2020',session_key__session='November')
+    
+   
+   
     context = {
-        'multiple_choice_available_list' : multiple_choice_available_list,
         'website_logo':website_logo,
+        'Chem_9701_2022_March_multiple_choice_available_list':Chem_9701_2022_March_multiple_choice_available_list,
+        'Chem_9701_2022_June_multiple_choice_available_list' : Chem_9701_2022_June_multiple_choice_available_list,
+        'Chem_9701_2022_November_multiple_choice_available_list' : Chem_9701_2022_November_multiple_choice_available_list,
+        'Chem_9701_2021_March_multiple_choice_available_list' : Chem_9701_2021_March_multiple_choice_available_list,
+        'Chem_9701_2021_June_multiple_choice_available_list' : Chem_9701_2021_June_multiple_choice_available_list,
+        'Chem_9701_2021_November_multiple_choice_available_list' : Chem_9701_2021_November_multiple_choice_available_list,
+        'Chem_9701_2020_March_multiple_choice_available_list' : Chem_9701_2020_March_multiple_choice_available_list,
+        'Chem_9701_2020_June_multiple_choice_available_list' : Chem_9701_2020_June_multiple_choice_available_list,
+        'Chem_9701_2020_November_multiple_choice_available_list' : Chem_9701_2020_November_multiple_choice_available_list,
+        'Phy_9702_2022_March_multiple_choice_available_list' : Phy_9702_2022_March_multiple_choice_available_list,
+        'Phy_9702_2022_June_multiple_choice_available_list' : Phy_9702_2022_June_multiple_choice_available_list,
+        'Phy_9702_2022_November_multiple_choice_available_list' : Phy_9702_2022_November_multiple_choice_available_list,
+        'Phy_9702_2021_March_multiple_choice_available_list' : Phy_9702_2021_March_multiple_choice_available_list,
+        'Phy_9702_2021_June_multiple_choice_available_list' : Phy_9702_2021_June_multiple_choice_available_list,
+        'Phy_9702_2021_November_multiple_choice_available_list' : Phy_9702_2021_November_multiple_choice_available_list,
+        'Phy_9702_2020_March_multiple_choice_available_list' : Phy_9702_2020_March_multiple_choice_available_list,
+        'Phy_9702_2020_June_multiple_choice_available_list' : Phy_9702_2020_June_multiple_choice_available_list,
+        'Phy_9702_2020_November_multiple_choice_available_list' : Phy_9702_2020_November_multiple_choice_available_list,
     }
     
     return render(request, 'examsolution/test_yourself.html', context)

@@ -6,47 +6,343 @@
 
 <section class="paperonequestions">
 
-    <section class="multiple_choice_heading">
-        <div class="view_panel_heading">
-            <p class="individual_reselect" >Cambridge multiple choice questions <p>
-            <a class="individual_reselect" href="{% url 'examsolution:home' %}">Back Home</a>
-        </div>
-    </section>
+    <div class="test_yourself_heading">
+        <p class="test_yourself_board">Cambridge as and a level MCQs<p>
+    </div>
 
-    {% if multiple_choice_available_list %}
+    <div class="test_yourself_subject">
 
-        {% for mcq in multiple_choice_available_list %}
-        
-            <h1><a href="{% url 'examsolution:taking_test' mcq.id %}" class="multiple_choice_questions"> {{mcq.full_question_name}} </a></h1>
-        {% endfor %}
+        <p class="test_yourself_subname"><strong>Chemistry ~ 9701</strong></p>
+            <p class="test_yourself_year">2022</p>
+                <p class="test_yourself_session">February/March</p>
 
-    {% else %}
+                    {% if Chem_9701_2022_March_multiple_choice_available_list %}
+                
+                        {% for mcq in Chem_9701_2022_March_multiple_choice_available_list %}
 
-        <h1>No multiple questions available</h1>
+                            <a class="test_yourself_pp1_link" href="{% url 'examsolution:taking_test' mcq.id %}"> {{mcq.full_question_name}} </a>
 
-    {% endif %}
+                        {% endfor %}
+
+                    {% else %}
+
+                        <p>MCQs not available</p>
+
+                    {% endif %}
+
+                <p class="test_yourself_session">May/June</p>
+                    {% if Chem_9701_2022_June_multiple_choice_available_list %}
+                    
+                        {% for mcq in Chem_9701_2022_June_multiple_choice_available_list %}
+
+                            <a class="test_yourself_pp1_link" href="{% url 'examsolution:taking_test' mcq.id %}"> {{mcq.full_question_name}} </a>
+                            <br>
+
+                        {% endfor %}
+
+                    {% else %}
+
+                        <p>MCQs not available</p>
+
+                    {% endif %}
+
+                <p class="test_yourself_session">October/November</p>
+
+                    {% if Chem_9701_2022_November_multiple_choice_available_list %}
+                        
+                        {% for mcq in Chem_9701_2022_November_multiple_choice_available_list %}
+
+                            <a class="test_yourself_pp1_link" href="{% url 'examsolution:taking_test' mcq.id %}"> {{mcq.full_question_name}} </a>
+                            <br>
+
+                        {% endfor %}
+
+                    {% else %}
+
+                        <p>MCQs not available</p>
+
+                    {% endif %}
+                
+            <p class="test_yourself_year">2021</p>
+                <p class="test_yourself_session">February/March</p>
+
+                    {% if Chem_9701_2021_March_multiple_choice_available_list %}
+                            
+                        {% for mcq in Chem_9701_2021_March_multiple_choice_available_list %}
+
+                            <a class="test_yourself_pp1_link" href="{% url 'examsolution:taking_test' mcq.id %}"> {{mcq.full_question_name}} </a>
+                            <br>
+
+                        {% endfor %}
+
+                    {% else %}
+
+                        <p>MCQs not available</p>
+
+                    {% endif %}
+
+                <p class="test_yourself_session">May/June</p>
+
+                    {% if Chem_9701_2021_June_multiple_choice_available_list %}
+                                
+                        {% for mcq in Chem_9701_2021_June_multiple_choice_available_list %}
+
+                            <a class="test_yourself_pp1_link" href="{% url 'examsolution:taking_test' mcq.id %}"> {{mcq.full_question_name}} </a>
+                            <br>
+
+                        {% endfor %}
+
+                    {% else %}
+
+                        <p>MCQs not available</p>
+
+                    {% endif %}
+                    
+                <p class="test_yourself_session">October/November</p>
+
+                    {% if Chem_9701_2021_November_multiple_choice_available_list %}
+                                    
+                        {% for mcq in Chem_9701_2021_November_multiple_choice_available_list %}
+
+                            <a class="test_yourself_pp1_link" href="{% url 'examsolution:taking_test' mcq.id %}"> {{mcq.full_question_name}} </a>
+                            <br>
+
+                        {% endfor %}
+
+                    {% else %}
+
+                        <p>MCQs not available</p>
+
+                    {% endif %}
+
+            <p class="test_yourself_year">2020</p>
+                <p class="test_yourself_session">February/March</p>
+                    {% if Chem_9701_2020_March_multiple_choice_available_list %}
+                                        
+                        {% for mcq in Chem_9701_2020_March_multiple_choice_available_list %}
+
+                            <a class="test_yourself_pp1_link" href="{% url 'examsolution:taking_test' mcq.id %}"> {{mcq.full_question_name}} </a>
+                            <br>
+
+                        {% endfor %}
+
+                    {% else %}
+
+                        <p>MCQs not available</p>
+
+                    {% endif %}
+                <p class="test_yourself_session">May/June</p>
+                    {% if Chem_9701_2020_June_multiple_choice_available_list %}
+                                            
+                        {% for mcq in Chem_9701_2020_June_multiple_choice_available_list %}
+
+                            <a class="test_yourself_pp1_link" href="{% url 'examsolution:taking_test' mcq.id %}"> {{mcq.full_question_name}} </a>
+                            <br>
+
+                        {% endfor %}
+
+                    {% else %}
+
+                        <p>MCQs not available</p>
+
+                    {% endif %}
+                <p class="test_yourself_session">October/November</p>
+                    {% if Chem_9701_2020_November_multiple_choice_available_list %}
+                                                
+                        {% for mcq in Chem_9701_2020_November_multiple_choice_available_list %}
+
+                            <a class="test_yourself_pp1_link" href="{% url 'examsolution:taking_test' mcq.id %}"> {{mcq.full_question_name}} </a>
+                            <br>
+
+                        {% endfor %}
+
+                    {% else %}
+
+                        <p>MCQs not available</p>
+
+                    {% endif %}
+                
+
+    </div>
+
+    <div class="test_yourself_subject">
+
+        <p class="test_yourself_subname"><strong>Physics ~ 9702</strong></p>
+            <p class="test_yourself_year">2022</p>
+                <p class="test_yourself_session">February/March</p>
+                
+                    {% if Phy_9702_2022_March_multiple_choice_available_list %}
+                                                    
+                        {% for mcq in Phy_9702_2022_March_multiple_choice_available_list %}
+
+                            <a class="test_yourself_pp1_link" href="{% url 'examsolution:taking_test' mcq.id %}"> {{mcq.full_question_name}} </a>
+                            <br>
+
+                        {% endfor %}
+
+                    {% else %}
+
+                        <p>MCQs not available</p>
+
+                    {% endif %}
+
+
+                <p class="test_yourself_session">May/June</p>
+
+                    {% if Phy_9702_2022_June_multiple_choice_available_list %}
+                                                        
+                        {% for mcq in Phy_9702_2022_June_multiple_choice_available_list %}
+
+                            <a class="test_yourself_pp1_link" href="{% url 'examsolution:taking_test' mcq.id %}"> {{mcq.full_question_name}} </a>
+                            <br>
+
+                        {% endfor %}
+
+                    {% else %}
+
+                        <p>MCQs not available</p>
+
+                    {% endif %}
+
+                <p class="test_yourself_session">October/November</p>
+
+
+                    {% if Phy_9702_2022_November_multiple_choice_available_list %}
+                                                            
+                        {% for mcq in Phy_9702_2022_November_multiple_choice_available_list %}
+
+                            <a class="test_yourself_pp1_link" href="{% url 'examsolution:taking_test' mcq.id %}"> {{mcq.full_question_name}} </a>
+                            <br>
+
+                        {% endfor %}
+
+                    {% else %}
+
+                        <p>MCQs not available</p>
+
+                    {% endif %}
+
+                
+            <p class="test_yourself_year">2021</p>
+                <p class="test_yourself_session">February/March</p>
+
+                    {% if Phy_9702_2021_March_multiple_choice_available_list %}
+                                                                
+                        {% for mcq in Phy_9702_2021_March_multiple_choice_available_list %}
+
+                            <a class="test_yourself_pp1_link" href="{% url 'examsolution:taking_test' mcq.id %}"> {{mcq.full_question_name}} </a>
+                            <br>
+
+                        {% endfor %}
+
+                    {% else %}
+
+                        <p>MCQs not available</p>
+
+                    {% endif %}
+
+                <p class="test_yourself_session">May/June</p>
+                    {% if Phy_9702_2021_June_multiple_choice_available_list %}
+                                                                    
+                        {% for mcq in Phy_9702_2021_June_multiple_choice_available_list %}
+
+                            <a class="test_yourself_pp1_link" href="{% url 'examsolution:taking_test' mcq.id %}" > {{mcq.full_question_name}} </a>
+                            <br>
+
+                        {% endfor %}
+
+                    {% else %}
+
+                        <p>MCQs not available</p>
+
+                    {% endif %}
+                <p class="test_yourself_session">October/November</p>
+                    {% if Phy_9702_2021_November_multiple_choice_available_list %}
+                                                                        
+                        {% for mcq in Phy_9702_2021_November_multiple_choice_available_list %}
+
+                            <a class="test_yourself_pp1_link" href="{% url 'examsolution:taking_test' mcq.id %}"> {{mcq.full_question_name}} </a>
+                            <br>
+
+                        {% endfor %}
+
+                    {% else %}
+
+                        <p>MCQs not available</p>
+
+                    {% endif %}
+                    
+            <p class="test_yourself_year">2020</p>
+                <p class="test_yourself_session">February/March</p>
+                    {% if Phy_9702_2020_March_multiple_choice_available_list %}
+                                                                            
+                        {% for mcq in Phy_9702_2020_March_multiple_choice_available_list %}
+
+                            <a class="test_yourself_pp1_link" href="{% url 'examsolution:taking_test' mcq.id %}"> {{mcq.full_question_name}} </a>
+                            <br>
+
+                        {% endfor %}
+
+                    {% else %}
+
+                        <p>MCQs not available</p>
+
+                    {% endif %}
+                <p class="test_yourself_session">May/June</p>
+                    {% if Phy_9702_2020_June_multiple_choice_available_list %}
+                                                                                
+                        {% for mcq in Phy_9702_2020_June_multiple_choice_available_list %}
+
+                            <a class="test_yourself_pp1_link" href="{% url 'examsolution:taking_test' mcq.id %}"> {{mcq.full_question_name}} </a>
+                            <br>
+
+                        {% endfor %}
+
+                    {% else %}
+
+                        <p>MCQs not available</p>
+
+                    {% endif %}
+
+                <p class="test_yourself_session">October/November</p>
+                    {% if Phy_9702_2020_November_multiple_choice_available_list %}
+                                                                                
+                        {% for mcq in Phy_9702_2020_November_multiple_choice_available_list %}
+
+                            <a class="test_yourself_pp1_link" href="{% url 'examsolution:taking_test' mcq.id %}"> {{mcq.full_question_name}} </a>
+                            <br>
+
+                        {% endfor %}
+
+                    {% else %}
+
+                        <p>MCQs not available</p>
+
+                    {% endif %}
+
+    </div>
+
+    <div class="test_yourself_subject">
+
+        <p class="test_yourself_subname"><strong>Biology ~ 9700</strong></p>
+            <p class="test_yourself_year">2022</p>
+                <p class="test_yourself_session">February/March</p>
+                <p class="test_yourself_session">May/June</p>
+                <p class="test_yourself_session">October/November</p>
+            <p class="test_yourself_year">2021</p>
+                <p class="test_yourself_session">February/March</p>
+                <p class="test_yourself_session">May/June</p>
+                <p class="test_yourself_session">October/November</p>
+            <p class="test_yourself_year">2020</p>
+                <p class="test_yourself_session">February/March</p>
+                <p class="test_yourself_session">May/June</p>
+                <p class="test_yourself_session">October/November</p>
+
+    </div>
+
+
+
     
-</section>
-
-<section class="paperonequestions">
-    <section class="multiple_choice_heading">
-        <div class="view_panel_heading">
-            <p class="individual_reselect" >Cambridge multiple choice questions <p>
-            <a class="individual_reselect" href="{% url 'examsolution:home' %}">Back Home</a>
-        </div>
-    </section>
-
-</section>
-
-<section class="paperonequestions">
-    <section class="multiple_choice_heading">
-        <div class="view_panel_heading">
-            <p class="individual_reselect" >Cambridge multiple choice questions <p>
-            <a class="individual_reselect" href="{% url 'examsolution:home' %}">Back Home</a>
-        </div>
-    </section>
-
-
 </section>
 
 {% endblock content %}
