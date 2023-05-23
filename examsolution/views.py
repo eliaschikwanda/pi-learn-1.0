@@ -205,7 +205,7 @@ def taking_test(request,question_id):
     
     website_logo = website_pics.objects.get(id=1)
     mcq_paper_selected = FullQuestionAnswer.objects.get(id=question_id)
-    mcq_paper_selected_set = FullQuestionAnswer.objects.get(id=question_id).paperoneanswers_set.all()
+    mcq_paper_selected_set = FullQuestionAnswer.objects.get(id=question_id).paperoneanswers_set.all().order_by('question_number_key__question_number')
     possible_answer1 = PossibleLetters.objects.get(pk=1)
     possible_answer2 = PossibleLetters.objects.get(pk=2)
     possible_answer3 = PossibleLetters.objects.get(pk=3)
