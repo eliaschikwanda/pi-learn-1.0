@@ -26,17 +26,6 @@ def home(request):
     
     return render(request, 'examsolution/home.html', context)
 
-# Syllabus page view
-
-def syllabi(request):
-    
-    website_logo = website_pics.objects.get(id=1)
-   
-    context = {
-        'website_logo':website_logo,
-    }
-    
-    return render(request,'examsolution/syllabi.html',context)
 
 # Notes page view
 
@@ -666,14 +655,14 @@ def test_grading(request,question_id):
 
 # College view
 
-def college(request):
+def worksheets(request):
 
     website_logo = website_pics.objects.get(id=1)
     context = {
         'website_logo':website_logo,
     }
     
-    return render(request, 'examsolution/college.html', context)
+    return render(request, 'examsolution/worksheet.html', context)
 
 # Contact PiiLearn view
 
@@ -685,14 +674,3 @@ def contactpiilearn(request):
     }
     
     return render(request, 'examsolution/contact_piilearn.html', context)
-
-def exam_board(request):
-    
-    website_logo = website_pics.objects.get(id=1)
-    context = {
-        
-        'website_logo':website_logo,
-
-    }
-    
-    return render(request,'examsolution/exam_board.html',context)
