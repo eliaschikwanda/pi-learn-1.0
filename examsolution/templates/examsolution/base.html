@@ -27,28 +27,78 @@
 
     <section class="header">
 
+        <nav class="menu_bar">
+            <a class="logo" href=" {% url 'examsolution:home' %} "><img src="{% static website_logo.website_logo %}"  alt="" style="max-height:40px" id="website_logo"></a>
+            <ul class="nav-menu">
+                <li><a href=" {% url 'examsolution:past_papers' %}">PastPaper  <i class="fas fa-caret-down" id="drop-4"></i></a>
 
-        <a href=" {% url 'examsolution:home' %} " class="logo"> <img src="{% static website_logo.website_logo %}"  alt="" style="max-height:40px" id="website_logo"></a>
+                    <div class="dropdown_menu_1">
+                        <ul>
+                            <li><a href="">Cambridge As and A level <i class="fas fa-caret-right" id="drop-1"></i></a>
 
-        <nav class="navbar" id='navbar-1'>
+                                <div class="dropdown_menu_2">
+                                    <ul>
+                                        <li><a href="">Maths</a><li>
+                                        <li><a href="">Further Maths</a><li>
+                                        <li><a href="">Physics</a><li>
+                                        <li><a href="">Chemistry</a><li>
+                                    </ul>
+                                </div>
 
-            <a href=" {% url 'examsolution:notes' %} ">Notes</a>
-            <a href=" {% url 'examsolution:topical_past_paper' %} ">TopicalQuestions</a>
-            <a href=" {% url 'examsolution:past_papers' %} ">PastPaper</a>
-            <a href=" {% url 'examsolution:test_yourself' %} ">TestYourself</a>
-            <a href=" {% url 'examsolution:worksheets' %} ">WorkSheets</a>
+                            <li>
+                        </ul>
+                    </div>
+                
+                </li>
+                <li><a href=" {% url 'examsolution:topical_past_paper' %}">TopicalQuestions  <i class="fas fa-caret-down" id="drop-2"></i></a>
+                    
+                    <div class="dropdown_menu_1">
+                        <ul>
+                            <li><a href="">Cambridge As and A level <i class="fas fa-caret-right"></i></a>
+                                <div class="dropdown_menu_2">
+                                    <ul>
+                                        <li><a href="">Maths</a><li>
+                                    </ul>
+                                </div>
+                                
+                        </ul>
+                    </div>
+                
+                </li>
+                
+                <li><a href=" {% url 'examsolution:test_yourself' %} ">TestYourself  <i class="fas fa-caret-down" id="drop-3"></i></a>
+                    <div class="dropdown_menu_1">
+                        <ul>
+                            <li><a href="">Maths</a><li>
+                            <li><a href="">Physics</a><li>
+                            <li><a href="">Chemistry</a><li>
+
+                        </ul>
+                    </div>
+                </li>
+
+                <li><a href=" {% url 'examsolution:worksheets' %} ">WorkSheets</a></li>
+                <li><a href=" {% url 'examsolution:notes' %} ">Notes</a></li>
+            </ul>
+
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+
+            <script>
+                const hamburger = document.querySelector('.hamburger');
+                const navMenu = document.querySelector('.nav-menu');
+
+                hamburger.addEventListener("click", () => {
+                    hamburger.classList.toggle("active");
+                    navMenu.classList.toggle("active");
+                })
+
+            </script>
 
         </nav>
-
-
-        <nav class="loginask">
-            <a href=" {% url 'examsolution:contact_piilearn' %} ">Contact Pii_Learn</a>
-            <a href="">Login</a>
-        </nav>
-
-        <div id="menu-btn" class="fas fa-bars"></div>
-
-
     </section>
 
     <!-- header sections ends here -->
