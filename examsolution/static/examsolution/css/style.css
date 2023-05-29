@@ -219,7 +219,7 @@ html::-webkit-scrollbar-thumb {
 /* topical_past_paper.html styling starts here */
 .exam_boards, .subjects, .topics,.no_question_answer {
     overflow: auto;
-    margin-top: 5rem;
+    margin-top: 8rem;
     margin-bottom: 5rem;
     margin-left: 2.5rem;
     margin-right: 2.5rem;
@@ -265,6 +265,7 @@ html::-webkit-scrollbar-thumb {
     align-items: center;
     position: fixed;
     z-index:10;
+    margin-top: 5rem;
 }
 .subjects .panel_heading p,.subjects .panel_heading a,.topics .panel_heading p, .topics .panel_heading a,.no_question_answer .panel_heading a,.no_question_answer .panel_heading p {
     border-top-right-radius: 8rem 5rem;
@@ -291,7 +292,7 @@ html::-webkit-scrollbar-thumb {
     display: flex;
     margin-left: 2.5rem;
     margin-right: 2.5rem;
-    margin-top: 5rem;
+    margin-top: 8rem;
     background-color: rgba(174, 223, 200, 0.322);
     padding: 1.5rem;
     border-radius: 2rem 8rem 2rem 8rem / 1rem 4rem 1rem 4rem;
@@ -402,6 +403,10 @@ html::-webkit-scrollbar-thumb {
     font-size: 1.5rem;
 }
 
+.question_answer {
+    margin-top: 8rem;
+}
+
 /* view_topical_past_paper.html styling ends here here  */
 
 
@@ -497,7 +502,7 @@ html::-webkit-scrollbar-thumb {
 /* test_yourself.html styling starts here */
 .paperonequestions {
     overflow: auto;
-    margin-top: 5rem;
+    margin-top: 8rem;
     margin-left: 2.5rem;
     margin-right: 2.5rem;
     margin-bottom: 5rem;
@@ -574,7 +579,7 @@ html::-webkit-scrollbar-thumb {
     background-color: white;
     margin-left: 2.5rem;
     margin-right: 2.5rem;
-    margin-top: 5rem;
+    margin-top: 8rem;
     border-radius: 2.5rem;
     overflow: auto;
 
