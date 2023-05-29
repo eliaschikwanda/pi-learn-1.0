@@ -319,6 +319,11 @@ html::-webkit-scrollbar-thumb {
     background-color: var(--main-color);
     border-radius: 2.5rem;
 }
+
+.question_answer .row .question_answer_viewing_panel {
+    overflow: scroll;
+}
+
 .question_answer .row .question_answer_select_panel .questions,.question_answer .row .question_answer_select_panel .answers {
     margin-left: 1rem;
     margin-top: 1rem;
