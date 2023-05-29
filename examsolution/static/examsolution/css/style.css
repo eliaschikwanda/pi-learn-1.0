@@ -311,6 +311,7 @@ html::-webkit-scrollbar-thumb {
    
 }
 .question_answer .row .question_answer_viewing_panel, .row .paper_one_question_ppr {
+    display: flex;
     flex: 70%;
     height: 60rem;
     overflow: auto;
