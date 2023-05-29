@@ -42,6 +42,12 @@ html::-webkit-scrollbar-thumb {
 
 /* base header syling starts here */
 
+.header {
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    position:fixed;    
+}
+
 .menu_bar {
     background-color: var(--main-color);
     height: 80px;
@@ -151,26 +157,45 @@ html::-webkit-scrollbar-thumb {
 
 /* Home page styling here */
 
-.home .welcome, .home .why_pilearn, .home .examboard {
+.home {
+    background-color: white;
+    margin-bottom: 5rem;
     margin-left: 2.5rem;
     margin-right: 2.5rem;
+    margin-top: 8rem;
+    padding: 2rem;
+    border-radius: 2.5rem;
+    padding-top: 5rem;
+    
 }
 
-#why_pilearn_header {
-    margin-left: 2.5rem;
-    margin-right: 2.5rem;
-}
-
-.home .welcome {
+.welcome {
     display: flex;
     flex-wrap: wrap;
-    gap: 3rem;
+    overflow: auto;
 }
 
 .home .welcome img#home_logo {
-    max-width: 50rem;
-    max-height: 30rem;
+    border-radius: 2.5rem;
+    max-width: 60rem;
+    max-height:30rem;
 }
+
+#welcome_elias {
+    width: 50%;
+    margin-right: 5rem;
+    background-color: yellow;
+    padding: 2rem;
+    font-size: 2rem;
+    text-transform: none;
+}
+
+#welcome_elias span {
+    font-size: 3rem;
+    text-transform: none;
+}
+
+
 
 .home .why_pilearn{
     display: flex;
