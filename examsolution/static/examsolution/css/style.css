@@ -292,6 +292,7 @@ html::-webkit-scrollbar-thumb {
     display: flex;
     margin-left: 2.5rem;
     margin-right: 2.5rem;
+    margin-bottom: 5rem;
     margin-top: 8rem;
     background-color: grey;
     padding: 1.5rem;
@@ -493,6 +494,10 @@ html::-webkit-scrollbar-thumb {
 .row .answersheet .form2 fieldset p input[type="radio"] {
     width: 2rem;
     
+}
+
+.taking_test_have_your_own_ppr p  {
+    display: none;
 }
 
 
