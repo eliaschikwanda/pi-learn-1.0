@@ -10,7 +10,7 @@
 
 {% if selected_topic_paper_set %}
 
-    <div class="view_panel_heading">
+    <div class="view_panel_heading" id="remove_view_topical_past_paper_heading">
         <p class="individual_reselect" >You're doing {{topic_paper_object.topic}} questions paper {{topic_paper_object.paper_num_key}} <p>
         <a class="individual_reselect" href="{% url 'examsolution:topics_topical_past_paper' exam_board subject_selected %}">Reselect Topic</a>
     </div>
@@ -54,7 +54,7 @@
                 {% for question in new_selected_topic_paper_set %}
                     <button class="questions" id="question{{forloop.counter}}" onclick="view_question('{% static question.question_directory %}','question{{forloop.counter}}')" >Question{{forloop.counter}}</button>
                     <button class="answers" id="answer{{forloop.counter}}" onclick="view_answer('{% static question.answer_directory %}','answer{{forloop.counter}}')">Answer{{forloop.counter}}</button>
-                    <button class="questions" id="exam_report_comment{{forloop.counter}}" onclick="view_er_comment('{{question.exam_report_comment}}','exam_report_comment{{forloop.counter}}')">ExamReport Cmnt</button>
+                    <button class="questions" id="exam_report_comment{{forloop.counter}}" onclick="view_er_comment('{{question.exam_report_comment}}','exam_report_comment{{forloop.counter}}')">ER Cmnt</button>
                     <br>
                 {% endfor %}
 
@@ -68,7 +68,7 @@
                 {% for question in selected_topic_paper_set %}
                     <button class="questions" id="question{{forloop.counter}}" onclick="view_question('{% static question.question_directory %}','question{{forloop.counter}}')" >Question{{forloop.counter}}</button>
                     <button class="answers" id="answer{{forloop.counter}}" onclick="view_answer('{% static question.answer_directory %}','answer{{forloop.counter}}')">Answer{{forloop.counter}}</button>
-                    <button class="questions" id="exam_report_comment{{forloop.counter}}" onclick="view_er_comment('{{question.exam_report_comment}}','exam_report_comment{{forloop.counter}}')">ExamReport Cmnt</button>
+                    <button class="questions" id="exam_report_comment{{forloop.counter}}" onclick="view_er_comment('{{question.exam_report_comment}}','exam_report_comment{{forloop.counter}}')">ER Cmnt</button>
                     <br>
                 {% endfor %}
 

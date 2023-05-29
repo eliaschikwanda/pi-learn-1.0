@@ -293,7 +293,7 @@ html::-webkit-scrollbar-thumb {
     margin-left: 2.5rem;
     margin-right: 2.5rem;
     margin-top: 8rem;
-    background-color: rgba(174, 223, 200, 0.322);
+    background-color: grey;
     padding: 1.5rem;
     border-radius: 2rem 8rem 2rem 8rem / 1rem 4rem 1rem 4rem;
     -moz-border-radius:2rem 8rem 2rem 8rem / 1rem 4rem 1rem 4rem;
@@ -757,5 +757,70 @@ html::-webkit-scrollbar-thumb {
         display: none;
     }
 
+    /* view_topical_past_paper.html media queries start here */
+
+    #remove_view_topical_past_paper_heading {
+        display: none;
+    }
+
+    .question_answer .row {
+        display: block;
+        margin: 0;
+        padding: 0;
+        background-color: grey;
+        margin-left: 2.5rem;
+        margin-right: 2.5rem;
+        padding: 0.75rem;
+        margin-top: 2.5rem;
+        padding-top: 2.5rem;
+    }
+
+    .question_answer .row .question_answer_select_panel {
+        
+        padding: 0;
+        margin: 0;
+        height: 25rem;
+        margin-bottom:2.5rem;
+    }
+
+    .question_answer .row .question_answer_viewing_panel {
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        height: 25rem;
+        margin-bottom:2.5rem;
+    }
+
+    .test_yourself_board {
+        max-width: fit-content;
+        max-height: fit-content;
+        margin-right: 2.5rem;
+    }
+
+    /* view_topical_past_paper.html media queries ends here here */
+
+    /* taking_test.html media queries starts here */
+    .row .paper_one_question_ppr {
+        display: none;
+    }
+
+    .row {
+        margin-bottom: 5rem;
+    }
+    .row .answersheet {
+        margin: 0;
+        padding: 0;
+    }
+
+    .individual_reselect {
+        display: none;
+    }
+    .taking_test_have_your_own_ppr p {
+        margin-top: 2.5rem;
+        margin-left: 2.5rem;
+        font-size: 1.75rem;
+        text-transform: none;
+    }
+    /* taking_test.html media queries ends here */
     
 }
