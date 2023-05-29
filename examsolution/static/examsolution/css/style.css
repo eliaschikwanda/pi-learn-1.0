@@ -815,12 +815,18 @@ html::-webkit-scrollbar-thumb {
     .row .answersheet {
         margin: 0;
         padding: 0;
+        
+    }
+
+    .row .answersheet .form2 {
+        max-width: fit-content;
     }
 
     .individual_reselect {
         display: none;
     }
     .taking_test_have_your_own_ppr p {
+        display: block;
         margin-top: 2.5rem;
         margin-left: 2.5rem;
         font-size: 1.75rem;
