@@ -148,7 +148,7 @@ html::-webkit-scrollbar-thumb {
     margin: 5px auto;
     -webkit-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
-    background-color: white;
+    background-color: black;
     
 }
 /* base header syling ends */
@@ -720,6 +720,7 @@ html::-webkit-scrollbar-thumb {
 @media (max-width:700px) {
     .hamburger {
         display: block;
+        
     }
 
     .hamburger.active .bar:nth-child(2) {
