@@ -84,7 +84,7 @@
             function view_question(question_url,question_id) {
                 var view_panel,question_button;
                 view_panel = document.getElementById('view_panel');
-                view_panel.innerHTML = "<iframe src='" + question_url + "' height='200%' width='100%' scrolling='yes'></iframe>";
+                view_panel.innerHTML = "<iframe id='view_it_hey' src='" + question_url + "' height='200%' width='100%' scrolling='yes'></iframe>";
                 question_button = document.getElementById(question_id);
                 question_button.style.color = "purple";
             }

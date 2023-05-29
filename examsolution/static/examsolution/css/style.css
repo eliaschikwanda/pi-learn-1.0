@@ -320,7 +320,7 @@ html::-webkit-scrollbar-thumb {
     border-radius: 2.5rem;
 }
 
-.question_answer .row .question_answer_viewing_panel {
+.question_answer .row .question_answer_viewing_panel #view_it_hey {
     overflow: scroll;
 }
 
