@@ -493,7 +493,6 @@ html::-webkit-scrollbar-thumb {
 
 .row .answersheet .form2 fieldset p input[type="radio"] {
     width: 2rem;
-    
 }
 
 .taking_test_have_your_own_ppr p  {
@@ -818,8 +817,8 @@ html::-webkit-scrollbar-thumb {
         
     }
 
-    .row .answersheet .form2 {
-        max-width: fit-content;
+    .row .answersheet .form2 fieldset p input[type="radio"]  {
+        width: 1.75rem;
     }
 
     .individual_reselect {
