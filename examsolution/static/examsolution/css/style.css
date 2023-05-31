@@ -668,46 +668,56 @@ html::-webkit-scrollbar-thumb {
 .footer {
     background-size: cover;
     background-position: center;
-    background-attachment: fixed;
-    background-color: rgba(63, 28, 221, 0.133);
+    background-color: rgba(93, 63, 228, 0.133);
 }
 
 .footer .box-container {
-    display: grid;
+    margin-bottom: 2.5rem;
+    margin-left: 2.5rem;
+    margin-right: 2.5rem;
+    display:grid;
     grid-template-columns: repeat(auto-fit,minmax(25rem,1fr));
+}
+
+.footer .box-container .box {
+    margin-top: 2.5rem;
+    margin-left: 0.5rem;
+    padding: 1rem;
 }
 
 .footer .box-container .box h3 {
     color: var(--white);
     font-size: 2.5rem;
-    padding-bottom: 2rem;
+    padding-bottom: 0.5rem;
 }
 
 .footer .box-container .box a {
     color: blue;
     font-size: 1.5rem;
     padding-bottom: 1rem;
-    display: block;
 }
 
 .footer .box-container .box a {
     color: blue;
-    padding-right: .5rem;
-    transition: 2s linear;
+    margin-left: 3rem;
     
 }
-.footer .box-container .box .lower_case {
-    text-transform: lowercase;
+
+.footer .disclaimer {
+    margin-left: 2.5rem;
+    margin-right: 2.5rem;
 }
 
-.footer .box-container .box a:hover i {
-    padding-right: 1rem;
+.footer .disclaimer p {
+    font-size: 1rem;
+    text-transform: none;
 }
 
 .footer .copy_right {
     text-align: center;
     padding-top: 1.75rem;
     margin-top: 3rem;
+    padding-bottom: 2.5rem;
     border-top: .1rem solid black;
     font-size: 1.5rem;
     color: black;
