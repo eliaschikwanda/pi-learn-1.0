@@ -918,6 +918,10 @@ html::-webkit-scrollbar-thumb {
         display: none;
     }
 
+    .home .why_pilearn .services {
+        max-height: fit-content;
+    }
+
     /* home.html media queries ends here */
     
 }
