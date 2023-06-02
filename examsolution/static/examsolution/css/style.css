@@ -919,7 +919,7 @@ html::-webkit-scrollbar-thumb {
     }
 
     .home .why_pilearn .services {
-        max-height: fit-content;
+        height: fit-content;
     }
 
     /* home.html media queries ends here */
