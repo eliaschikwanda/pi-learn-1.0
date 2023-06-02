@@ -666,11 +666,41 @@ def worksheets(request):
 
 # Contact PiiLearn view
 
-def contactpiilearn(request):
+def contact_us(request):
     
     website_logo = website_pics.objects.get(id=1)
     context = {
        'website_logo':website_logo,
     }
     
-    return render(request, 'examsolution/contact_piilearn.html', context)
+    return render(request, 'examsolution/contact_us.html', context)
+
+def about_us(request):
+  
+    website_logo = website_pics.objects.get(id=1)
+    placeholderpic = people_image.objects.get(name_of_pic='placeholder')
+    
+    context = {
+       'website_logo':website_logo,
+       'placeholderpic' :placeholderpic,
+    }
+    
+    return render(request,'examsolution/about_us.html',context)
+
+def privacy(request):
+    
+    website_logo = website_pics.objects.get(id=1)
+    context = {
+       'website_logo':website_logo,
+    }
+    
+    return render(request,'examsolution/privacy.html', context)
+
+def terms_of_use(request):
+    
+    website_logo = website_pics.objects.get(id=1)
+    context = {
+       'website_logo':website_logo,
+    }
+    
+    return render(request, 'examsolution/terms_of_use.html',context)

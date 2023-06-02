@@ -121,3 +121,11 @@ class website_pics(models.Model):
 
 class home_image(models.Model):
     home_logo = models.ImageField(null=True,upload_to='WesbitePics')
+
+
+class people_image(models.Model):
+    name_of_pic = models.CharField(max_length=2000)
+    picture = models.ImageField(null=True,upload_to='WesbitePics')
+    
+    def __str__(self):
+        return self.name_of_pic

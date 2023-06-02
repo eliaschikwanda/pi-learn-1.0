@@ -729,7 +729,70 @@ html::-webkit-scrollbar-thumb {
 
 /* base footer styling ends here */
 
+/* about_us.html, contact_us.html, terms_of_use.html, privacy.html  syling starts here */
 
+.pi_learn_details {
+    margin-top: 8rem;
+    margin-bottom: 5rem;
+    background-color: white;
+    border-radius: 2.5rem;
+    margin-left: 2.5rem;
+    margin-right: 2.5rem;
+    padding: 1rem;
+}
+
+/* about_us.html, contact_us.html, terms_of_use.html, privacy.html  syling ends here */
+
+/* about_us.html styling starts here */
+
+.pi_learn_details .about_us_welx {
+    font-size: 5rem;
+    text-align: center;
+}
+
+.pi_learn_details .meet_our_team {
+    font-size: 3rem;
+    text-transform: none;
+    margin-left: 2.5rem;
+    margin-right: 2.5rem;
+    text-align: center;
+}
+
+.pi_learn_details .about_us_intro {
+    font-size: 1.5rem;
+    margin-left: 2.5rem;
+    margin-right: 2.5rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    text-transform: none;
+}
+
+.pi_learn_details .about_us_people {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.pi_learn_details .about_us_people .each_space {
+    margin-left: 2.5rem;
+    margin-right: 2.5rem;
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+}
+
+.pi_learn_details .about_us_people .each_space .about_us_name {
+    text-align: center;
+    font-size: 2.5rem;
+    color: blue;
+}
+
+.pi_learn_details .about_us_people .each_space {
+    text-align: center;
+    font-size: 1.5rem;
+    color: grey;
+    text-transform: none;
+}
+
+/* about_us.html styling ends here */
 
 /* media queries */
 
