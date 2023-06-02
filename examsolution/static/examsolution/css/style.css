@@ -912,5 +912,12 @@ html::-webkit-scrollbar-thumb {
         text-transform: none;
     }
     /* taking_test.html media queries ends here */
+
+    /* home.html media queries starts here */
+    .home .welcome .inside {
+        display: none;
+    }
+
+    /* home.html media queries ends here */
     
 }
