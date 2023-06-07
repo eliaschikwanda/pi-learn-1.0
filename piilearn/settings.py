@@ -135,7 +135,7 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [MEDIA_DIR,]
 STATIC_ROOT = os.path.join(BASE_DIR,'static')
 
-
+LOGIN_URL = 'examsolution:login'
 
 # #Amazon S3 Bucket configuration
 # AWS_ACCESS_KEY_ID = 'AKIAXI45RQDI5RQG66HB'

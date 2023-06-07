@@ -1,6 +1,7 @@
 from django.urls import path
 from . import views
-
+from .views import *
+from django.contrib.auth.views import LogoutView
 
 app_name = "examsolution"
 urlpatterns = [
@@ -23,8 +24,17 @@ urlpatterns = [
     path('about_us/',views.about_us,name='about_us'),
     path('privacy/',views.privacy, name='privacy'),
     path('terms_of_use/', views.terms_of_use, name='terms_of_use'),
-     
-] 
-
+    
+    path('login/',CustomLoginView.as_view(),name='login'),
+    path('logout/',LogoutView.as_view(next_page='examsolution:login'),name='logout'),
+    path('register/',RegisterPage.as_view(),name='register'),
+    
+    path('my_to_do_list/',UserTaskList.as_view(),name='my_to_do_list'),
+    path('my_to_do_list/<int:pk>/', UserTaskDetail.as_view(),name='task'),
+    path('my_to_do_list/create_task/', UserTaskCreate.as_view(),name='create_task'),
+    path('my_to_do_list/update_task/<int:pk>/',UserTaskUpdate.as_view(),name='update_task'),
+    path('my_to_do_list/delete_task/<int:pk>/',DeleteView.as_view(),name='delete_task'),
+    
+]
 
 

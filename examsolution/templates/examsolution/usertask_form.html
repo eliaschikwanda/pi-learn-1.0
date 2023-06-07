@@ -1,0 +1,29 @@
+{% extends 'examsolution/base.html' %}
+{% load static %}
+{% block title %}PiiLearn | Add a new task{% endblock title %}
+
+
+{% block content %}
+
+<div class="piilearn_wrap_container">
+    <div class="header_bar">
+        <a href="{% url 'examsolution:my_to_do_list' %}">&#8592;Back</a>
+    </div>
+
+    <div class="card-body">
+
+        <h3>Add your new task below</h3>
+
+        <form method="POST" action="">
+            {% csrf_token %}
+            {{form.as_p}}
+            <input type="submit" value="Create" class="all_buttons">
+    
+        </form>
+    
+    </div>
+</div>
+
+
+
+{% endblock content %}

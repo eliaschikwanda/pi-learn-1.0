@@ -1,12 +1,141 @@
+from typing import Any, Dict
+from django.forms.models import BaseModelForm
+from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 from .models import *
-
-
-
-
+from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
+from django.urls import reverse_lazy
+from django.contrib.auth.views import LoginView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import login
+from django.shortcuts import redirect
 # Create your views here.
+
+# Login class views starts here
+
+class CustomLoginView(LoginView):
+    template_name = 'examsolution/login.html'
+    fields = '__all__'
+    redirect_authenticated_user = True
+    
+    def get_success_url(self):
+        return reverse_lazy('examsolution:my_to_do_list')
+    
+    def get_context_data(self,**kwargs):
+        context = super().get_context_data(**kwargs)
+        website_logo = website_pics.objects.get(id=1)
+        context['website_logo'] = website_logo
+        
+        return context
+    
+    
+class RegisterPage(FormView):
+    template_name = 'examsolution/register.html'
+    form_class = UserCreationForm
+    redirect_authenticated_user = True #Users that are authenticated are redirected
+    success_url = reverse_lazy('examsolution:my_to_do_list') #log in the user
+    
+    def form_valid(self, form):
+        user = form.save()
+        if user is not None:
+            login(self.request, user)
+        return super(RegisterPage,self).form_valid(form)
+    
+    def get(self,*args, **kwargs):
+        if self.request.user.is_authenticated:
+            return redirect('examsolution:my_to_do_list')
+        return super(RegisterPage, self).get(*args, **kwargs) #Means if user not logged in go ahead and do whatever you were up to
+    
+    def get_context_data(self,**kwargs):
+        context = super().get_context_data(**kwargs)
+        website_logo = website_pics.objects.get(id=1)
+        context['website_logo'] = website_logo
+        
+        return context
+        
+
+# Login class views ends here
+
+# user based views starts here
+
+class UserTaskList(LoginRequiredMixin,ListView):
+    model = UserTask
+    context_object_name = 'usertasklist'
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['usertasklist'] = context['usertasklist'].filter(user=self.request.user)
+        context['count'] = context['usertasklist'].filter(complete=False).count()
+        website_logo = website_pics.objects.get(id=1)
+        context['website_logo'] = website_logo
+        
+        search_input = self.request.GET.get('search_area') or ''
+        
+        if search_input:
+            context['usertasklist'] = context['usertasklist'].filter(title__icontains=search_input) #icontains can be used if the title contains that letter
+            
+        context['search_input'] = search_input
+        
+        return context
+    
+    
+class UserTaskDetail(LoginRequiredMixin,DetailView):
+    model = UserTask
+    context_object_name = 'eachtask'
+    
+    def get_context_data(self,**kwargs):
+        context = super().get_context_data(**kwargs)
+        website_logo = website_pics.objects.get(id=1)
+        context['website_logo'] = website_logo
+        
+        return context
+    
+class UserTaskCreate(LoginRequiredMixin,CreateView):
+    model = UserTask
+    fields = ['title','description','complete']
+    success_url = reverse_lazy('examsolution:my_to_do_list')
+    
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super(UserTaskCreate,self).form_valid(form)
+    
+    def get_context_data(self,**kwargs):
+        context = super().get_context_data(**kwargs)
+        website_logo = website_pics.objects.get(id=1)
+        context['website_logo'] = website_logo
+        
+        return context
+        
+    
+class UserTaskUpdate(LoginRequiredMixin,UpdateView):
+    model = UserTask
+    fields = ['title','description','complete']
+    success_url = reverse_lazy('examsolution:my_to_do_list')
+    
+    def get_context_data(self,**kwargs):
+        context = super().get_context_data(**kwargs)
+        website_logo = website_pics.objects.get(id=1)
+        context['website_logo'] = website_logo
+        
+        return context
+    
+class DeleteView(LoginRequiredMixin,DeleteView):
+    model = UserTask
+    context_object_name = 'task'
+    success_url = reverse_lazy('examsolution:my_to_do_list')
+    
+    def get_context_data(self,**kwargs):
+        context = super().get_context_data(**kwargs)
+        website_logo = website_pics.objects.get(id=1)
+        context['website_logo'] = website_logo
+        
+        return context
+  
+# user based views ends here
 
 # Home page view with empty url
 

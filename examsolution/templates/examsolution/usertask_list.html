@@ -1,0 +1,62 @@
+{% extends 'examsolution/base.html' %}
+{% load static %}
+{% block title %}PiiLearn | My ToDo List{% endblock title %}
+
+
+{% block content %}
+
+<div class="piilearn_wrap_container">
+
+    <div class="header_bar">
+        <div>
+            <h1> Hello {{request.user|title}} </h1>
+            <h3> You have {{count}} incomplet task{{count|pluralize:"s"}}</h3>
+        </div>
+        {% if reques.user.is_athenticated %}
+        <a href="{% url 'examsolution:logout' %}">Logout</a>
+
+        {% else %}
+            <a href="{% url 'examsolution:login' %}">Logout</a>
+        {% endif %}
+
+    </div>
+
+    <div id="search-add-wrapper">
+        <form method="GET" style="margin-top:20px; display:flex;">
+            <input type='text' name="search_area" value={{search_input}}>
+            <input type='Submit' value="Search" class="all_buttons">
+        </form>
+        <a id="add-link" href="{% url 'examsolution:create_task' %}">&#x2b;</a>
+    </div>
+
+    <div class="task-items-wrapper">
+
+        {% for task in usertasklist %}
+            <div class="task-wrapper">
+                {% if task.complete %}
+                    <div class="task-title">
+                        <div class="task-complete-icon"></div>
+                        <i><s><a href="{% url 'examsolution:update_task' task.id %}"> {{task.title}} </a></s></i>
+                    </div>
+                    <a class="delete-link" href="{% url 'examsolution:delete_task' task.id %}">&#215;</a>
+                {% else %}
+
+                    <div class="task-title">
+                        <div class="task-incomplete-icon"></div>
+                        <a href="{% url 'examsolution:update_task' task.id %}"> {{task.title}} </a>
+                    </div>
+                    <a class="delete-link" href="{% url 'examsolution:delete_task' task.id %}">&#215;</a>
+                    
+                {% endif %}
+                
+            </div>
+
+        {% empty %}
+            <h3>No tasks available.</h3>
+        {% endfor %}
+    
+    </div>
+
+</div>
+
+{% endblock content %}
