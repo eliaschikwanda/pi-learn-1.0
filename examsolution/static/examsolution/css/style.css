@@ -983,7 +983,6 @@ html::-webkit-scrollbar-thumb {
     border-radius: 0.75rem;
     padding: 10px;
     margin: 1rem;
-    
 }
 
 .piilearn_wrap_container  label {
@@ -1145,5 +1144,11 @@ html::-webkit-scrollbar-thumb {
     }
 
     /* home.html media queries ends here */
+
+    /* form fields media queries starts here */
+    .piilearn_wrap_container  input[type=text], .piilearn_wrap_container  input[type=password],.piilearn_wrap_container  textarea {
+        max-width: 100%;
+    }
+    /* form fields media queries ends here */
     
 }
