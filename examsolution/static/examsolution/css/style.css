@@ -149,6 +149,22 @@ html::-webkit-scrollbar-thumb {
     -webkit-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
     background-color: black;
+
+}
+
+#base_logout_link,#base_login_link {
+    background-color: black !important;
+    border-radius: 2.5rem !important;
+    color: white !important;
+    padding: 1rem !important;
+
+}
+
+
+#base_sign_up_link {
+    background-color: white !important;
+    border-radius: 2.5rem !important;
+    padding: 1rem !important;
     
 }
 /* base header syling ends */
@@ -738,7 +754,7 @@ html::-webkit-scrollbar-thumb {
     border-radius: 2.5rem;
     margin-left: 2.5rem;
     margin-right: 2.5rem;
-    padding: 1rem;
+    padding: 0.1rem;
 }
 
 /* about_us.html, contact_us.html, terms_of_use.html, privacy.html  syling ends here */
@@ -793,6 +809,74 @@ html::-webkit-scrollbar-thumb {
 }
 
 /* about_us.html styling ends here */
+
+
+/* privacy.html and terms_of_use.html stylings starts here */
+.privacy_intro {
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    
+}
+
+.privacy_heading {
+    margin-bottom: 1rem;
+    font-size: 2rem;
+}
+
+.privacy_heading, .pi_learn_details p {
+    margin-left:1.5rem;
+    margin-right: 1.5rem;
+}
+
+.pi_learn_details p {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+
+.about_us_each_term {
+    margin: 1rem;
+    background-color: #FAFAFA;
+    margin-bottom: 2rem;
+    border-radius: 2.5rem;
+    padding: 1rem;
+    padding-bottom: 2rem;
+}
+
+.about_us_each_term  h1 {
+    margin-left: 2rem;
+    font-size: 2rem;
+    background-color: black;
+    color: white;
+    align-items: center;
+    text-align: center;
+    max-width: fit-content;
+    border-radius: 2rem;
+    padding: 0.5rem;
+    margin-bottom: 2rem;
+    
+}
+
+.about_us_each_term p {
+    margin-left: 3rem;
+    font-size: 1.5rem;
+}
+
+.about_us_each_term ol li {
+    font-size: 1.35rem;
+    margin-left: 5rem;
+}
+
+.about_us_each_term ol li span {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+
+/* privacy.html and terms_of_use.html stylings ends here */
+
 
 /* general initail styling starts here */
 
@@ -855,6 +939,7 @@ html::-webkit-scrollbar-thumb {
     text-decoration: none;
     color: #222;
     margin-left: 10px;
+    font-size: 1.5rem;
 }
 
 .task-complete-icon {
@@ -897,6 +982,8 @@ html::-webkit-scrollbar-thumb {
     border: 1px solid purple;
     border-radius: 0.75rem;
     padding: 10px;
+    margin: 1rem;
+    
 }
 
 .piilearn_wrap_container  label {
@@ -913,12 +1000,19 @@ html::-webkit-scrollbar-thumb {
      border-radius: 0.75rem;
      cursor: pointer;
      text-decoration: none;
+     margin: 1rem;
 }
 
 .card-body {
     padding: 2rem;
     font-size: 1.5rem;
     text-transform: none;
+}
+
+.task-items-wrapper h3 {
+    margin: 2rem;
+    padding-bottom: 2rem;
+    font-size: 2.5rem;
 }
 /* usertask_list.html styling ends here */
 

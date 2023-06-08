@@ -80,6 +80,14 @@
                 <li><a href=" {% url 'examsolution:worksheets' %} ">WorkSheets</a></li>
                 <li><a href=" {% url 'examsolution:notes' %} ">Notes</a></li>
                 <li><a href=" {% url 'examsolution:my_to_do_list' %} ">My ToDo List</a></li>
+                {% if request.user.is_authenticated %}
+                    <li><a id="base_logout_link" href=" {% url 'examsolution:logout' %} ">Logout</a></li>
+
+                {% else %}
+                    <li><a id="base_login_link" href=" {% url 'examsolution:login' %} ">Login</a></li>
+                    <li><a id="base_sign_up_link" href=" {% url 'examsolution:register' %} ">Signup</a></li>
+                {% endif %}
+                
             </ul>
 
             <div class="hamburger">
@@ -113,14 +121,18 @@
 
             <div class="box">
                 <h3>Quick Links</h3>
-                <a href="#">Test Yourself</a>
+                <a href="{% url 'examsolution:test_yourself' %}">Test Yourself</a>
                 <br>
-                <a href="#">Work Sheets</a>
+                <a href="{% url 'examsolution:worksheets' %}">Work Sheets</a>
                 <br>
-                <a href="#">Past Paper</a>
+                <a href="{% url 'examsolution:past_papers' %}">Past Paper</a>
                 <br>
-                <a href="#">Topical Past Paper</a>
+                <a href="{% url 'examsolution:topical_past_paper' %}">Topical Past Paper</a>
                 <br>
+                <a href=" {% url 'examsolution:notes' %} ">Notes</a>
+                <br>
+                <a href=" {% url 'examsolution:my_to_do_list' %} ">My ToDo List</a>
+                
             </div>
 
             <div class="box">
@@ -145,6 +157,7 @@
                 <br>
                 <a href="#"><i class="fab fa-linkedin"></i></a>
                 <br>
+                <a href="#"><i class="fab fa-youtube"></i></a>
             </div>
         </div>
 

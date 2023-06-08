@@ -1,27 +1,31 @@
 {% extends 'examsolution/base.html' %}
 {% load static %}
-{% block title %}Welcome to Pi-Learn{% endblock title%}
+{% block title %}Welcome to Pii Learn{% endblock title%}
 
 {% block content %}
 
 <section class="home">
 
     <div class="welcome">
-        <p id="welcome_elias">welcome to <br><span><strong>Pi-Learn</strong></span></p>
+        <p id="welcome_elias">
+            {% if request.user.is_authenticated %}
+                {{request.user.username|title}}, 
+            {% endif %}
+        welcome to <br><span><strong>Pii Learn</strong></span></p>
         <p><img class="inside" src="{% static home_page_img.home_logo %}"  alt="" id="home_logo"></p>
     <div>
 
 
     <br>
 
-    <h1 id="why_pilearn_header">Why Pi-Learn<h1>
+    <h1 id="why_pilearn_header">Why Pii Learn<h1>
     <br>
 
     <div class="why_pilearn">
 
         <div class="services">
             <h1>Reliable</h1>
-            <p>pi-learn servers will be up 24/7 use our services an time</p>
+            <p>pii learn servers will be up 24/7 use our services an time</p>
         </div>
 
         <div class="services">
@@ -29,7 +33,7 @@
             <h1>Full Past Papers</h1>
             <p>
                 looking for full up-to-date past papers? pi-lean got your back! prepare for your exams conveniently
-                using pi-learn
+                using pii learn
             </p>
 
         </div>
@@ -37,7 +41,7 @@
         <div class="services">
             <h1>Topical Past Papers</h1>
             <p>
-                you wanna solidfy that one topic troubling you? pi-learn, again, got you. with pi-learn topical past papers
+                you wanna solidfy that one topic troubling you? pii learn, again, got you. with pi-learn topical past papers
                 you can choose any topic you wanna study and each question has an exam report comment that allows you to understand
                 better.
             </p>
@@ -46,8 +50,8 @@
         <div class="services">
             <h1>Test Yourself</h1>
             <p>
-                save time with pi-learn and keep track of your progress when you complete any multiple choice question paper.
-                pi-learn will calculate your mark and give you your grade according to the grade threshold of the paper you wrote.
+                save time with pii learn and keep track of your progress when you complete any multiple choice question paper.
+                pii learn will calculate your mark and give you your grade according to the grade threshold of the paper you wrote.
                 with an account have a privige of seeing your progress on charts and record all the questions you fail and obviosly
                 recommend the topics you should study.
             </p>
@@ -56,7 +60,7 @@
         <div class="services">
             <h1>Notes</h1>
             <p>
-                pi-learn's b4exam notes are short notes we encourage you to read before an exam. These are special notes where we
+                pii learn's b4exam notes are short notes we encourage you to read before an exam. These are special notes where we
                 answer each and every syllabus objective using questions that were set on that objective. if you do this I'm sure you won't miss
             </p>
 

@@ -26,7 +26,11 @@
             {{form.password2}} {% endcomment %}
 
             <br>
-            <input style="margin-top: 10px;" type="submit" value="Register" class="all_buttons">
+            <label for="TCs_checkbox">I agree to Pii Learn Terms and Conditions</label>
+            <input type="checkbox" id="TCs_checkbox" required>
+
+            <br>
+            <input style="margin-top: 10px;" type="submit" value="Signup" class="all_buttons">
         </form>
         <br>
         <p>Already have an account? <a href="{% url 'examsolution:login' %}">Login</a></p>
