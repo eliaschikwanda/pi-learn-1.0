@@ -1147,7 +1147,7 @@ html::-webkit-scrollbar-thumb {
 
     /* form fields media queries starts here */
     .piilearn_wrap_container  input[type=text], .piilearn_wrap_container  input[type=password],.piilearn_wrap_container  textarea {
-        max-width: 100%;
+        max-width: 20rem;
     }
     /* form fields media queries ends here */
     
