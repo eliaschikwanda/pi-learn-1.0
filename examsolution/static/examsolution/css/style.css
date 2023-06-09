@@ -608,6 +608,9 @@ html::-webkit-scrollbar-thumb {
     margin-top: 8rem;
     border-radius: 2.5rem;
     overflow: auto;
+    padding-bottom: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
 
 }
 
@@ -619,6 +622,9 @@ html::-webkit-scrollbar-thumb {
     border-radius: 2.5rem;
     margin-top: 5rem;
     margin-bottom: 5rem;
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+    padding-left: 1rem;
 }
 
 .grading_page_heading {
@@ -629,6 +635,7 @@ html::-webkit-scrollbar-thumb {
     margin: 1rem;
     position: relative;
     max-width: 60rem;
+    margin-top: 1.5rem;
 }
 
 .grading_er_comment_heading {
@@ -654,6 +661,7 @@ html::-webkit-scrollbar-thumb {
     flex-wrap:wrap;
     gap: 3rem;
     float: left;
+    margin: 1rem;
 }
 
 .grading_data {
