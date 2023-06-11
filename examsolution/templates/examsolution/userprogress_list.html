@@ -4,28 +4,96 @@
 
 {% block content %}
 
-<section class="" style="
-margin-top:8rem;
-margin-left:2.5rem;
-margin-right:2.5rem;
-margin-bottom:5rem;
-background-color:white;
-border-radius:2.5rem;
-padding:2rem;
-font-size:1.75rem;
-display:block;
-"
->
+<style>
+    .user_progress_tables {
+        margin-top:8rem;
+        margin-left:2.5rem;
+        margin-right:2.5rem;
+        margin-bottom:5rem;
+        background-color:white;
+        border-radius:2.5rem;
+        padding:3rem;
+        font-size:1.75rem;
+        display:block;
+    }
+
+    .user_progress_tables div a {
+        margin-left:1.75rem
+    }
+
+    .user_progress_tables table{
+        width:100%;
+        border-collapse: collapse;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+        margin-left: 2.5rem;
+        margin-right: 2rem;
+    }
+
+    .user_progress_tables table tr td a {
+        color:purple;
+        padding:0.25rem;
+        border-radius:2.5rem;
+    }
+
+    .user_progress_tables table tr td a:hover{
+        background-color:var(--main-color);
+    }
+
+    .bio_table, .bio_table tr th {
+        border: 2px solid green;
+    }
+
+    .bio_table tr td {
+        text-align: center;
+        padding:0.5rem;
+    }
+
+    .bio_table_td {
+        border: 2px solid green;
+    }
+
+    .chem_table, .chem_table tr th {
+        border: 2px solid blue;
+    }
+
+    .chem_table tr td {
+        text-align: center;
+        padding:0.5rem;
+    }
+
+    .chem_table_td{
+        border: 2px solid blue;
+    }
+
+    .phys_table, .phys_table tr th {
+        border: 2px solid orange;
+    }
+    
+    .phys_table tr td {
+        text-align: center;
+        padding:0.5rem;
+    }
+
+    .phys_table_td {
+        border: 2px solid orange;
+    }
+
+    
+
+</style>
+
+<section class="user_progress_tables">
 
     <div>
 
-        <h3>Biology Papers you have completed</h3>
-        <a href="{% url 'examsolution:test_yourself' %}">Take Biology ~ 9700 multiple choice</a>
+        <h3 style='color:green;'>Biology Papers you have completed</h3>
+        <a style="color:green;" href="{% url 'examsolution:test_yourself' %}">Take Biology ~ 9700 multiple choice</a>
         <br>
 
         {% if bio_user_past_paper_taken_list %}
 
-            <table>
+            <table class="bio_table">
 
                     <tr>
                         <th></th>
@@ -41,22 +109,23 @@ display:block;
 
                     <tr>
                         <td></td>
-                        <td> {{mcq_taken.date_completed.date}} </td>
-                        <td> {{mcq_taken.paper_written}} </td>
-                        <td> {{mcq_taken.raw_mark}}/40</td>
-                        <td> {{mcq_taken.percentage}}%</td>
-                        <td> {% if mcq_taken.letter_grade %} {{mcq_taken.letter_grade}} {% else %}No Data{% endif %}</td>
-                        <td><a href="{% url 'examsolution:full_revision_of_written_paper' mcq_taken.paper_written %}">Revise paper</a></td>
+                        <td class="bio_table_td"> {{mcq_taken.date_completed.date}} </td>
+                        <td class="bio_table_td"> {{mcq_taken.paper_written}} </td>
+                        <td class="bio_table_td"> {{mcq_taken.raw_mark}}/40</td>
+                        <td class="bio_table_td"> {{mcq_taken.percentage}}%</td>
+                        <td class="bio_table_td"> {% if mcq_taken.letter_grade %} {{mcq_taken.letter_grade}} {% else %}No Data{% endif %}</td>
+                        <td class="bio_table_td"><a href="{% url 'examsolution:full_revision_of_written_paper' mcq_taken.paper_written %}">Revise paper</a></td>
                         
                     </tr>
                     
                 {% endfor %}
                     <tr>
-                        <td><strong>Average</strong></td>
+                        <td class="bio_table_td" ><strong>Average</strong></td>
                         <td></td>
                         <td></td>
-                        <td> {{bio_raw_average}}/40 </td>
-                        <td> {{bio_perce_average}}% </td>
+                        <td class="bio_table_td"> {{bio_raw_average}}/40 </td>
+                        <td class="bio_table_td"> {{bio_perce_average}}% </td>
+                        <td></td>
                     </tr>
 
             </table>
@@ -73,13 +142,13 @@ display:block;
     <br>
 
     <div>
-        <h3>Chemistry Papers you completed</h3>
-        <a href="{% url 'examsolution:test_yourself' %}">Take Chemistry ~ 9701 multiple choice</a>
+        <h3 style="color:blue;">Chemistry Papers you completed</h3>
+        <a style="color:blue;" href="{% url 'examsolution:test_yourself' %}">Take Chemistry ~ 9701 multiple choice</a>
         <br>
 
         {% if chem_user_past_paper_taken_list %}
 
-            <table>
+            <table class="chem_table">
 
                     <tr>
                         <th></th>
@@ -96,22 +165,22 @@ display:block;
 
                     <tr>
                         <td></td>
-                        <td> {{mcq_taken.date_completed.date}} </td>
-                        <td> {{mcq_taken.paper_written}} </td>
-                        <td> {{mcq_taken.raw_mark}}/40</td>
-                        <td> {{mcq_taken.percentage}}%</td>
-                        <td> {% if mcq_taken.letter_grade %} {{mcq_taken.letter_grade}} {% else %}No Data{% endif %}</td>
-                        <td><a href="{% url 'examsolution:full_revision_of_written_paper' mcq_taken.paper_written %}">Revise paper</a></td>
+                        <td class="chem_table_td"> {{mcq_taken.date_completed.date}} </td>
+                        <td class="chem_table_td"> {{mcq_taken.paper_written}} </td>
+                        <td class="chem_table_td"> {{mcq_taken.raw_mark}}/40</td>
+                        <td class="chem_table_td"> {{mcq_taken.percentage}}%</td>
+                        <td class="chem_table_td"> {% if mcq_taken.letter_grade %} {{mcq_taken.letter_grade}} {% else %}No Data{% endif %}</td>
+                        <td class="chem_table_td"><a href="{% url 'examsolution:full_revision_of_written_paper' mcq_taken.paper_written %}">Revise paper</a></td>
                         
                     </tr>
                     
                 {% endfor %}
                     <tr>
-                        <td><strong>Average</strong></td>
+                        <td class="chem_table_td"><strong>Average</strong></td>
                         <td></td>
                         <td></td>
-                        <td> {{chem_raw_average}}/40 </td>
-                        <td> {{chem_perce_average}}% </td>
+                        <td class="chem_table_td"> {{chem_raw_average}}/40 </td>
+                        <td class="chem_table_td"> {{chem_perce_average}}% </td>
                     </tr>
 
             </table>
@@ -129,13 +198,13 @@ display:block;
 
     <div>
 
-        <h3>Physics Papers you completed</h3>
-        <a href="{% url 'examsolution:test_yourself' %}">Take Physics ~ 9702 multiple choice</a>
+        <h3 style="color:orange;">Physics Papers you completed</h3>
+        <a style="color:orange;" href="{% url 'examsolution:test_yourself' %}">Take Physics ~ 9702 multiple choice</a>
         <br>
 
         {% if phy_user_past_paper_taken_list %}
 
-            <table>
+            <table class="phys_table">
 
                     <tr>
                         <th></th>
@@ -152,22 +221,22 @@ display:block;
 
                     <tr>
                         <td></td>
-                        <td> {{mcq_taken.date_completed.date}} </td>
-                        <td> {{mcq_taken.paper_written}} </td>
-                        <td> {{mcq_taken.raw_mark}}/40</td>
-                        <td> {{mcq_taken.percentage}}%</td>
-                        <td> {% if mcq_taken.letter_grade %} {{mcq_taken.letter_grade}} {% else %}No Data{% endif %}</td>
-                        <td><a href="{% url 'examsolution:full_revision_of_written_paper' mcq_taken.paper_written %}">Revise paper</a></td>
+                        <td class="phys_table_td"> {{mcq_taken.date_completed.date}} </td>
+                        <td class="phys_table_td"> {{mcq_taken.paper_written}} </td>
+                        <td class="phys_table_td"> {{mcq_taken.raw_mark}}/40</td>
+                        <td class="phys_table_td"> {{mcq_taken.percentage}}%</td>
+                        <td class="phys_table_td"> {% if mcq_taken.letter_grade %} {{mcq_taken.letter_grade}} {% else %}No Data{% endif %}</td>
+                        <td class="phys_table_td"><a href="{% url 'examsolution:full_revision_of_written_paper' mcq_taken.paper_written %}">Revise paper</a></td>
 
                     </tr>
                     
                 {% endfor %}
                     <tr>
-                        <td><strong>Average</strong></td>
+                        <td class="phys_table_td"><strong>Average</strong></td>
                         <td></td>
                         <td></td>
-                        <td> {{phsy_raw_average}}/40 </td>
-                        <td> {{phys_perce_average}}% </td>
+                        <td class="phys_table_td"> {{phsy_raw_average}}/40 </td>
+                        <td class="phys_table_td"> {{phys_perce_average}}% </td>
                     </tr>
 
             </table>

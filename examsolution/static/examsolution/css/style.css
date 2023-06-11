@@ -1032,9 +1032,17 @@ html::-webkit-scrollbar-thumb {
 }
 /* usertask_list.html styling ends here */
 
+/* userprogress_list.html styling starts here */
+
+.user_progress_tables {
+    background-color: red;
+}
+
+/* userprogress_list.html styling ends here */
+
 /* media queries */
 
-@media (max-width:700px) {
+@media (max-width:920px) {
     .hamburger {
         display: block;
         
