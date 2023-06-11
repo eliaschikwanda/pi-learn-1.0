@@ -200,10 +200,11 @@ html::-webkit-scrollbar-thumb {
 #welcome_elias {
     width: 50%;
     margin-right: 5rem;
-    background-color: yellow;
+    background-color: white;
     padding: 2rem;
     font-size: 2rem;
     text-transform: none;
+    border-radius: 2.5rem;
 }
 
 #welcome_elias span {
