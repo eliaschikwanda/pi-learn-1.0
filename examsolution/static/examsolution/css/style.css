@@ -1176,8 +1176,6 @@ html::-webkit-scrollbar-thumb {
     }
     /* form fields media queries ends here */
 
-    #usertask_list_search_form {
-        display: block;
-    }
-    
+    /* table in the progress list queries starts here */
+    /* table in the progress list queries ends here  */
 }

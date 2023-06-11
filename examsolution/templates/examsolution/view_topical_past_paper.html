@@ -1,7 +1,7 @@
 {% extends 'examsolution/base.html' %}
 {% load static %}
 
-{% block title %}{{subject_selected}} questions{% endblock title %}
+{% block title %}{{subject_selected}} Topical questions{% endblock title %}
 
 {% block content %}
 
@@ -47,7 +47,7 @@
         <div id="" class="question_answer_select_panel">
             {% if new_selected_topic_paper_set %}
 
-                <p class="message_above">Below are {{topic_paper_object.topic}} questions for "session you selected" "year you selected". </p>
+                <p class="message_above">Below are {{topic_paper_object.topic}} questions you selected. <i>If your pages are no scrollable kindly use a PC.</i> </p>
 
                 <br>
 

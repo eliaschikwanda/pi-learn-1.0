@@ -78,9 +78,6 @@
     .phys_table_td {
         border: 2px solid orange;
     }
-
-    
-
 </style>
 
 <section class="user_progress_tables">
@@ -100,8 +97,8 @@
                         <th>Date Completed</th>
                         <th>Paper written</th>
                         <th>Raw Mark</th>
-                        <th>Percentage</th>
-                        <th>Grade</th>
+                        <th class="dont_show_scr_small">Percentage</th>
+                        <th class="dont_show_scr_small">Grade</th>
                         <th></th>
                     
                     </tr>
@@ -112,8 +109,8 @@
                         <td class="bio_table_td"> {{mcq_taken.date_completed.date}} </td>
                         <td class="bio_table_td"> {{mcq_taken.paper_written}} </td>
                         <td class="bio_table_td"> {{mcq_taken.raw_mark}}/40</td>
-                        <td class="bio_table_td"> {{mcq_taken.percentage}}%</td>
-                        <td class="bio_table_td"> {% if mcq_taken.letter_grade %} {{mcq_taken.letter_grade}} {% else %}No Data{% endif %}</td>
+                        <td class="bio_table_td" class="dont_show_scr_small"> {{mcq_taken.percentage}}%</td>
+                        <td class="bio_table_td" class="dont_show_scr_small"> {% if mcq_taken.letter_grade %} {{mcq_taken.letter_grade}} {% else %}No Data{% endif %}</td>
                         <td class="bio_table_td"><a href="{% url 'examsolution:full_revision_of_written_paper' mcq_taken.paper_written %}">Revise paper</a></td>
                         
                     </tr>
@@ -124,8 +121,8 @@
                         <td></td>
                         <td></td>
                         <td class="bio_table_td"> {{bio_raw_average}}/40 </td>
-                        <td class="bio_table_td"> {{bio_perce_average}}% </td>
-                        <td></td>
+                        <td class="bio_table_td" class="dont_show_scr_small"> {{bio_perce_average}}% </td>
+                        <td class="dont_show_scr_small"></td>
                     </tr>
 
             </table>
@@ -155,8 +152,8 @@
                         <th>Date Completed</th>
                         <th>Paper written</th>
                         <th>Raw Mark</th>
-                        <th>Percentage</th>
-                        <th>Grade</th>
+                        <th class="dont_show_scr_small">Percentage</th>
+                        <th class="dont_show_scr_small">Grade</th>
                         <th></th>
                     
                     </tr>
@@ -168,8 +165,8 @@
                         <td class="chem_table_td"> {{mcq_taken.date_completed.date}} </td>
                         <td class="chem_table_td"> {{mcq_taken.paper_written}} </td>
                         <td class="chem_table_td"> {{mcq_taken.raw_mark}}/40</td>
-                        <td class="chem_table_td"> {{mcq_taken.percentage}}%</td>
-                        <td class="chem_table_td"> {% if mcq_taken.letter_grade %} {{mcq_taken.letter_grade}} {% else %}No Data{% endif %}</td>
+                        <td class="chem_table_td" class="dont_show_scr_small"> {{mcq_taken.percentage}}%</td>
+                        <td class="chem_table_td" class="dont_show_scr_small"> {% if mcq_taken.letter_grade %} {{mcq_taken.letter_grade}} {% else %}No Data{% endif %}</td>
                         <td class="chem_table_td"><a href="{% url 'examsolution:full_revision_of_written_paper' mcq_taken.paper_written %}">Revise paper</a></td>
                         
                     </tr>
@@ -211,8 +208,8 @@
                         <th>Date Completed</th>
                         <th>Paper written</th>
                         <th>Raw Mark</th>
-                        <th>Percentage</th>
-                        <th>Grade</th>
+                        <th class="dont_show_scr_small">Percentage</th>
+                        <th class="dont_show_scr_small">Grade</th>
                         <th></th>
                     
                     </tr>
@@ -224,8 +221,8 @@
                         <td class="phys_table_td"> {{mcq_taken.date_completed.date}} </td>
                         <td class="phys_table_td"> {{mcq_taken.paper_written}} </td>
                         <td class="phys_table_td"> {{mcq_taken.raw_mark}}/40</td>
-                        <td class="phys_table_td"> {{mcq_taken.percentage}}%</td>
-                        <td class="phys_table_td"> {% if mcq_taken.letter_grade %} {{mcq_taken.letter_grade}} {% else %}No Data{% endif %}</td>
+                        <td class="phys_table_td" class="dont_show_scr_small"> {{mcq_taken.percentage}}%</td>
+                        <td class="phys_table_td" class="dont_show_scr_small"> {% if mcq_taken.letter_grade %} {{mcq_taken.letter_grade}} {% else %}No Data{% endif %}</td>
                         <td class="phys_table_td"><a href="{% url 'examsolution:full_revision_of_written_paper' mcq_taken.paper_written %}">Revise paper</a></td>
 
                     </tr>
