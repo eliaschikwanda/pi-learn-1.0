@@ -13,6 +13,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 from django.shortcuts import redirect
+from .forms import *
 # Create your views here.
 
 # Login class views starts here
@@ -23,7 +24,7 @@ class CustomLoginView(LoginView):
     redirect_authenticated_user = True
     
     def get_success_url(self):
-        return reverse_lazy('examsolution:my_to_do_list')
+        return reverse_lazy('examsolution:home')
     
     def get_context_data(self,**kwargs):
         context = super().get_context_data(**kwargs)
@@ -82,6 +83,112 @@ class UserTaskList(LoginRequiredMixin,ListView):
         
         return context
     
+# User papers taken list view starts here
+class UserProgressList(LoginRequiredMixin,ListView):
+    model = UserProgressRecord
+    context_object_name = 'user_past_paper_taken_list'
+    template_name ='examsolution/userprogress_list.html'
+    
+    def get_context_data(self,**kwargs):
+        context = super().get_context_data(**kwargs)
+        website_logo = website_pics.objects.get(id=1)
+        context['website_logo'] = website_logo
+        context['user_past_paper_taken_list'] = context['user_past_paper_taken_list'].filter(user=self.request.user)
+        context['bio_user_past_paper_taken_list'] = context['user_past_paper_taken_list'].filter(subject_of_paper_written='Biology ~ 9700')
+        context['chem_user_past_paper_taken_list'] = context['user_past_paper_taken_list'].filter(subject_of_paper_written='Chemistry ~ 9701')
+        context['phy_user_past_paper_taken_list'] = context['user_past_paper_taken_list'].filter(subject_of_paper_written='Physics ~ 9702')
+        
+        count = 0
+        bio_perce_total = 0
+        bio_raw_total = 0
+        bio_perce_average = 0
+        bio_raw_average = 0
+        
+        if context['bio_user_past_paper_taken_list']:
+            for each_test in context['bio_user_past_paper_taken_list']:
+                count = count + 1
+                bio_raw_total = int(each_test.raw_mark) + bio_raw_total
+                bio_perce_total = float(each_test.percentage) + bio_perce_total
+                
+            bio_perce_average = round(bio_perce_total/count,1)
+            bio_raw_average = round(bio_raw_total/count,1)
+            
+        count = 0
+        chem_perce_total = 0
+        chem_raw_total = 0
+        chem_perce_average = 0
+        chem_raw_average = 0
+        
+        if context['chem_user_past_paper_taken_list']:
+            for each_test in context['chem_user_past_paper_taken_list']:
+                count = count + 1
+                chem_raw_total = int(each_test.raw_mark) + chem_raw_total
+                chem_perce_total = float(each_test.percentage) + chem_perce_total
+                
+            chem_perce_average = round(chem_perce_total/count,1)
+            chem_raw_average = round(chem_raw_total/count,1)
+            
+        count = 0
+        phys_perce_total = 0
+        phys_raw_total = 0
+        phys_perce_average = 0
+        phsy_raw_average = 0
+        
+        if context['phy_user_past_paper_taken_list']:
+            for each_test in context['phy_user_past_paper_taken_list']:
+                count = count + 1
+                phys_raw_total = int(each_test.raw_mark) + phys_raw_total
+                phys_perce_total = float(each_test.percentage) + phys_perce_total
+                
+            phys_perce_average = round(phys_perce_total/count,1)
+            phsy_raw_average = round(phys_raw_total/count,1)
+            
+
+            
+        context['bio_perce_average'] = bio_perce_average
+        context['bio_raw_average'] = bio_raw_average
+        context['chem_perce_average'] = chem_perce_average
+        context['chem_raw_average'] = chem_raw_average
+        context['phys_perce_average'] = phys_perce_average
+        context['phsy_raw_average'] = phsy_raw_average
+        
+            
+        return context
+
+
+def full_revision_of_written_paper(request,paper_to_revise):
+    mcq_paper_selected_set = FullQuestionAnswer.objects.get(full_question_name=paper_to_revise).paperoneanswers_set.all().order_by('question_number_key__question_number')
+    mcq_paper_selected = FullQuestionAnswer.objects.get(full_question_name=paper_to_revise)
+    user_answer_input_object = UserProgressRecord.objects.get(paper_written=paper_to_revise)
+    website_logo = website_pics.objects.get(id=1)
+    
+    wrong_question = []
+    user_answer_input_list = []
+     
+    for failed_question in user_answer_input_object.questions_failed.split(','):
+        wrong_question.append(failed_question)
+    
+   
+    for each_answer in user_answer_input_object.user_answer_input:
+        user_answer_input_list.append(each_answer)
+        
+    
+    context = {
+        'score' : user_answer_input_object.raw_mark,
+        'grade' : user_answer_input_object.letter_grade,
+        'wrong_question':wrong_question,
+        'mcq_paper_selected':mcq_paper_selected,
+        'mcq_paper_selected_set' : mcq_paper_selected_set,
+        'percentage' : user_answer_input_object.percentage,
+        'user_answer_input_list' : user_answer_input_list,
+        'website_logo':website_logo,
+        
+    }
+    
+    return render(request,'examsolution/full_revision_of_written_paper.html',context)
+        
+# User papers taken list view ends here
+    
     
 class UserTaskDetail(LoginRequiredMixin,DetailView):
     model = UserTask
@@ -109,7 +216,29 @@ class UserTaskCreate(LoginRequiredMixin,CreateView):
         context['website_logo'] = website_logo
         
         return context
+    
+# Progress saving view starts here
+class UserProgressRecordCreate(LoginRequiredMixin,CreateView):
+    model = UserProgressRecord
+    fields = []
+    success_url = reverse_lazy('examsolution:my_progress')
+    
+    def form_valid(self,form):
+        form.instance.user = self.request.user
+        form.instance.paper_written = self.request.POST.get('paper_written')
+        form.instance.raw_mark = self.request.POST.get('raw_mark')
+        form.instance.percentage = self.request.POST.get('percentage')
+        form.instance.letter_grade = self.request.POST.get('letter_grade')
+        form.instance.questions_failed = self.request.POST.get('questions_failed')
+        form.instance.subject_of_paper_written = self.request.POST.get('subject_of_paper_written')
+        form.instance.user_answer_input = self.request.POST.get('user_answer_input')
         
+        form.save()
+        
+        return super(UserProgressRecordCreate,self).form_valid(form)
+    
+# Progress saving view ends here
+    
     
 class UserTaskUpdate(LoginRequiredMixin,UpdateView):
     model = UserTask
@@ -412,8 +541,10 @@ def test_grading(request,question_id):
     mcq_paper_selected_set = FullQuestionAnswer.objects.get(id=question_id).paperoneanswers_set.all()
     score = 0
     wrong_question = []
+    user_answer_input = []
     
     submitted_answer1 = PossibleLetters.objects.get(pk=request.POST['1']).letter
+    user_answer_input.append(submitted_answer1)
     question_1 = mcq_paper_selected_set.get(question_number_key__question_number = 1)
     if str(submitted_answer1) == str(question_1.question_answer_key):
         score += 1
@@ -421,6 +552,7 @@ def test_grading(request,question_id):
         wrong_question.append(question_1.question_number_key.question_number)
     
     submitted_answer2 = PossibleLetters.objects.get(pk=request.POST['2']).letter
+    user_answer_input.append(submitted_answer2)
     question_2 = mcq_paper_selected_set.get(question_number_key__question_number = 2)
     if str(submitted_answer2) == str(question_2.question_answer_key):
         score += 1
@@ -428,6 +560,7 @@ def test_grading(request,question_id):
         wrong_question.append(question_2.question_number_key.question_number)
         
     submitted_answer3 = PossibleLetters.objects.get(pk=request.POST['3']).letter
+    user_answer_input.append(submitted_answer3)
     question_3 = mcq_paper_selected_set.get(question_number_key__question_number = 3)
     if str(submitted_answer3) == str(question_3.question_answer_key):
         score += 1
@@ -435,6 +568,7 @@ def test_grading(request,question_id):
         wrong_question.append(question_3.question_number_key.question_number)
     
     submitted_answer4 = PossibleLetters.objects.get(pk=request.POST['4']).letter
+    user_answer_input.append(submitted_answer4)
     question_4 = mcq_paper_selected_set.get(question_number_key__question_number = 4)
     if str(submitted_answer4) == str(question_4.question_answer_key):
         score += 1
@@ -442,6 +576,7 @@ def test_grading(request,question_id):
         wrong_question.append(question_4.question_number_key.question_number)
         
     submitted_answer5 = PossibleLetters.objects.get(pk=request.POST['5']).letter
+    user_answer_input.append(submitted_answer5)
     question_5 = mcq_paper_selected_set.get(question_number_key__question_number = 5)
     if str(submitted_answer5) == str(question_5.question_answer_key):
         score += 1
@@ -449,6 +584,7 @@ def test_grading(request,question_id):
         wrong_question.append(question_5.question_number_key.question_number)
         
     submitted_answer6 = PossibleLetters.objects.get(pk=request.POST['6']).letter
+    user_answer_input.append(submitted_answer6)
     question_6 = mcq_paper_selected_set.get(question_number_key__question_number = 6)
     if str(submitted_answer6) == str(question_6.question_answer_key):
         score += 1
@@ -456,6 +592,7 @@ def test_grading(request,question_id):
         wrong_question.append(question_6.question_number_key.question_number)
         
     submitted_answer7 = PossibleLetters.objects.get(pk=request.POST['7']).letter
+    user_answer_input.append(submitted_answer7)
     question_7 = mcq_paper_selected_set.get(question_number_key__question_number = 7)
     if str(submitted_answer7) == str(question_7.question_answer_key):
         score += 1
@@ -463,6 +600,7 @@ def test_grading(request,question_id):
         wrong_question.append(question_7.question_number_key.question_number)
         
     submitted_answer8 = PossibleLetters.objects.get(pk=request.POST['8']).letter
+    user_answer_input.append(submitted_answer8)
     question_8 = mcq_paper_selected_set.get(question_number_key__question_number = 8)
     if str(submitted_answer8) == str(question_8.question_answer_key):
         score += 1
@@ -470,6 +608,7 @@ def test_grading(request,question_id):
         wrong_question.append(question_8.question_number_key.question_number)
         
     submitted_answer9 = PossibleLetters.objects.get(pk=request.POST['9']).letter
+    user_answer_input.append(submitted_answer9)
     question_9 = mcq_paper_selected_set.get(question_number_key__question_number = 9)
     if str(submitted_answer9) == str(question_9.question_answer_key):
         score += 1
@@ -477,6 +616,7 @@ def test_grading(request,question_id):
         wrong_question.append(question_8.question_number_key.question_number)
         
     submitted_answer10 = PossibleLetters.objects.get(pk=request.POST['10']).letter
+    user_answer_input.append(submitted_answer10)
     question_10 = mcq_paper_selected_set.get(question_number_key__question_number = 10)
     if str(submitted_answer10) == str(question_10.question_answer_key):
         score += 1
@@ -484,6 +624,7 @@ def test_grading(request,question_id):
         wrong_question.append(question_10.question_number_key.question_number)
         
     submitted_answer11 = PossibleLetters.objects.get(pk=request.POST['11']).letter
+    user_answer_input.append(submitted_answer11)
     question_11 = mcq_paper_selected_set.get(question_number_key__question_number = 11)
     if str(submitted_answer11) == str(question_11.question_answer_key):
         score += 1
@@ -491,6 +632,7 @@ def test_grading(request,question_id):
         wrong_question.append(question_11.question_number_key.question_number)
         
     submitted_answer12 = PossibleLetters.objects.get(pk=request.POST['12']).letter
+    user_answer_input.append(submitted_answer12)
     question_12 = mcq_paper_selected_set.get(question_number_key__question_number = 12)
     if str(submitted_answer12) == str(question_12.question_answer_key):
         score += 1
@@ -498,6 +640,7 @@ def test_grading(request,question_id):
         wrong_question.append(question_12.question_number_key.question_number)
         
     submitted_answer13 = PossibleLetters.objects.get(pk=request.POST['13']).letter
+    user_answer_input.append(submitted_answer13)
     question_13 = mcq_paper_selected_set.get(question_number_key__question_number = 13)
     if str(submitted_answer13) == str(question_13.question_answer_key):
         score += 1
@@ -505,6 +648,7 @@ def test_grading(request,question_id):
         wrong_question.append(question_13.question_number_key.question_number)
         
     submitted_answer14 = PossibleLetters.objects.get(pk=request.POST['14']).letter
+    user_answer_input.append(submitted_answer14)
     question_14 = mcq_paper_selected_set.get(question_number_key__question_number = 14)
     if str(submitted_answer14) == str(question_14.question_answer_key):
         score += 1
@@ -512,6 +656,7 @@ def test_grading(request,question_id):
         wrong_question.append(question_14.question_number_key.question_number)
         
     submitted_answer15 = PossibleLetters.objects.get(pk=request.POST['15']).letter
+    user_answer_input.append(submitted_answer15)
     question_15 = mcq_paper_selected_set.get(question_number_key__question_number = 15)
     if str(submitted_answer15) == str(question_15.question_answer_key):
         score += 1
@@ -519,6 +664,7 @@ def test_grading(request,question_id):
         wrong_question.append(question_15.question_number_key.question_number)
         
     submitted_answer16 = PossibleLetters.objects.get(pk=request.POST['16']).letter
+    user_answer_input.append(submitted_answer16)
     question_16 = mcq_paper_selected_set.get(question_number_key__question_number = 16)
     if str(submitted_answer16) == str(question_16.question_answer_key):
         score += 1
@@ -526,6 +672,7 @@ def test_grading(request,question_id):
         wrong_question.append(question_16.question_number_key.question_number)
     
     submitted_answer17 = PossibleLetters.objects.get(pk=request.POST['17']).letter
+    user_answer_input.append(submitted_answer17)
     question_17 = mcq_paper_selected_set.get(question_number_key__question_number = 17)
     if str(submitted_answer17) == str(question_17.question_answer_key):
         score += 1
@@ -535,6 +682,7 @@ def test_grading(request,question_id):
     
         
     submitted_answer18 = PossibleLetters.objects.get(pk=request.POST['18']).letter
+    user_answer_input.append(submitted_answer18)
     question_18 = mcq_paper_selected_set.get(question_number_key__question_number = 18)
     if str(submitted_answer18) == str(question_18.question_answer_key):
         score += 1
@@ -545,6 +693,7 @@ def test_grading(request,question_id):
         
         
     submitted_answer19 = PossibleLetters.objects.get(pk=request.POST['19']).letter
+    user_answer_input.append(submitted_answer19)
     question_19 = mcq_paper_selected_set.get(question_number_key__question_number = 19)
     if str(submitted_answer19) == str(question_19.question_answer_key):
         score += 1
@@ -554,6 +703,7 @@ def test_grading(request,question_id):
         
         
     submitted_answer20 = PossibleLetters.objects.get(pk=request.POST['20']).letter
+    user_answer_input.append(submitted_answer20)
     question_20 = mcq_paper_selected_set.get(question_number_key__question_number = 20)
     if str(submitted_answer20) == str(question_20.question_answer_key):
         score += 1
@@ -563,6 +713,7 @@ def test_grading(request,question_id):
         
         
     submitted_answer21 = PossibleLetters.objects.get(pk=request.POST['21']).letter
+    user_answer_input.append(submitted_answer21)
     question_21 = mcq_paper_selected_set.get(question_number_key__question_number = 21)
     if str(submitted_answer21) == str(question_21.question_answer_key):
         score += 1
@@ -572,6 +723,7 @@ def test_grading(request,question_id):
         
         
     submitted_answer22 = PossibleLetters.objects.get(pk=request.POST['22']).letter
+    user_answer_input.append(submitted_answer22)
     question_22 = mcq_paper_selected_set.get(question_number_key__question_number = 22)
     if str(submitted_answer22) == str(question_22.question_answer_key):
         score += 1
@@ -581,6 +733,7 @@ def test_grading(request,question_id):
         
         
     submitted_answer23 = PossibleLetters.objects.get(pk=request.POST['23']).letter
+    user_answer_input.append(submitted_answer23)
     question_23 = mcq_paper_selected_set.get(question_number_key__question_number = 23)
     if str(submitted_answer23) == str(question_23.question_answer_key):
         score += 1
@@ -590,6 +743,7 @@ def test_grading(request,question_id):
     
         
     submitted_answer24 = PossibleLetters.objects.get(pk=request.POST['24']).letter
+    user_answer_input.append(submitted_answer24)
     question_24 = mcq_paper_selected_set.get(question_number_key__question_number = 24)
     if str(submitted_answer24) == str(question_24.question_answer_key):
         score += 1
@@ -599,6 +753,7 @@ def test_grading(request,question_id):
         
         
     submitted_answer25 = PossibleLetters.objects.get(pk=request.POST['25']).letter
+    user_answer_input.append(submitted_answer25)
     question_25 = mcq_paper_selected_set.get(question_number_key__question_number = 25)
     if str(submitted_answer25) == str(question_25.question_answer_key):
         score += 1
@@ -608,6 +763,7 @@ def test_grading(request,question_id):
         
         
     submitted_answer26 = PossibleLetters.objects.get(pk=request.POST['26']).letter
+    user_answer_input.append(submitted_answer26)
     question_26 = mcq_paper_selected_set.get(question_number_key__question_number = 26)
     if str(submitted_answer26) == str(question_26.question_answer_key):
         score += 1
@@ -617,6 +773,7 @@ def test_grading(request,question_id):
         
         
     submitted_answer27 = PossibleLetters.objects.get(pk=request.POST['27']).letter
+    user_answer_input.append(submitted_answer27)
     question_27 = mcq_paper_selected_set.get(question_number_key__question_number = 27)
     if str(submitted_answer27) == str(question_27.question_answer_key):
         score += 1
@@ -626,6 +783,7 @@ def test_grading(request,question_id):
         
         
     submitted_answer28 = PossibleLetters.objects.get(pk=request.POST['28']).letter
+    user_answer_input.append(submitted_answer28)
     question_28 = mcq_paper_selected_set.get(question_number_key__question_number = 28)
     if str(submitted_answer28) == str(question_28.question_answer_key):
         score += 1
@@ -635,6 +793,7 @@ def test_grading(request,question_id):
         
         
     submitted_answer29 = PossibleLetters.objects.get(pk=request.POST['29']).letter
+    user_answer_input.append(submitted_answer29)
     question_29 = mcq_paper_selected_set.get(question_number_key__question_number = 29)
     if str(submitted_answer29) == str(question_29.question_answer_key):
         score += 1
@@ -645,6 +804,7 @@ def test_grading(request,question_id):
         
         
     submitted_answer30 = PossibleLetters.objects.get(pk=request.POST['30']).letter
+    user_answer_input.append(submitted_answer30)
     question_30 = mcq_paper_selected_set.get(question_number_key__question_number = 30)
     if str(submitted_answer30) == str(question_30.question_answer_key):
         score += 1
@@ -654,6 +814,7 @@ def test_grading(request,question_id):
         
         
     submitted_answer31 = PossibleLetters.objects.get(pk=request.POST['31']).letter
+    user_answer_input.append(submitted_answer31)
     question_31 = mcq_paper_selected_set.get(question_number_key__question_number = 31)
     if str(submitted_answer31) == str(question_31.question_answer_key):
         score += 1
@@ -663,6 +824,7 @@ def test_grading(request,question_id):
         
         
     submitted_answer32 = PossibleLetters.objects.get(pk=request.POST['32']).letter
+    user_answer_input.append(submitted_answer32)
     question_32 = mcq_paper_selected_set.get(question_number_key__question_number = 32)
     if str(submitted_answer32) == str(question_32.question_answer_key):
         score += 1
@@ -672,6 +834,7 @@ def test_grading(request,question_id):
         
         
     submitted_answer33 = PossibleLetters.objects.get(pk=request.POST['33']).letter
+    user_answer_input.append(submitted_answer33)
     question_33 = mcq_paper_selected_set.get(question_number_key__question_number = 33)
     if str(submitted_answer33) == str(question_33.question_answer_key):
         score += 1
@@ -681,6 +844,7 @@ def test_grading(request,question_id):
         
         
     submitted_answer34 = PossibleLetters.objects.get(pk=request.POST['34']).letter
+    user_answer_input.append(submitted_answer34)
     question_34 = mcq_paper_selected_set.get(question_number_key__question_number = 34)
     if str(submitted_answer34) == str(question_34.question_answer_key):
         score += 1
@@ -690,6 +854,7 @@ def test_grading(request,question_id):
         
         
     submitted_answer35 = PossibleLetters.objects.get(pk=request.POST['35']).letter
+    user_answer_input.append(submitted_answer35)
     question_35 = mcq_paper_selected_set.get(question_number_key__question_number = 35)
     if str(submitted_answer35) == str(question_35.question_answer_key):
         score += 1
@@ -699,6 +864,7 @@ def test_grading(request,question_id):
         
         
     submitted_answer36 = PossibleLetters.objects.get(pk=request.POST['36']).letter
+    user_answer_input.append(submitted_answer36)
     question_36 = mcq_paper_selected_set.get(question_number_key__question_number = 36)
     if str(submitted_answer36) == str(question_36.question_answer_key):
         score += 1
@@ -708,6 +874,7 @@ def test_grading(request,question_id):
         
         
     submitted_answer37 = PossibleLetters.objects.get(pk=request.POST['37']).letter
+    user_answer_input.append(submitted_answer37)
     question_37 = mcq_paper_selected_set.get(question_number_key__question_number = 37)
     if str(submitted_answer37) == str(question_37.question_answer_key):
         score += 1
@@ -717,6 +884,7 @@ def test_grading(request,question_id):
         
         
     submitted_answer38 = PossibleLetters.objects.get(pk=request.POST['38']).letter
+    user_answer_input.append(submitted_answer38)
     question_38 = mcq_paper_selected_set.get(question_number_key__question_number = 38)
     if str(submitted_answer38) == str(question_38.question_answer_key):
         score += 1
@@ -726,6 +894,7 @@ def test_grading(request,question_id):
         
         
     submitted_answer39 = PossibleLetters.objects.get(pk=request.POST['39']).letter
+    user_answer_input.append(submitted_answer39)
     question_39 = mcq_paper_selected_set.get(question_number_key__question_number = 39)
     if str(submitted_answer39) == str(question_39.question_answer_key):
         score += 1
@@ -736,6 +905,7 @@ def test_grading(request,question_id):
         
         
     submitted_answer40 = PossibleLetters.objects.get(pk=request.POST['40']).letter
+    user_answer_input.append(submitted_answer40)
     question_40 = mcq_paper_selected_set.get(question_number_key__question_number = 40)
     if str(submitted_answer40) == str(question_40.question_answer_key):
         score += 1
@@ -765,8 +935,10 @@ def test_grading(request,question_id):
             grade = 'Ungraded'
         
     percentage = ''
-    percentage = (score/40)*100
-        
+    percentage = round((score/40)*100,1)
+    
+
+           
     context = {
         'score' : score,
         'grade' : grade,
@@ -775,6 +947,8 @@ def test_grading(request,question_id):
         'mcq_paper_selected':mcq_paper_selected,
         'mcq_paper_selected_set':mcq_paper_selected_set,
         'percentage': percentage,
+        'user_answer_input':user_answer_input,
+        
     }
             
     return render(request,'examsolution/test_grading.html',context)

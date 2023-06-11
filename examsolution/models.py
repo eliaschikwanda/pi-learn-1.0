@@ -6,9 +6,11 @@ from django.contrib.auth.models import User
 class Year(models.Model):
     year = models.IntegerField()
  
-
     def __str__(self):
         return str(self.year)
+    
+    class Meta:
+        ordering = ['-year']
     
 class ExamBoard(models.Model):
     exam_board = models.CharField(max_length=200)
@@ -34,6 +36,9 @@ class Subject(models.Model):
     
     def __str__(self):
         return self.subject
+    
+    class Meta:
+        ordering = ['subject']
     
 class BoardSubTopic(models.Model):
     subject_key = models.ForeignKey(Subject, on_delete=models.CASCADE, null='False')
@@ -146,3 +151,23 @@ class UserTask(models.Model):
     class Meta:
         ordering = ['complete']
     
+class UserProgressRecord(models.Model):
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    subject_of_paper_written = models.CharField(max_length=200,null=True,blank=True)
+    paper_written = models.CharField(max_length=200)
+    raw_mark = models.IntegerField(null=True, blank=True)
+    percentage = models.CharField(max_length=50,null=True, blank=True)
+    letter_grade = models.CharField(max_length=1,null=True, blank=True)
+    hours_taken = models.IntegerField(null=True, blank=True)
+    minutes_taken = models.IntegerField(null=True, blank=True)
+    questions_failed = models.CharField(max_length=2000,null=True, blank=True)
+    date_completed = models.DateTimeField(auto_now_add=True)
+    subject_of_paper_written = models.CharField(max_length=200,null=True,blank=True)
+    user_answer_input = models.CharField(max_length=2000,null=True,blank=True)
+    
+    def __str__(self):
+        return self.paper_written
+    
+    class Meta:
+        ordering = ['-date_completed']
+  

@@ -34,14 +34,17 @@
 
                     <div class="dropdown_menu_1">
                         <ul>
-                            <li><a href="">Cambridge As and A level <i class="fas fa-caret-right" id="drop-1"></i></a>
+                            <li><a href=" {% url 'examsolution:subject_past_papers' 'Cambridge As and A levels' %} ">Cambridge As and A level <i class="fas fa-caret-right" id="drop-1"></i></a>
 
-                                <div class="dropdown_menu_2">
+                               <div class="dropdown_menu_2">
                                     <ul>
-                                        <li><a href="">Maths</a><li>
-                                        <li><a href="">Further Maths</a><li>
-                                        <li><a href="">Physics</a><li>
-                                        <li><a href="">Chemistry</a><li>
+                                        <li><a href="{% url 'examsolution:year_past_papers' 'Cambridge As and A levels' 'Mathematics ~ 9709' %}">Mathematics ~ 9709</a><li>
+                                        <li><a href="{% url 'examsolution:year_past_papers' 'Cambridge As and A levels' 'Further Mathematics ~ 9231' %}">Further Mathematics ~ 9231</a><li>
+                                        <li><a href="{% url 'examsolution:year_past_papers' 'Cambridge As and A levels' 'Physics ~ 9702' %}">Physics ~ 9702</a><li>
+                                        <li><a href="{% url 'examsolution:year_past_papers' 'Cambridge As and A levels' 'Chemistry ~ 9701' %}">Chemistry ~ 9701</a><li>
+                                        <li><a href="{% url 'examsolution:year_past_papers' 'Cambridge As and A levels' 'Computer Science ~ 9618' %}">Computer Science ~ 9618</a><li>
+                                        <li><a href="{% url 'examsolution:year_past_papers' 'Cambridge As and A levels' 'Business ~ 9609' %}">Business ~ 9609</a><li>
+                                        <li><a href="{% url 'examsolution:subject_past_papers' 'Cambridge As and A levels' %}">More Subjects</a><li>
                                     </ul>
                                 </div>
 
@@ -54,10 +57,10 @@
                     
                     <div class="dropdown_menu_1">
                         <ul>
-                            <li><a href="">Cambridge As and A level <i class="fas fa-caret-right"></i></a>
+                            <li><a href="{% url 'examsolution:subject_topical_past_paper' 'Cambridge As and A levels' %}">Cambridge As and A level <i class="fas fa-caret-right"></i></a>
                                 <div class="dropdown_menu_2">
                                     <ul>
-                                        <li><a href="">Maths</a><li>
+                                        <li><a href="{% url 'examsolution:topics_topical_past_paper' 'Cambridge As and A levels' 'Mathematics ~ 9709' %}">Mathematics ~ 9709</a><li>
                                     </ul>
                                 </div>
                                 
@@ -66,26 +69,27 @@
                 
                 </li>
                 
-                <li><a href=" {% url 'examsolution:test_yourself' %} ">TestYourself  <i class="fas fa-caret-down" id="drop-3"></i></a>
-                    <div class="dropdown_menu_1">
+                <li><a href=" {% url 'examsolution:test_yourself' %} ">TestYourself {% comment %}<i class="fas fa-caret-down" id="drop-3"></i>{% endcomment %}</a>
+                    {% comment %} <div class="dropdown_menu_1">
                         <ul>
                             <li><a href="">Maths</a><li>
                             <li><a href="">Physics</a><li>
                             <li><a href="">Chemistry</a><li>
 
                         </ul>
-                    </div>
+                    </div> {% endcomment %}
                 </li>
 
-                <li><a href=" {% url 'examsolution:worksheets' %} ">WorkSheets</a></li>
-                <li><a href=" {% url 'examsolution:notes' %} ">Notes</a></li>
                 <li><a href=" {% url 'examsolution:my_to_do_list' %} ">My ToDo List</a></li>
+                <li><a href="{% url 'examsolution:my_progress' %}">My Progress</a></li>
+                <li style="display:none;"><a style="display:none;" href=" {% url 'examsolution:worksheets' %} ">WorkSheets</a></li>
+                <li style="display:none;"><a style="display:none;" href=" {% url 'examsolution:notes' %} ">Notes</a></li>
                 {% if request.user.is_authenticated %}
-                    <li><a id="base_logout_link" href=" {% url 'examsolution:logout' %} ">Logout</a></li>
+                    <li style="margin-bottom:1rem;"><a id="base_logout_link" href=" {% url 'examsolution:logout' %} ">Logout</a></li>
 
                 {% else %}
-                    <li><a id="base_login_link" href=" {% url 'examsolution:login' %} ">Login</a></li>
-                    <li><a id="base_sign_up_link" href=" {% url 'examsolution:register' %} ">Signup</a></li>
+                    <li style="margin-bottom:1rem;"><a id="base_login_link" href=" {% url 'examsolution:login' %} ">Login</a></li>
+                    <li style="margin-bottom:1rem;"><a id="base_sign_up_link" href=" {% url 'examsolution:register' %} ">Signup</a></li>
                 {% endif %}
                 
             </ul>
@@ -123,28 +127,30 @@
                 <h3>Quick Links</h3>
                 <a href="{% url 'examsolution:test_yourself' %}">Test Yourself</a>
                 <br>
-                <a href="{% url 'examsolution:worksheets' %}">Work Sheets</a>
-                <br>
                 <a href="{% url 'examsolution:past_papers' %}">Past Paper</a>
                 <br>
                 <a href="{% url 'examsolution:topical_past_paper' %}">Topical Past Paper</a>
                 <br>
-                <a href=" {% url 'examsolution:notes' %} ">Notes</a>
-                <br>
                 <a href=" {% url 'examsolution:my_to_do_list' %} ">My ToDo List</a>
+                <br>
+                <a href="{% url 'examsolution:my_progress' %}">My Progress</a>
+                <br>
+                <a style="display:none;" href=" {% url 'examsolution:notes' %} ">Notes</a>
+                <br>
+                <a style="display:none;" href="{% url 'examsolution:worksheets' %}">Work Sheets</a>
+                
                 
             </div>
 
             <div class="box">
                 <h3>Pi-Learn</h3>
-                <a href="{% url 'examsolution:about_us' %}">About us</a>
-                <br>
                 <a href="{% url 'examsolution:contact_us' %}">Contact us</a>
                 <br>
                 <a href="{% url 'examsolution:privacy' %}">Privacy Policy</a>
                 <br>
                 <a href="{% url 'examsolution:terms_of_use' %}">terms of use</a>
                 <br>
+                <a style="display:none;" href="{% url 'examsolution:about_us' %}">About us</a>
             </div>
 
             <div class="box">

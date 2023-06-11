@@ -6,18 +6,69 @@
 
 {% block content %}
 
-<section class="topics">
+<style>
+    .year_container {
+        margin-top: 8rem;
+        margin-bottom:5rem;
+        margin-left:2.5rem;
+        margin-right:2.5rem;
+        max-height:fit-content;
+        background-color:white;
+        border-radius:2.5rem;
+        
+    }
+    .years_for_subs {
+        display: inline-table;
+        margin-left:2.5rem;
+        font-size:1.5rem;
+        border: 1px blue solid;
+        margin-bottom:1rem;
+        border-radius: 2.5rem;
+        padding:1rem;
+        color: black;
+    }
+
+    .years_for_subs:hover{
+        background-color:#ececec;
+    }
+
+    .year_panel_heading {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+        z-index:10;
+        margin-top: 2rem;
+    }
+
+    .year_panel_heading p, .year_panel_heading a {
+        border-radius:2.5rem;
+        margin-bottom:1rem;
+        margin-top:1rem;
+        padding: 1.2rem;
+        font-size: 1.75rem;
+        color: black;
+        background-color: var(--main-color);
+        margin-left: 1.75rem;
+        margin-right: 1.75rem;
+    }
+</style>
+
+<section class="year_container">
+
+
 
 
 {% if years_available_list %}
-    <div class="panel_heading">
+    <div class="year_panel_heading">
         <p>You're seeing {{subject_selected}} available years</p>
         <a href="{% url 'examsolution:subject_past_papers' exam_board %}">Reselect subject</a>
     </div>
 
 
     {% for year in years_available_list %}
-        <a class="topic" href="{% url 'examsolution:view_past_paper' exam_board subject_selected year.year %}"> {{year.year}} </a>
+        <a class="years_for_subs" href="{% url 'examsolution:view_past_paper' exam_board subject_selected year.year %}"> {{year.year}} </a>
+        <br>
     {% endfor %}
 
 {% else %}

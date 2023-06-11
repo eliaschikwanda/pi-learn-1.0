@@ -16,7 +16,7 @@ urlpatterns = [
     path('pastpapers/<exam_board>',views.subject_past_papers,name='subject_past_papers'),
     path('pastpapers/<exam_board>/<subject_selected>', views.year_past_papers, name='year_past_papers'),
     path('pastpapers/<exam_board>/<subject_selected>/<year>', views.view_past_paper , name='view_past_paper'),
-    path('testyourself', views.index_test_yourself, name='test_yourself'),
+    path('testyourself/', views.index_test_yourself, name='test_yourself'),
     path('testyourself/<question_id>/', views.taking_test, name='taking_test'),
     path('testyourself/<question_id>/grading/', views.test_grading, name='test_grading'),
     path('worksheets/', views.worksheets, name='worksheets'),
@@ -34,6 +34,11 @@ urlpatterns = [
     path('my_to_do_list/create_task/', UserTaskCreate.as_view(),name='create_task'),
     path('my_to_do_list/update_task/<int:pk>/',UserTaskUpdate.as_view(),name='update_task'),
     path('my_to_do_list/delete_task/<int:pk>/',DeleteView.as_view(),name='delete_task'),
+    
+    path('my_progress/', UserProgressList.as_view(),name='my_progress'),
+    path('my_progress_record/', UserProgressRecordCreate.as_view(),name='my_progress_record'),
+    path('revision/<paper_to_revise>/', views.full_revision_of_written_paper,name='full_revision_of_written_paper'),
+    
     
 ]
 

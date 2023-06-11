@@ -1,6 +1,6 @@
 {% extends 'examsolution/base.html' %}
 {% load static %}
-{% block title %}Test Yourself{% endblock title %}
+{% block title %}{{mcq_paper_selected.full_question_name}} Revision{% endblock title %}
 
 {% block content %}
 
@@ -21,45 +21,11 @@
 
 </section>
 
-
-
-<div class="test_grading_piilearn_record" style="
-background-color: white;
-margin-left: 2.5rem;
-margin-right: 2.5rem;
-margin-top: 2rem;
-padding: 1rem;
-font-size: 2rem;
-border-radius: 2.5rem;
-
-">
-    <p>
-        Well done for completing <strong> {{mcq_paper_selected.full_question_name}}</strong>.
-        If you want to keep data for this paper. Allow Pii Learn to record your data below.
-    </p>
-
-    <form method='POST' action="{% url 'examsolution:my_progress_record'%}">
-        {% csrf_token %}
-
-        <input type='text' value='{{mcq_paper_selected.subject_key.subject}}' name='subject_of_paper_written' style="display: none;">
-        <input type='text' value='{{mcq_paper_selected.full_question_name}}' name='paper_written' style="display: none;">
-        <input type='text' value='{{score}}' name='raw_mark' style="display: none;">
-        <input type='text' value='{{percentage}}' name='percentage' style="display: none;">
-        <input type='text' value='{{grade}}' name='letter_grade' style="display: none;">
-        <input type='text' value='{% for wrong_question in wrong_question %}{{wrong_question}},{% endfor %}' name='questions_failed' style="display: none;">
-        <input type='text' value='{% for each_answer in user_answer_input %}{{each_answer}}{% endfor %}' name='user_answer_input' style="display: none;">
-        
-        <input type='submit' value='Record my data' style="border-radius:2.5rem;padding:1rem;margin-top:0.5rem;background-color:black;color:white;font-size:2rem;">
-    </form>
-</div>
-
-
-<section class="view_test_data" id="view_test_data_grading">
+<section class="view_test_data" id="view_test_data_grading_2">
     <p class="grading_page_heading">
         Use the statics below to evaluate yourself
     </p>
     <div class="statistics">
-
 
         <div class="grading_data">
             <h1>You got {{score}} </h1>
@@ -132,5 +98,5 @@ border-radius: 2.5rem;
     
 </section>
 
-
 {% endblock content %}
+

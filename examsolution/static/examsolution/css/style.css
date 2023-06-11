@@ -45,7 +45,7 @@ html::-webkit-scrollbar-thumb {
 .header {
     top: 0; left: 0; right: 0;
     z-index: 1000;
-    position:fixed;    
+    position:fixed;
 }
 
 .menu_bar {
@@ -279,10 +279,11 @@ html::-webkit-scrollbar-thumb {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: fixed;
+    position: relative;
     z-index:10;
-    margin-top: 5rem;
+    margin-top: 2rem;
 }
+
 .subjects .panel_heading p,.subjects .panel_heading a,.topics .panel_heading p, .topics .panel_heading a,.no_question_answer .panel_heading a,.no_question_answer .panel_heading p {
     border-top-right-radius: 8rem 5rem;
     border-bottom-right-radius: 8rem 5rem;
@@ -685,6 +686,14 @@ html::-webkit-scrollbar-thumb {
 .grading_data p {
     font-size: 1.5rem;
     margin-top: 1;
+}
+.test_grading_piilearn_record {
+    margin-left: 2.5rem;
+    margin-right: 2.5rem;
+    background-color: white;
+    margin-top: 2rem;
+    padding: 1rem;
+    border-radius: 2.5rem;
 }
 /* test_grading.html stying ends here */
 
@@ -1158,5 +1167,9 @@ html::-webkit-scrollbar-thumb {
         max-width: 20rem;
     }
     /* form fields media queries ends here */
+
+    #usertask_list_search_form {
+        display: block;
+    }
     
 }
