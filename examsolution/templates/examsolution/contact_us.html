@@ -7,7 +7,69 @@
 
 <section class="pi_learn_details">
 
-    <h1>Contact Us Page</h1>
+    <style>
+        .about_us_form {
+            background-color: ##FAFAFA;
+            display:grid;
+            -webkik-box-shadow: 2px 2px 13px -4px rgba(0,0,0,0.21);
+            box-shadow: 2px 2px 13px -4px rgba(0,0,0,0.21);
+            margin: 2rem;
+            padding:2rem;
+            border-radius:2rem;
+        }
+
+        .mb-3 label {
+            font-size: 1.5rem;
+        }
+
+        .form-control {
+            border: 1px purple solid;
+            border-radius:2.5rem;
+            width:100%;
+            max-width:40rem;
+            padding:1rem;
+        }
+
+        #idsubject {
+            height:20rem;
+        }
+
+        .btn-btn-primary {
+            max-width:14rem;
+            background-color:var(--main-color);
+            color:black;
+            padding:1rem;
+            width:100%;
+            border-radius:1.5rem;
+            margin-top:1rem;
+        }
+    </style>
+
+    <form class="about_us_form" method="POST" action="">
+        {% csrf_token %}
+        <p style="font-size:2rem;"><strong>Send us a message</strong></p>
+
+        <div class="mb-3">
+            <label for="fname">Name</label>
+            <br>
+            <input name="sender_name" type="text" class="form-control" id="fname" placeholder="Enter your name" required>
+        </div>
+
+
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Email address</label>
+          <br>
+          <input name="sender_email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required placeholder="Enter your email">
+        </div>
+
+        <div class="mb-3">
+            <label for="idsubject">Message</label>
+            <br>
+            <textarea name="sender_message" class="form-control" id="idsubject" placeholder="Enter your message" required></textarea>
+        </div>
+
+        <button type="submit" class="btn-btn-primary">Send Message</button>
+      </form>
 
 </section>
 

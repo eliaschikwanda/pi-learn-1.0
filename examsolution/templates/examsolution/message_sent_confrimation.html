@@ -1,0 +1,24 @@
+{% extends 'examsolution/base.html' %}
+{% load static %}
+
+{% block title %}Contact us | Pii Learn{% endblock title %}
+
+{% block content %}
+
+<style>
+    .message_sent_confirm {
+        background-color:white;
+        border-radius:2.5rem;
+        margin-top:9rem;
+        margin-bottom:5rem;
+        margin-left:2.5rem;
+        margin-right:2.5rem;
+        padding:5rem;
+    }
+</style>
+
+<div class="message_sent_confirm">
+    <p style="font-size:2rem;"> {{sender_name}}, Thank you for getting in touch will respond asap! </p>
+</div>
+
+{% endblock %}

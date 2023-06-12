@@ -170,4 +170,11 @@ class UserProgressRecord(models.Model):
     
     class Meta:
         ordering = ['-date_completed']
-  
+
+class ContactUsInfo(models.Model):
+    sender_name = models.CharField(max_length=200)
+    sender_email = models.EmailField()
+    sender_message = models.TextField()
+    
+    def __str__(self):
+        return self.sender_name

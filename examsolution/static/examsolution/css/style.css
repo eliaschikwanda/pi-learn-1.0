@@ -236,7 +236,7 @@ html::-webkit-scrollbar-thumb {
 /* topical_past_paper.html styling starts here */
 .exam_boards, .subjects, .topics,.no_question_answer {
     overflow: auto;
-    margin-top: 8rem;
+    margin-top: 9rem;
     margin-bottom: 5rem;
     margin-left: 2.5rem;
     margin-right: 2.5rem;
@@ -311,7 +311,7 @@ html::-webkit-scrollbar-thumb {
     margin-left: 2.5rem;
     margin-right: 2.5rem;
     margin-bottom: 5rem;
-    margin-top: 8rem;
+    margin-top: 9rem;
     background-color: grey;
     padding: 1.5rem;
     border-radius: 2rem 8rem 2rem 8rem / 1rem 4rem 1rem 4rem;
@@ -530,7 +530,7 @@ html::-webkit-scrollbar-thumb {
 /* test_yourself.html styling starts here */
 .paperonequestions {
     overflow: auto;
-    margin-top: 8rem;
+    margin-top: 9rem;
     margin-left: 2.5rem;
     margin-right: 2.5rem;
     margin-bottom: 5rem;
@@ -607,7 +607,7 @@ html::-webkit-scrollbar-thumb {
     background-color: white;
     margin-left: 2.5rem;
     margin-right: 2.5rem;
-    margin-top: 8rem;
+    margin-top: 9rem;
     border-radius: 2.5rem;
     overflow: auto;
     padding-bottom: 1rem;
@@ -766,7 +766,7 @@ html::-webkit-scrollbar-thumb {
 /* about_us.html, contact_us.html, terms_of_use.html, privacy.html  syling starts here */
 
 .pi_learn_details {
-    margin-top: 8rem;
+    margin-top: 9rem;
     margin-bottom: 5rem;
     background-color: white;
     border-radius: 2.5rem;
@@ -896,11 +896,15 @@ html::-webkit-scrollbar-thumb {
 /* privacy.html and terms_of_use.html stylings ends here */
 
 
+/* contact_us.html styling starts here */
+
+/* contact_us.html styling ends here */
+
 /* general initail styling starts here */
 
 .piilearn_wrap_container {
     margin: auto;
-    margin-top: 8rem;
+    margin-top: 9rem;
     margin-bottom: 5rem;
     margin-left: 2.5rem;
     margin-right: 2.5rem;
@@ -1034,10 +1038,6 @@ html::-webkit-scrollbar-thumb {
 /* usertask_list.html styling ends here */
 
 /* userprogress_list.html styling starts here */
-
-.user_progress_tables {
-    background-color: red;
-}
 
 /* userprogress_list.html styling ends here */
 

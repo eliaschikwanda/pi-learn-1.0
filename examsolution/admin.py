@@ -20,5 +20,6 @@ admin.site.register([
     home_image,
     people_image,
     UserProgressRecord,
+    ContactUsInfo,
 ])
 

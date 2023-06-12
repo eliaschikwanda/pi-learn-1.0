@@ -14,6 +14,8 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 from django.shortcuts import redirect
 from .forms import *
+from django.core.mail import send_mail
+from django.conf import settings
 # Create your views here.
 
 # Login class views starts here
@@ -970,8 +972,24 @@ def worksheets(request):
 # Contact PiiLearn view
 
 def contact_us(request):
-    
     website_logo = website_pics.objects.get(id=1)
+    
+    if request.method == "POST":
+        contact_instance = ContactUsInfo()
+        sender_name = request.POST.get('sender_name')
+        sender_email = request.POST.get('sender_email')
+        sender_message = request.POST.get('sender_message')
+        
+        contact_instance.sender_name = sender_name
+        contact_instance.sender_email = sender_email
+        contact_instance.sender_message = sender_message
+        
+        contact_instance.save()
+        
+        return render(request,'examsolution/message_sent_confrimation.html',{'sender_name':sender_name,'website_logo':website_logo})
+        
+    
+    
     context = {
        'website_logo':website_logo,
     }
