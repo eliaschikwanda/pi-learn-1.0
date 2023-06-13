@@ -78,6 +78,19 @@
     .phys_table_td {
         border: 2px solid orange;
     }
+
+    .econ_table, .econ_table tr th {
+        border: 2px solid red;
+    }
+    
+    .econ_table tr td {
+        text-align: center;
+        padding:0.5rem;
+    }
+
+    .econ_table_td {
+        border: 2px solid red;
+    }
 </style>
 
 <section class="user_progress_tables">
@@ -241,6 +254,60 @@
         {% else %}
 
             <p>You haven't completed <strong>Physics ~ 9702</strong> multiple choice past paper on this site</p>
+
+
+        {% endif %}
+
+    </div>
+
+    <div>
+
+        <h3 style="color:red;">Ecomomics Papers you completed</h3>
+        <a style="color:red;" href="{% url 'examsolution:test_yourself' %}">Take Economics ~ 9708 multiple choice</a>
+        <br>
+
+        {% if phy_user_past_paper_taken_list %}
+
+            <table class="econ_table">
+
+                    <tr>
+                        <th></th>
+                        <th>Date Completed</th>
+                        <th>Paper written</th>
+                        <th>Raw Mark</th>
+                        <th class="dont_show_scr_small">Percentage</th>
+                        <th class="dont_show_scr_small">Grade</th>
+                        <th></th>
+                    
+                    </tr>
+
+                {% for mcq_taken in econ_user_past_paper_taken_list %}
+
+                    <tr>
+                        <td></td>
+                        <td class="econ_table_td"> {{mcq_taken.date_completed.date}} </td>
+                        <td class="econ_table_td"> {{mcq_taken.paper_written}} </td>
+                        <td class="econ_table_td"> {{mcq_taken.raw_mark}}/30</td>
+                        <td class="econ_table_td" class="dont_show_scr_small"> {{mcq_taken.percentage}}%</td>
+                        <td class="econ_table_td" class="dont_show_scr_small"> {% if mcq_taken.letter_grade %} {{mcq_taken.letter_grade}} {% else %}No Data{% endif %}</td>
+                        <td class="econ_table_td"><a href="{% url 'examsolution:full_revision_of_written_paper' mcq_taken.paper_written %}">Revise paper</a></td>
+
+                    </tr>
+                    
+                {% endfor %}
+                    <tr>
+                        <td class="econ_table_td"><strong>Average</strong></td>
+                        <td></td>
+                        <td></td>
+                        <td class="econ_table_td"> {{econ_raw_average}}/30 </td>
+                        <td class="econ_table_td"> {{econ_perce_average}}% </td>
+                    </tr>
+
+            </table>
+
+        {% else %}
+
+            <p>You haven't completed <strong>Economics ~ 9708</strong> multiple choice past paper on this site</p>
 
 
         {% endif %}

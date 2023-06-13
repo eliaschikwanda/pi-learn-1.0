@@ -99,6 +99,7 @@ class UserProgressList(LoginRequiredMixin,ListView):
         context['bio_user_past_paper_taken_list'] = context['user_past_paper_taken_list'].filter(subject_of_paper_written='Biology ~ 9700')
         context['chem_user_past_paper_taken_list'] = context['user_past_paper_taken_list'].filter(subject_of_paper_written='Chemistry ~ 9701')
         context['phy_user_past_paper_taken_list'] = context['user_past_paper_taken_list'].filter(subject_of_paper_written='Physics ~ 9702')
+        context['econ_user_past_paper_taken_list'] = context['user_past_paper_taken_list'].filter(subject_of_paper_written='Economics ~ 9708')
         
         count = 0
         bio_perce_total = 0
@@ -145,6 +146,21 @@ class UserProgressList(LoginRequiredMixin,ListView):
             phys_perce_average = round(phys_perce_total/count,1)
             phsy_raw_average = round(phys_raw_total/count,1)
             
+        count = 0
+        econ_perce_total = 0
+        econ_raw_total = 0
+        econ_perce_average = 0
+        econ_raw_average = 0
+        
+        if context['econ_user_past_paper_taken_list']:
+            for each_test in context['econ_user_past_paper_taken_list']:
+                count = count + 1
+                econ_raw_total = int(each_test.raw_mark) + econ_raw_total
+                econ_perce_total = float(each_test.percentage) + econ_perce_total
+                
+            econ_perce_average = round(econ_perce_total/count,1)
+            econ_raw_average = round(econ_raw_total/count,1)
+            
 
             
         context['bio_perce_average'] = bio_perce_average
@@ -153,6 +169,8 @@ class UserProgressList(LoginRequiredMixin,ListView):
         context['chem_raw_average'] = chem_raw_average
         context['phys_perce_average'] = phys_perce_average
         context['phsy_raw_average'] = phsy_raw_average
+        context['econ_perce_average'] = econ_perce_average
+        context['econ_raw_average'] = econ_raw_average
         
             
         return context
@@ -474,6 +492,12 @@ def index_test_yourself(request):
     Bio_9700_2020_March_multiple_choice_available_list = FullQuestionAnswer.objects.filter(paper_number__paper_num='1',subject_key__subject='Biology ~ 9700',year_key__year='2020',session_key__session='March')
     Bio_9700_2020_June_multiple_choice_available_list = FullQuestionAnswer.objects.filter(paper_number__paper_num='1',subject_key__subject='Biology ~ 9700',year_key__year='2020',session_key__session='June')
     Bio_9700_2020_November_multiple_choice_available_list = FullQuestionAnswer.objects.filter(paper_number__paper_num='1',subject_key__subject='Biology ~ 9700',year_key__year='2020',session_key__session='November')
+    
+    # Economics filters
+    Econ_9708_2022_March_multiple_choice_available_list = FullQuestionAnswer.objects.filter(paper_number__paper_num='1',subject_key__subject='Economics ~ 9708',year_key__year='2022',session_key__session='March')
+    Econ_9700_2022_June_multiple_choice_available_list = FullQuestionAnswer.objects.filter(paper_number__paper_num='1',subject_key__subject='Economics ~ 9708',year_key__year='2022',session_key__session='June')
+    Econ_9700_2022_November_multiple_choice_available_list = FullQuestionAnswer.objects.filter(paper_number__paper_num='1',subject_key__subject='Economics ~ 9708',year_key__year='2022',session_key__session='November')
+    
    
    
    
@@ -507,6 +531,9 @@ def index_test_yourself(request):
         'Bio_9700_2020_March_multiple_choice_available_list' : Bio_9700_2020_March_multiple_choice_available_list,
         'Bio_9700_2020_June_multiple_choice_available_list' : Bio_9700_2020_June_multiple_choice_available_list,
         'Bio_9700_2020_November_multiple_choice_available_list' : Bio_9700_2020_November_multiple_choice_available_list,
+        'Econ_9708_2022_March_multiple_choice_available_list' : Econ_9708_2022_March_multiple_choice_available_list,
+        'Econ_9700_2022_June_multiple_choice_available_list' : Econ_9700_2022_June_multiple_choice_available_list,
+        'Econ_9700_2022_November_multiple_choice_available_list' :Econ_9700_2022_November_multiple_choice_available_list,
     }
     
     return render(request, 'examsolution/test_yourself.html', context)
@@ -544,375 +571,404 @@ def test_grading(request,question_id):
     score = 0
     wrong_question = []
     user_answer_input = []
+    count_question = 0
     
-    submitted_answer1 = PossibleLetters.objects.get(pk=request.POST['1']).letter
-    user_answer_input.append(submitted_answer1)
-    question_1 = mcq_paper_selected_set.get(question_number_key__question_number = 1)
-    if str(submitted_answer1) == str(question_1.question_answer_key):
-        score += 1
-    else:
-        wrong_question.append(question_1.question_number_key.question_number)
     
-    submitted_answer2 = PossibleLetters.objects.get(pk=request.POST['2']).letter
-    user_answer_input.append(submitted_answer2)
-    question_2 = mcq_paper_selected_set.get(question_number_key__question_number = 2)
-    if str(submitted_answer2) == str(question_2.question_answer_key):
-        score += 1
-    else:
-        wrong_question.append(question_2.question_number_key.question_number)
+    if mcq_paper_selected.subject_key.subject == "Economics ~ 9708":
+        print("this is working")
+        for count_question in range(1,31):
+            print(count_question)
+            count_question = str(count_question)
+            submitted_answer = PossibleLetters.objects.get(pk=request.POST.get(count_question)).letter
+            user_answer_input.append(submitted_answer)
+            question = mcq_paper_selected_set.get(question_number_key__question_number = count_question)
+            if str(submitted_answer) == str(question.question_answer_key):
+                score += 1
+            else:
+                wrong_question.append(question.question_number_key.question_number)
+            
         
-    submitted_answer3 = PossibleLetters.objects.get(pk=request.POST['3']).letter
-    user_answer_input.append(submitted_answer3)
-    question_3 = mcq_paper_selected_set.get(question_number_key__question_number = 3)
-    if str(submitted_answer3) == str(question_3.question_answer_key):
-        score += 1
-    else:
-        wrong_question.append(question_3.question_number_key.question_number)
-    
-    submitted_answer4 = PossibleLetters.objects.get(pk=request.POST['4']).letter
-    user_answer_input.append(submitted_answer4)
-    question_4 = mcq_paper_selected_set.get(question_number_key__question_number = 4)
-    if str(submitted_answer4) == str(question_4.question_answer_key):
-        score += 1
-    else:
-        wrong_question.append(question_4.question_number_key.question_number)
+            
+        percentage = ''
+        percentage = round((score/30)*100,1)
         
-    submitted_answer5 = PossibleLetters.objects.get(pk=request.POST['5']).letter
-    user_answer_input.append(submitted_answer5)
-    question_5 = mcq_paper_selected_set.get(question_number_key__question_number = 5)
-    if str(submitted_answer5) == str(question_5.question_answer_key):
-        score += 1
-    else:
-        wrong_question.append(question_5.question_number_key.question_number)
         
-    submitted_answer6 = PossibleLetters.objects.get(pk=request.POST['6']).letter
-    user_answer_input.append(submitted_answer6)
-    question_6 = mcq_paper_selected_set.get(question_number_key__question_number = 6)
-    if str(submitted_answer6) == str(question_6.question_answer_key):
-        score += 1
-    else:
-        wrong_question.append(question_6.question_number_key.question_number)
-        
-    submitted_answer7 = PossibleLetters.objects.get(pk=request.POST['7']).letter
-    user_answer_input.append(submitted_answer7)
-    question_7 = mcq_paper_selected_set.get(question_number_key__question_number = 7)
-    if str(submitted_answer7) == str(question_7.question_answer_key):
-        score += 1
-    else:
-        wrong_question.append(question_7.question_number_key.question_number)
-        
-    submitted_answer8 = PossibleLetters.objects.get(pk=request.POST['8']).letter
-    user_answer_input.append(submitted_answer8)
-    question_8 = mcq_paper_selected_set.get(question_number_key__question_number = 8)
-    if str(submitted_answer8) == str(question_8.question_answer_key):
-        score += 1
-    else:
-        wrong_question.append(question_8.question_number_key.question_number)
-        
-    submitted_answer9 = PossibleLetters.objects.get(pk=request.POST['9']).letter
-    user_answer_input.append(submitted_answer9)
-    question_9 = mcq_paper_selected_set.get(question_number_key__question_number = 9)
-    if str(submitted_answer9) == str(question_9.question_answer_key):
-        score += 1
-    else:
-        wrong_question.append(question_8.question_number_key.question_number)
-        
-    submitted_answer10 = PossibleLetters.objects.get(pk=request.POST['10']).letter
-    user_answer_input.append(submitted_answer10)
-    question_10 = mcq_paper_selected_set.get(question_number_key__question_number = 10)
-    if str(submitted_answer10) == str(question_10.question_answer_key):
-        score += 1
-    else:
-        wrong_question.append(question_10.question_number_key.question_number)
-        
-    submitted_answer11 = PossibleLetters.objects.get(pk=request.POST['11']).letter
-    user_answer_input.append(submitted_answer11)
-    question_11 = mcq_paper_selected_set.get(question_number_key__question_number = 11)
-    if str(submitted_answer11) == str(question_11.question_answer_key):
-        score += 1
-    else:
-        wrong_question.append(question_11.question_number_key.question_number)
-        
-    submitted_answer12 = PossibleLetters.objects.get(pk=request.POST['12']).letter
-    user_answer_input.append(submitted_answer12)
-    question_12 = mcq_paper_selected_set.get(question_number_key__question_number = 12)
-    if str(submitted_answer12) == str(question_12.question_answer_key):
-        score += 1
-    else:
-        wrong_question.append(question_12.question_number_key.question_number)
-        
-    submitted_answer13 = PossibleLetters.objects.get(pk=request.POST['13']).letter
-    user_answer_input.append(submitted_answer13)
-    question_13 = mcq_paper_selected_set.get(question_number_key__question_number = 13)
-    if str(submitted_answer13) == str(question_13.question_answer_key):
-        score += 1
-    else:
-        wrong_question.append(question_13.question_number_key.question_number)
-        
-    submitted_answer14 = PossibleLetters.objects.get(pk=request.POST['14']).letter
-    user_answer_input.append(submitted_answer14)
-    question_14 = mcq_paper_selected_set.get(question_number_key__question_number = 14)
-    if str(submitted_answer14) == str(question_14.question_answer_key):
-        score += 1
-    else:
-        wrong_question.append(question_14.question_number_key.question_number)
-        
-    submitted_answer15 = PossibleLetters.objects.get(pk=request.POST['15']).letter
-    user_answer_input.append(submitted_answer15)
-    question_15 = mcq_paper_selected_set.get(question_number_key__question_number = 15)
-    if str(submitted_answer15) == str(question_15.question_answer_key):
-        score += 1
-    else:
-        wrong_question.append(question_15.question_number_key.question_number)
-        
-    submitted_answer16 = PossibleLetters.objects.get(pk=request.POST['16']).letter
-    user_answer_input.append(submitted_answer16)
-    question_16 = mcq_paper_selected_set.get(question_number_key__question_number = 16)
-    if str(submitted_answer16) == str(question_16.question_answer_key):
-        score += 1
-    else:
-        wrong_question.append(question_16.question_number_key.question_number)
-    
-    submitted_answer17 = PossibleLetters.objects.get(pk=request.POST['17']).letter
-    user_answer_input.append(submitted_answer17)
-    question_17 = mcq_paper_selected_set.get(question_number_key__question_number = 17)
-    if str(submitted_answer17) == str(question_17.question_answer_key):
-        score += 1
-    else:
-        wrong_question.append(question_17.question_number_key.question_number)
-        
-    
-        
-    submitted_answer18 = PossibleLetters.objects.get(pk=request.POST['18']).letter
-    user_answer_input.append(submitted_answer18)
-    question_18 = mcq_paper_selected_set.get(question_number_key__question_number = 18)
-    if str(submitted_answer18) == str(question_18.question_answer_key):
-        score += 1
         
     else:
-        wrong_question.append(question_18.question_number_key.question_number)
-        
-        
-        
-    submitted_answer19 = PossibleLetters.objects.get(pk=request.POST['19']).letter
-    user_answer_input.append(submitted_answer19)
-    question_19 = mcq_paper_selected_set.get(question_number_key__question_number = 19)
-    if str(submitted_answer19) == str(question_19.question_answer_key):
-        score += 1
-    else:
-        wrong_question.append(question_19.question_number_key.question_number)
-        
-        
-        
-    submitted_answer20 = PossibleLetters.objects.get(pk=request.POST['20']).letter
-    user_answer_input.append(submitted_answer20)
-    question_20 = mcq_paper_selected_set.get(question_number_key__question_number = 20)
-    if str(submitted_answer20) == str(question_20.question_answer_key):
-        score += 1
-    else:
-        wrong_question.append(question_20.question_number_key.question_number)
-        
-        
-        
-    submitted_answer21 = PossibleLetters.objects.get(pk=request.POST['21']).letter
-    user_answer_input.append(submitted_answer21)
-    question_21 = mcq_paper_selected_set.get(question_number_key__question_number = 21)
-    if str(submitted_answer21) == str(question_21.question_answer_key):
-        score += 1
-    else:
-        wrong_question.append(question_21.question_number_key.question_number)
-        
-        
-        
-    submitted_answer22 = PossibleLetters.objects.get(pk=request.POST['22']).letter
-    user_answer_input.append(submitted_answer22)
-    question_22 = mcq_paper_selected_set.get(question_number_key__question_number = 22)
-    if str(submitted_answer22) == str(question_22.question_answer_key):
-        score += 1
-    else:
-        wrong_question.append(question_22.question_number_key.question_number)
-        
-        
-        
-    submitted_answer23 = PossibleLetters.objects.get(pk=request.POST['23']).letter
-    user_answer_input.append(submitted_answer23)
-    question_23 = mcq_paper_selected_set.get(question_number_key__question_number = 23)
-    if str(submitted_answer23) == str(question_23.question_answer_key):
-        score += 1
-    else:
-        wrong_question.append(question_23.question_number_key.question_number)
-        
-    
-        
-    submitted_answer24 = PossibleLetters.objects.get(pk=request.POST['24']).letter
-    user_answer_input.append(submitted_answer24)
-    question_24 = mcq_paper_selected_set.get(question_number_key__question_number = 24)
-    if str(submitted_answer24) == str(question_24.question_answer_key):
-        score += 1
-    else:
-        wrong_question.append(question_24.question_number_key.question_number)
-        
-        
-        
-    submitted_answer25 = PossibleLetters.objects.get(pk=request.POST['25']).letter
-    user_answer_input.append(submitted_answer25)
-    question_25 = mcq_paper_selected_set.get(question_number_key__question_number = 25)
-    if str(submitted_answer25) == str(question_25.question_answer_key):
-        score += 1
-    else:
-        wrong_question.append(question_25.question_number_key.question_number)
-        
-        
-        
-    submitted_answer26 = PossibleLetters.objects.get(pk=request.POST['26']).letter
-    user_answer_input.append(submitted_answer26)
-    question_26 = mcq_paper_selected_set.get(question_number_key__question_number = 26)
-    if str(submitted_answer26) == str(question_26.question_answer_key):
-        score += 1
-    else:
-        wrong_question.append(question_26.question_number_key.question_number)
-        
-        
-        
-    submitted_answer27 = PossibleLetters.objects.get(pk=request.POST['27']).letter
-    user_answer_input.append(submitted_answer27)
-    question_27 = mcq_paper_selected_set.get(question_number_key__question_number = 27)
-    if str(submitted_answer27) == str(question_27.question_answer_key):
-        score += 1
-    else:
-        wrong_question.append(question_27.question_number_key.question_number)
-        
-        
-        
-    submitted_answer28 = PossibleLetters.objects.get(pk=request.POST['28']).letter
-    user_answer_input.append(submitted_answer28)
-    question_28 = mcq_paper_selected_set.get(question_number_key__question_number = 28)
-    if str(submitted_answer28) == str(question_28.question_answer_key):
-        score += 1
-    else:
-        wrong_question.append(question_28.question_number_key.question_number)
-        
-        
-        
-    submitted_answer29 = PossibleLetters.objects.get(pk=request.POST['29']).letter
-    user_answer_input.append(submitted_answer29)
-    question_29 = mcq_paper_selected_set.get(question_number_key__question_number = 29)
-    if str(submitted_answer29) == str(question_29.question_answer_key):
-        score += 1
-    else:
-        wrong_question.append(question_29.question_number_key.question_number)
-        
-        
-        
-        
-    submitted_answer30 = PossibleLetters.objects.get(pk=request.POST['30']).letter
-    user_answer_input.append(submitted_answer30)
-    question_30 = mcq_paper_selected_set.get(question_number_key__question_number = 30)
-    if str(submitted_answer30) == str(question_30.question_answer_key):
-        score += 1
-    else:
-        wrong_question.append(question_30.question_number_key.question_number)
-        
-        
-        
-    submitted_answer31 = PossibleLetters.objects.get(pk=request.POST['31']).letter
-    user_answer_input.append(submitted_answer31)
-    question_31 = mcq_paper_selected_set.get(question_number_key__question_number = 31)
-    if str(submitted_answer31) == str(question_31.question_answer_key):
-        score += 1
-    else:
-        wrong_question.append(question_31.question_number_key.question_number)
-        
-        
-        
-    submitted_answer32 = PossibleLetters.objects.get(pk=request.POST['32']).letter
-    user_answer_input.append(submitted_answer32)
-    question_32 = mcq_paper_selected_set.get(question_number_key__question_number = 32)
-    if str(submitted_answer32) == str(question_32.question_answer_key):
-        score += 1
-    else:
-        wrong_question.append(question_32.question_number_key.question_number)
-        
-        
-        
-    submitted_answer33 = PossibleLetters.objects.get(pk=request.POST['33']).letter
-    user_answer_input.append(submitted_answer33)
-    question_33 = mcq_paper_selected_set.get(question_number_key__question_number = 33)
-    if str(submitted_answer33) == str(question_33.question_answer_key):
-        score += 1
-    else:
-        wrong_question.append(question_33.question_number_key.question_number)
-        
-        
-        
-    submitted_answer34 = PossibleLetters.objects.get(pk=request.POST['34']).letter
-    user_answer_input.append(submitted_answer34)
-    question_34 = mcq_paper_selected_set.get(question_number_key__question_number = 34)
-    if str(submitted_answer34) == str(question_34.question_answer_key):
-        score += 1
-    else:
-        wrong_question.append(question_34.question_number_key.question_number)
-        
-        
-        
-    submitted_answer35 = PossibleLetters.objects.get(pk=request.POST['35']).letter
-    user_answer_input.append(submitted_answer35)
-    question_35 = mcq_paper_selected_set.get(question_number_key__question_number = 35)
-    if str(submitted_answer35) == str(question_35.question_answer_key):
-        score += 1
-    else:
-        wrong_question.append(question_35.question_number_key.question_number)
-        
-        
-        
-    submitted_answer36 = PossibleLetters.objects.get(pk=request.POST['36']).letter
-    user_answer_input.append(submitted_answer36)
-    question_36 = mcq_paper_selected_set.get(question_number_key__question_number = 36)
-    if str(submitted_answer36) == str(question_36.question_answer_key):
-        score += 1
-    else:
-        wrong_question.append(question_36.question_number_key.question_number)
-        
-        
-        
-    submitted_answer37 = PossibleLetters.objects.get(pk=request.POST['37']).letter
-    user_answer_input.append(submitted_answer37)
-    question_37 = mcq_paper_selected_set.get(question_number_key__question_number = 37)
-    if str(submitted_answer37) == str(question_37.question_answer_key):
-        score += 1
-    else:
-        wrong_question.append(question_37.question_number_key.question_number)
-        
-        
-        
-    submitted_answer38 = PossibleLetters.objects.get(pk=request.POST['38']).letter
-    user_answer_input.append(submitted_answer38)
-    question_38 = mcq_paper_selected_set.get(question_number_key__question_number = 38)
-    if str(submitted_answer38) == str(question_38.question_answer_key):
-        score += 1
-    else:
-        wrong_question.append(question_38.question_number_key.question_number)
-        
-        
-        
-    submitted_answer39 = PossibleLetters.objects.get(pk=request.POST['39']).letter
-    user_answer_input.append(submitted_answer39)
-    question_39 = mcq_paper_selected_set.get(question_number_key__question_number = 39)
-    if str(submitted_answer39) == str(question_39.question_answer_key):
-        score += 1
-    else:
-        wrong_question.append(question_39.question_number_key.question_number)
-        
-        
-        
-        
-    submitted_answer40 = PossibleLetters.objects.get(pk=request.POST['40']).letter
-    user_answer_input.append(submitted_answer40)
-    question_40 = mcq_paper_selected_set.get(question_number_key__question_number = 40)
-    if str(submitted_answer40) == str(question_40.question_answer_key):
-        score += 1
-    else:
-        wrong_question.append(question_40.question_number_key.question_number)
+            
+             
+        submitted_answer1 = PossibleLetters.objects.get(pk=request.POST['1']).letter
+        user_answer_input.append(submitted_answer1)
+        question_1 = mcq_paper_selected_set.get(question_number_key__question_number = 1)
+        if str(submitted_answer1) == str(question_1.question_answer_key):
+            score += 1
+        else:
+            wrong_question.append(question_1.question_number_key.question_number)
+        
+        submitted_answer2 = PossibleLetters.objects.get(pk=request.POST['2']).letter
+        user_answer_input.append(submitted_answer2)
+        question_2 = mcq_paper_selected_set.get(question_number_key__question_number = 2)
+        if str(submitted_answer2) == str(question_2.question_answer_key):
+            score += 1
+        else:
+            wrong_question.append(question_2.question_number_key.question_number)
+            
+        submitted_answer3 = PossibleLetters.objects.get(pk=request.POST['3']).letter
+        user_answer_input.append(submitted_answer3)
+        question_3 = mcq_paper_selected_set.get(question_number_key__question_number = 3)
+        if str(submitted_answer3) == str(question_3.question_answer_key):
+            score += 1
+        else:
+            wrong_question.append(question_3.question_number_key.question_number)
+        
+        submitted_answer4 = PossibleLetters.objects.get(pk=request.POST['4']).letter
+        user_answer_input.append(submitted_answer4)
+        question_4 = mcq_paper_selected_set.get(question_number_key__question_number = 4)
+        if str(submitted_answer4) == str(question_4.question_answer_key):
+            score += 1
+        else:
+            wrong_question.append(question_4.question_number_key.question_number)
+            
+        submitted_answer5 = PossibleLetters.objects.get(pk=request.POST['5']).letter
+        user_answer_input.append(submitted_answer5)
+        question_5 = mcq_paper_selected_set.get(question_number_key__question_number = 5)
+        if str(submitted_answer5) == str(question_5.question_answer_key):
+            score += 1
+        else:
+            wrong_question.append(question_5.question_number_key.question_number)
+            
+        submitted_answer6 = PossibleLetters.objects.get(pk=request.POST['6']).letter
+        user_answer_input.append(submitted_answer6)
+        question_6 = mcq_paper_selected_set.get(question_number_key__question_number = 6)
+        if str(submitted_answer6) == str(question_6.question_answer_key):
+            score += 1
+        else:
+            wrong_question.append(question_6.question_number_key.question_number)
+            
+        submitted_answer7 = PossibleLetters.objects.get(pk=request.POST['7']).letter
+        user_answer_input.append(submitted_answer7)
+        question_7 = mcq_paper_selected_set.get(question_number_key__question_number = 7)
+        if str(submitted_answer7) == str(question_7.question_answer_key):
+            score += 1
+        else:
+            wrong_question.append(question_7.question_number_key.question_number)
+            
+        submitted_answer8 = PossibleLetters.objects.get(pk=request.POST['8']).letter
+        user_answer_input.append(submitted_answer8)
+        question_8 = mcq_paper_selected_set.get(question_number_key__question_number = 8)
+        if str(submitted_answer8) == str(question_8.question_answer_key):
+            score += 1
+        else:
+            wrong_question.append(question_8.question_number_key.question_number)
+            
+        submitted_answer9 = PossibleLetters.objects.get(pk=request.POST['9']).letter
+        user_answer_input.append(submitted_answer9)
+        question_9 = mcq_paper_selected_set.get(question_number_key__question_number = 9)
+        if str(submitted_answer9) == str(question_9.question_answer_key):
+            score += 1
+        else:
+            wrong_question.append(question_8.question_number_key.question_number)
+            
+        submitted_answer10 = PossibleLetters.objects.get(pk=request.POST['10']).letter
+        user_answer_input.append(submitted_answer10)
+        question_10 = mcq_paper_selected_set.get(question_number_key__question_number = 10)
+        if str(submitted_answer10) == str(question_10.question_answer_key):
+            score += 1
+        else:
+            wrong_question.append(question_10.question_number_key.question_number)
+            
+        submitted_answer11 = PossibleLetters.objects.get(pk=request.POST['11']).letter
+        user_answer_input.append(submitted_answer11)
+        question_11 = mcq_paper_selected_set.get(question_number_key__question_number = 11)
+        if str(submitted_answer11) == str(question_11.question_answer_key):
+            score += 1
+        else:
+            wrong_question.append(question_11.question_number_key.question_number)
+            
+        submitted_answer12 = PossibleLetters.objects.get(pk=request.POST['12']).letter
+        user_answer_input.append(submitted_answer12)
+        question_12 = mcq_paper_selected_set.get(question_number_key__question_number = 12)
+        if str(submitted_answer12) == str(question_12.question_answer_key):
+            score += 1
+        else:
+            wrong_question.append(question_12.question_number_key.question_number)
+            
+        submitted_answer13 = PossibleLetters.objects.get(pk=request.POST['13']).letter
+        user_answer_input.append(submitted_answer13)
+        question_13 = mcq_paper_selected_set.get(question_number_key__question_number = 13)
+        if str(submitted_answer13) == str(question_13.question_answer_key):
+            score += 1
+        else:
+            wrong_question.append(question_13.question_number_key.question_number)
+            
+        submitted_answer14 = PossibleLetters.objects.get(pk=request.POST['14']).letter
+        user_answer_input.append(submitted_answer14)
+        question_14 = mcq_paper_selected_set.get(question_number_key__question_number = 14)
+        if str(submitted_answer14) == str(question_14.question_answer_key):
+            score += 1
+        else:
+            wrong_question.append(question_14.question_number_key.question_number)
+            
+        submitted_answer15 = PossibleLetters.objects.get(pk=request.POST['15']).letter
+        user_answer_input.append(submitted_answer15)
+        question_15 = mcq_paper_selected_set.get(question_number_key__question_number = 15)
+        if str(submitted_answer15) == str(question_15.question_answer_key):
+            score += 1
+        else:
+            wrong_question.append(question_15.question_number_key.question_number)
+            
+        submitted_answer16 = PossibleLetters.objects.get(pk=request.POST['16']).letter
+        user_answer_input.append(submitted_answer16)
+        question_16 = mcq_paper_selected_set.get(question_number_key__question_number = 16)
+        if str(submitted_answer16) == str(question_16.question_answer_key):
+            score += 1
+        else:
+            wrong_question.append(question_16.question_number_key.question_number)
+        
+        submitted_answer17 = PossibleLetters.objects.get(pk=request.POST['17']).letter
+        user_answer_input.append(submitted_answer17)
+        question_17 = mcq_paper_selected_set.get(question_number_key__question_number = 17)
+        if str(submitted_answer17) == str(question_17.question_answer_key):
+            score += 1
+        else:
+            wrong_question.append(question_17.question_number_key.question_number)
+            
+        
+            
+        submitted_answer18 = PossibleLetters.objects.get(pk=request.POST['18']).letter
+        user_answer_input.append(submitted_answer18)
+        question_18 = mcq_paper_selected_set.get(question_number_key__question_number = 18)
+        if str(submitted_answer18) == str(question_18.question_answer_key):
+            score += 1
+            
+        else:
+            wrong_question.append(question_18.question_number_key.question_number)
+            
+            
+            
+        submitted_answer19 = PossibleLetters.objects.get(pk=request.POST['19']).letter
+        user_answer_input.append(submitted_answer19)
+        question_19 = mcq_paper_selected_set.get(question_number_key__question_number = 19)
+        if str(submitted_answer19) == str(question_19.question_answer_key):
+            score += 1
+        else:
+            wrong_question.append(question_19.question_number_key.question_number)
+            
+            
+            
+        submitted_answer20 = PossibleLetters.objects.get(pk=request.POST['20']).letter
+        user_answer_input.append(submitted_answer20)
+        question_20 = mcq_paper_selected_set.get(question_number_key__question_number = 20)
+        if str(submitted_answer20) == str(question_20.question_answer_key):
+            score += 1
+        else:
+            wrong_question.append(question_20.question_number_key.question_number)
+            
+            
+            
+        submitted_answer21 = PossibleLetters.objects.get(pk=request.POST['21']).letter
+        user_answer_input.append(submitted_answer21)
+        question_21 = mcq_paper_selected_set.get(question_number_key__question_number = 21)
+        if str(submitted_answer21) == str(question_21.question_answer_key):
+            score += 1
+        else:
+            wrong_question.append(question_21.question_number_key.question_number)
+            
+            
+            
+        submitted_answer22 = PossibleLetters.objects.get(pk=request.POST['22']).letter
+        user_answer_input.append(submitted_answer22)
+        question_22 = mcq_paper_selected_set.get(question_number_key__question_number = 22)
+        if str(submitted_answer22) == str(question_22.question_answer_key):
+            score += 1
+        else:
+            wrong_question.append(question_22.question_number_key.question_number)
+            
+            
+            
+        submitted_answer23 = PossibleLetters.objects.get(pk=request.POST['23']).letter
+        user_answer_input.append(submitted_answer23)
+        question_23 = mcq_paper_selected_set.get(question_number_key__question_number = 23)
+        if str(submitted_answer23) == str(question_23.question_answer_key):
+            score += 1
+        else:
+            wrong_question.append(question_23.question_number_key.question_number)
+            
+        
+            
+        submitted_answer24 = PossibleLetters.objects.get(pk=request.POST['24']).letter
+        user_answer_input.append(submitted_answer24)
+        question_24 = mcq_paper_selected_set.get(question_number_key__question_number = 24)
+        if str(submitted_answer24) == str(question_24.question_answer_key):
+            score += 1
+        else:
+            wrong_question.append(question_24.question_number_key.question_number)
+            
+            
+            
+        submitted_answer25 = PossibleLetters.objects.get(pk=request.POST['25']).letter
+        user_answer_input.append(submitted_answer25)
+        question_25 = mcq_paper_selected_set.get(question_number_key__question_number = 25)
+        if str(submitted_answer25) == str(question_25.question_answer_key):
+            score += 1
+        else:
+            wrong_question.append(question_25.question_number_key.question_number)
+            
+            
+            
+        submitted_answer26 = PossibleLetters.objects.get(pk=request.POST['26']).letter
+        user_answer_input.append(submitted_answer26)
+        question_26 = mcq_paper_selected_set.get(question_number_key__question_number = 26)
+        if str(submitted_answer26) == str(question_26.question_answer_key):
+            score += 1
+        else:
+            wrong_question.append(question_26.question_number_key.question_number)
+            
+            
+            
+        submitted_answer27 = PossibleLetters.objects.get(pk=request.POST['27']).letter
+        user_answer_input.append(submitted_answer27)
+        question_27 = mcq_paper_selected_set.get(question_number_key__question_number = 27)
+        if str(submitted_answer27) == str(question_27.question_answer_key):
+            score += 1
+        else:
+            wrong_question.append(question_27.question_number_key.question_number)
+            
+            
+            
+        submitted_answer28 = PossibleLetters.objects.get(pk=request.POST['28']).letter
+        user_answer_input.append(submitted_answer28)
+        question_28 = mcq_paper_selected_set.get(question_number_key__question_number = 28)
+        if str(submitted_answer28) == str(question_28.question_answer_key):
+            score += 1
+        else:
+            wrong_question.append(question_28.question_number_key.question_number)
+            
+            
+            
+        submitted_answer29 = PossibleLetters.objects.get(pk=request.POST['29']).letter
+        user_answer_input.append(submitted_answer29)
+        question_29 = mcq_paper_selected_set.get(question_number_key__question_number = 29)
+        if str(submitted_answer29) == str(question_29.question_answer_key):
+            score += 1
+        else:
+            wrong_question.append(question_29.question_number_key.question_number)
+            
+            
+            
+            
+        submitted_answer30 = PossibleLetters.objects.get(pk=request.POST['30']).letter
+        user_answer_input.append(submitted_answer30)
+        question_30 = mcq_paper_selected_set.get(question_number_key__question_number = 30)
+        if str(submitted_answer30) == str(question_30.question_answer_key):
+            score += 1
+        else:
+            wrong_question.append(question_30.question_number_key.question_number)
+            
+            
+            
+        submitted_answer31 = PossibleLetters.objects.get(pk=request.POST['31']).letter
+        user_answer_input.append(submitted_answer31)
+        question_31 = mcq_paper_selected_set.get(question_number_key__question_number = 31)
+        if str(submitted_answer31) == str(question_31.question_answer_key):
+            score += 1
+        else:
+            wrong_question.append(question_31.question_number_key.question_number)
+            
+            
+            
+        submitted_answer32 = PossibleLetters.objects.get(pk=request.POST['32']).letter
+        user_answer_input.append(submitted_answer32)
+        question_32 = mcq_paper_selected_set.get(question_number_key__question_number = 32)
+        if str(submitted_answer32) == str(question_32.question_answer_key):
+            score += 1
+        else:
+            wrong_question.append(question_32.question_number_key.question_number)
+            
+            
+            
+        submitted_answer33 = PossibleLetters.objects.get(pk=request.POST['33']).letter
+        user_answer_input.append(submitted_answer33)
+        question_33 = mcq_paper_selected_set.get(question_number_key__question_number = 33)
+        if str(submitted_answer33) == str(question_33.question_answer_key):
+            score += 1
+        else:
+            wrong_question.append(question_33.question_number_key.question_number)
+            
+            
+            
+        submitted_answer34 = PossibleLetters.objects.get(pk=request.POST['34']).letter
+        user_answer_input.append(submitted_answer34)
+        question_34 = mcq_paper_selected_set.get(question_number_key__question_number = 34)
+        if str(submitted_answer34) == str(question_34.question_answer_key):
+            score += 1
+        else:
+            wrong_question.append(question_34.question_number_key.question_number)
+            
+            
+            
+        submitted_answer35 = PossibleLetters.objects.get(pk=request.POST['35']).letter
+        user_answer_input.append(submitted_answer35)
+        question_35 = mcq_paper_selected_set.get(question_number_key__question_number = 35)
+        if str(submitted_answer35) == str(question_35.question_answer_key):
+            score += 1
+        else:
+            wrong_question.append(question_35.question_number_key.question_number)
+            
+            
+            
+        submitted_answer36 = PossibleLetters.objects.get(pk=request.POST['36']).letter
+        user_answer_input.append(submitted_answer36)
+        question_36 = mcq_paper_selected_set.get(question_number_key__question_number = 36)
+        if str(submitted_answer36) == str(question_36.question_answer_key):
+            score += 1
+        else:
+            wrong_question.append(question_36.question_number_key.question_number)
+            
+            
+            
+        submitted_answer37 = PossibleLetters.objects.get(pk=request.POST['37']).letter
+        user_answer_input.append(submitted_answer37)
+        question_37 = mcq_paper_selected_set.get(question_number_key__question_number = 37)
+        if str(submitted_answer37) == str(question_37.question_answer_key):
+            score += 1
+        else:
+            wrong_question.append(question_37.question_number_key.question_number)
+            
+            
+            
+        submitted_answer38 = PossibleLetters.objects.get(pk=request.POST['38']).letter
+        user_answer_input.append(submitted_answer38)
+        question_38 = mcq_paper_selected_set.get(question_number_key__question_number = 38)
+        if str(submitted_answer38) == str(question_38.question_answer_key):
+            score += 1
+        else:
+            wrong_question.append(question_38.question_number_key.question_number)
+            
+            
+            
+        submitted_answer39 = PossibleLetters.objects.get(pk=request.POST['39']).letter
+        user_answer_input.append(submitted_answer39)
+        question_39 = mcq_paper_selected_set.get(question_number_key__question_number = 39)
+        if str(submitted_answer39) == str(question_39.question_answer_key):
+            score += 1
+        else:
+            wrong_question.append(question_39.question_number_key.question_number)
+            
+            
+            
+            
+        submitted_answer40 = PossibleLetters.objects.get(pk=request.POST['40']).letter
+        user_answer_input.append(submitted_answer40)
+        question_40 = mcq_paper_selected_set.get(question_number_key__question_number = 40)
+        if str(submitted_answer40) == str(question_40.question_answer_key):
+            score += 1
+        else:
+            wrong_question.append(question_40.question_number_key.question_number)
+            
+            
+        percentage = ''
+        percentage = round((score/40)*100,1)
         
     grade = ''
     
@@ -936,8 +992,7 @@ def test_grading(request,question_id):
         else:
             grade = 'Ungraded'
         
-    percentage = ''
-    percentage = round((score/40)*100,1)
+
     
 
            
