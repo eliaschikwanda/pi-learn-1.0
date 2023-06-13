@@ -39,7 +39,6 @@ urlpatterns = [
     path('my_progress_record/', UserProgressRecordCreate.as_view(),name='my_progress_record'),
     path('revision/<paper_to_revise>/', views.full_revision_of_written_paper,name='full_revision_of_written_paper'),
     
-    path('testing',views.temporay_viewing,name="temporay_viewing"),
     
     
 ]
