@@ -18,6 +18,11 @@ from django.core.mail import send_mail
 from django.conf import settings
 # Create your views here.
 
+# testing_view starts
+def temporay_viewing(request):
+    return render(request,'examsolution/temporay_viewing.html')
+# testing view ends
+
 # Login class views starts here
 
 class CustomLoginView(LoginView):
