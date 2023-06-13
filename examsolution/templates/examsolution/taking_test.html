@@ -3,61 +3,61 @@
 {% block title %}Taking Test | Pii Learn{% endblock title %}
 
 {% block content %}
-<section class="question_answer">
-    <div class="view_panel_heading" id="remove_taking_test_heading">
-        <p class="individual_reselect" >You're doing {{mcq_paper_selected.full_question_name}} <p>
-        <a class="individual_reselect" href="{% url 'examsolution:test_yourself' %}">Reselect Question Paper</a>
-    </div>
-</section>
+    <section class="question_answer">
+        <div class="view_panel_heading" id="remove_taking_test_heading">
+            <p class="individual_reselect" >You're doing {{mcq_paper_selected.full_question_name}} <p>
+            <a class="individual_reselect" href="{% url 'examsolution:test_yourself' %}">Reselect Question Paper</a>
+        </div>
+    </section>
 
-<div class="taking_test_have_your_own_ppr">
-    <p>Since you're using a small screen you can't split screen side by side make sure you have a copy of the paper <strong>({{mcq_paper_selected.full_question_name}})</strong> with you.</p>
-</div>
-
-<div class="row">
-
-    <div class="answersheet">
-
-        <form action="{% url 'examsolution:test_grading' question_id%}" method="post" class="form2">
-            {% csrf_token %}
-            <fieldset>
-                <legend><h1>{{mcq_paper_selected.full_question_name}}</h1></legend>
-                {% if error_message %}<p><strong>{{error_message}}</strong></p>{% endif %}
-
-                {% for question in mcq_paper_selected_set %}
-
-                    
-                    <p>
-                    <span>{{question.question_number_key.question_number}}.</span>
-                    <input  type="radio" name="{{question.question_number_key.question_number}}" id="answer{{possible_answer1.id}}" value="{{possible_answer1.id}}" required>
-                    <label class="letter_answer" for="answer{{possible_answer1.id}}"> {{possible_answer1.letter}} </label>
-                    <input  type="radio" name="{{question.question_number_key.question_number}}" id="answer{{possible_answer2.id}}" value="{{possible_answer2.id}}">
-                    <label class="letter_answer" for="answer{{possible_answer2.id}}"> {{possible_answer2.letter}} </label>
-                    <input  type="radio" name="{{question.question_number_key.question_number}}" id="answer{{possible_answer3.id}}" value="{{possible_answer3.id}}">
-                    <label class="letter_answer" for="answer{{possible_answer3.id}}"> {{possible_answer3.letter}} </label>
-                    <input  type="radio" name="{{question.question_number_key.question_number}}" id="answer{{possible_answer4.id}}" value="{{possible_answer4.id}}">
-                    <label class="letter_answer" for="answer{{possible_answer4.id}}"> {{possible_answer4.letter}} </label>
-                    </p>
-                            
-                   <br>
-
-                    
-                {% endfor %}
-
-            </fieldset>
-            <input type="submit" value="Submit">
-    
-        </form>
-
+    <div class="taking_test_have_your_own_ppr">
+        <p>Since you're using a small screen you can't split screen side by side make sure you have a copy of the paper <strong>({{mcq_paper_selected.full_question_name}})</strong> with you.</p>
     </div>
 
-    <div class="paper_one_question_ppr">
-        <iframe src="{% mcq_paper_selected.google_drive_question_link %}" height='100%' width='100%' ></iframe>
+    <div class="row">
+
+        <div class="answersheet">
+
+            <form action="{% url 'examsolution:test_grading' question_id%}" method="post" class="form2">
+                {% csrf_token %}
+                <fieldset>
+                    <legend><h1>{{mcq_paper_selected.full_question_name}}</h1></legend>
+                    {% if error_message %}<p><strong>{{error_message}}</strong></p>{% endif %}
+
+                    {% for question in mcq_paper_selected_set %}
+
+                        
+                        <p>
+                        <span>{{question.question_number_key.question_number}}.</span>
+                        <input  type="radio" name="{{question.question_number_key.question_number}}" id="answer{{possible_answer1.id}}" value="{{possible_answer1.id}}" required>
+                        <label class="letter_answer" for="answer{{possible_answer1.id}}"> {{possible_answer1.letter}} </label>
+                        <input  type="radio" name="{{question.question_number_key.question_number}}" id="answer{{possible_answer2.id}}" value="{{possible_answer2.id}}">
+                        <label class="letter_answer" for="answer{{possible_answer2.id}}"> {{possible_answer2.letter}} </label>
+                        <input  type="radio" name="{{question.question_number_key.question_number}}" id="answer{{possible_answer3.id}}" value="{{possible_answer3.id}}">
+                        <label class="letter_answer" for="answer{{possible_answer3.id}}"> {{possible_answer3.letter}} </label>
+                        <input  type="radio" name="{{question.question_number_key.question_number}}" id="answer{{possible_answer4.id}}" value="{{possible_answer4.id}}">
+                        <label class="letter_answer" for="answer{{possible_answer4.id}}"> {{possible_answer4.letter}} </label>
+                        </p>
+                                
+                    <br>
+
+                        
+                    {% endfor %}
+
+                </fieldset>
+                <input type="submit" value="Submit">
         
-        {% comment %} <embed src="{% static mcq_paper_selected.full_question_directory %}" type="" height='100%' width='100%'> {% endcomment %}
-    </div>
+            </form>
 
-</div>
+        </div>
+
+        <div class="paper_one_question_ppr">
+            <iframe src="{{mcq_paper_selected.google_drive_question_link}}" height='100%' width='100%' ></iframe>
+
+            
+        </div>
+
+    </div>
 
 
 {% endblock content %}
