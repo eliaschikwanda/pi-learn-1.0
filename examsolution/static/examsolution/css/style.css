@@ -1141,6 +1141,16 @@ html::-webkit-scrollbar-thumb {
         padding: 0.75rem;
         margin-top: 2.5rem;
         padding-top: 2.5rem;
+        padding-bottom: 2.5rem
+    }
+
+    .row .paper_one_question_ppr {
+        margin-top: 2rem;
+        max-height: 60rem;
+    }
+
+    .row .answersheet {
+        max-height: 60rem;
     }
 
     .row {
