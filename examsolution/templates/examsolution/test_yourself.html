@@ -506,7 +506,7 @@
                                                                                         
                         {% for mcq in Econ_9700_2022_June_multiple_choice_available_list %}
 
-                            <a style="display:none;" class="test_yourself_pp1_link" href="{% url 'examsolution:taking_test' mcq.id %}"> {{mcq.full_question_name}} </a>
+                            <a class="test_yourself_pp1_link" href="{% url 'examsolution:taking_test' mcq.id %}"> {{mcq.full_question_name}} </a>
                             <br>
 
                         {% endfor %}
@@ -523,7 +523,7 @@
                                                                                             
                         {% for mcq in Econ_9700_2022_November_multiple_choice_available_list %}
 
-                            <a style="display:none;" class="test_yourself_pp1_link" href="{% url 'examsolution:taking_test' mcq.id %}"> {{mcq.full_question_name}} </a>
+                            <a class="test_yourself_pp1_link" href="{% url 'examsolution:taking_test' mcq.id %}"> {{mcq.full_question_name}} </a>
                             <br>
 
                         {% endfor %}
