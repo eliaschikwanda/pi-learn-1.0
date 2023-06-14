@@ -1132,7 +1132,7 @@ html::-webkit-scrollbar-thumb {
 
     /* taking_test.html media queries starts here */
     .row {
-        display: block;
+        display:grid;
         margin: 0;
         padding: 0;
         background-color: grey;
