@@ -1146,11 +1146,11 @@ html::-webkit-scrollbar-thumb {
 
     .row .paper_one_question_ppr {
         margin-top: 2rem;
-        max-height: 60rem;
+        max-height: 30rem;
     }
 
     .row .answersheet {
-        max-height: 60rem;
+        max-height: 30rem;
     }
 
     .row {
