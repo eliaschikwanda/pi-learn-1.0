@@ -1131,8 +1131,16 @@ html::-webkit-scrollbar-thumb {
     /* view_topical_past_paper.html media queries ends here here */
 
     /* taking_test.html media queries starts here */
-    .row .paper_one_question_ppr {
-        display: none;
+    .row {
+        display: block;
+        margin: 0;
+        padding: 0;
+        background-color: grey;
+        margin-left: 2.5rem;
+        margin-right: 2.5rem;
+        padding: 0.75rem;
+        margin-top: 2.5rem;
+        padding-top: 2.5rem;
     }
 
     .row {
