@@ -1147,6 +1147,8 @@ html::-webkit-scrollbar-thumb {
     .row .paper_one_question_ppr {
         margin-top: 2rem;
         max-height: 30rem;
+        margin-left: 0;
+        margin-right: 0;
     }
 
     .row .answersheet {
