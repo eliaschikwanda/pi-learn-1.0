@@ -84,7 +84,8 @@ class FullQuestionAnswer(models.Model):
     E_raw_mar_req = models.IntegerField(blank=True, null=True)
     general_exam_report_cmnt = models.CharField(max_length=20000,blank=True, null=True)
     
-    
+    class Meta:
+        ordering = ['full_question_name']
     
     
     def __str__(self):
