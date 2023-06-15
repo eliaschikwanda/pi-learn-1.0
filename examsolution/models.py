@@ -57,7 +57,7 @@ class QuestionAnswer(models.Model):
     question_google_drive_link = models.URLField(max_length=200)
     question_directory = models.FileField(null=True,blank=True,upload_to='TopicalQuestions')
     answer_name = models.CharField(max_length=200)
-    question_google_drive_link = models.URLField(max_length=200)
+    answer_google_drive_link = models.URLField(max_length=200)
     answer_directory = models.FileField(null=True,blank=True,upload_to='TopicalAnswers')
     detailed_answer_link = models.CharField(max_length=500, blank=True, null=True)
     video_explanation_link = models.CharField(max_length=500, blank=True, null=True)
