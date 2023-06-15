@@ -54,12 +54,15 @@ class QuestionAnswer(models.Model):
     year_key = models.ForeignKey(Year, on_delete=models.CASCADE)
     session_key = models.ForeignKey(Session, on_delete=models.CASCADE)
     question_name = models.CharField(max_length=200)
-    question_directory = models.FileField(null=True,upload_to='TopicalQuestions')
+    question_google_drive_link = models.URLField(max_length=200)
+    question_directory = models.FileField(null=True,blank=True,upload_to='TopicalQuestions')
     answer_name = models.CharField(max_length=200)
-    answer_directory = models.FileField(null=True,upload_to='TopicalAnswers')
+    question_google_drive_link = models.URLField(max_length=200)
+    answer_directory = models.FileField(null=True,blank=True,upload_to='TopicalAnswers')
     detailed_answer_link = models.CharField(max_length=500, blank=True, null=True)
     video_explanation_link = models.CharField(max_length=500, blank=True, null=True)
     exam_report_comment = models.CharField(max_length=20000, blank=True)
+    
 
     
     def __str__(self):
