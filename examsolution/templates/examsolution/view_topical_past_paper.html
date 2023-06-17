@@ -52,7 +52,7 @@
                 <br>
 
                 {% for question in new_selected_topic_paper_set %}
-                    <button class="questions" id="question{{forloop.counter}}" onclick="view_question('{% static question.question_directory %}','question{{forloop.counter}}')" >Question{{forloop.counter}}</button>
+                    <button class="questions" id="question{{forloop.counter}}" onclick="view_question('{{question.question_google_drive_link}}','question{{forloop.counter}}')" >Question{{forloop.counter}}</button>
                     <button class="answers" id="answer{{forloop.counter}}" onclick="view_answer('{% static question.answer_directory %}','answer{{forloop.counter}}')">Answer{{forloop.counter}}</button>
                     <button class="questions" id="exam_report_comment{{forloop.counter}}" onclick="view_er_comment('{{question.exam_report_comment}}','exam_report_comment{{forloop.counter}}')">ER Cmnt</button>
                     <br>
@@ -66,8 +66,8 @@
                 <br>
 
                 {% for question in selected_topic_paper_set %}
-                    <button class="questions" id="question{{forloop.counter}}" onclick="view_question('{% static question.question_directory %}','question{{forloop.counter}}')" >Question{{forloop.counter}}</button>
-                    <button class="answers" id="answer{{forloop.counter}}" onclick="view_answer('{% static question.answer_directory %}','answer{{forloop.counter}}')">Answer{{forloop.counter}}</button>
+                    <button class="questions" id="question{{forloop.counter}}" onclick="view_question('{{question.question_google_drive_link}}','question{{forloop.counter}}')" >Question{{forloop.counter}}</button>
+                    <button class="answers" id="answer{{forloop.counter}}" onclick="view_answer('{{question.answer_google_drive_link}}','answer{{forloop.counter}}')">Answer{{forloop.counter}}</button>
                     <button class="questions" id="exam_report_comment{{forloop.counter}}" onclick="view_er_comment('{{question.exam_report_comment}}','exam_report_comment{{forloop.counter}}')">ER Cmnt</button>
                     <br>
                 {% endfor %}
@@ -84,7 +84,7 @@
             function view_question(question_url,question_id) {
                 var view_panel,question_button;
                 view_panel = document.getElementById('view_panel');
-                view_panel.innerHTML = "<iframe id='view_it_hey' src='" + question_url + "' height='200%' width='100%' scrolling='yes'></iframe>";
+                view_panel.innerHTML = "<iframe id='view_it_hey' src='"+ question_url +"' height='200%' width='100%' scrolling='yes'></iframe>";
                 question_button = document.getElementById(question_id);
                 question_button.style.color = "purple";
             }
@@ -92,7 +92,7 @@
             function view_answer(answer_url,answer_id) {
                 var view_panel,answer_button;
                 view_panel = document.getElementById('view_panel');
-                view_panel.innerHTML = "<iframe src='" + answer_url + "' height='200%' width='100%' scrolling='yes'></iframe>";
+                view_panel.innerHTML = "<iframe src='"+ answer_url +"' height='200%' width='100%' scrolling='yes'></iframe>";
                 answer_button = document.getElementById(answer_id);
                 answer_button.style.color = "purple";
             }

@@ -27,7 +27,7 @@ MEDIA_DIR = os.path.join(BASE_DIR,'media')
 SECRET_KEY = 'django-insecure-ktbd414+vzeg81t+!ca0)mznwdyjnegocvnyu3$fb!u#3f&(6z'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 # Email configuration starts here
 EMAIL_HOST = 'mail.privateemail.com'
