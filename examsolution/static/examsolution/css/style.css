@@ -913,6 +913,7 @@ html::-webkit-scrollbar-thumb {
     box-shadow: 2px 2px 13px -4px rgba(0,0,0,0.21);
     text-transform: none;
     border-radius: 2.5rem;
+    
 }
 
 /* general initial styling ends here*/
@@ -1171,13 +1172,7 @@ html::-webkit-scrollbar-thumb {
     .individual_reselect {
         display: none;
     }
-    .taking_test_have_your_own_ppr p {
-        display: block;
-        margin-top: 2.5rem;
-        margin-left: 2.5rem;
-        font-size: 1.75rem;
-        text-transform: none;
-    }
+
     /* taking_test.html media queries ends here */
 
     /* home.html media queries starts here */

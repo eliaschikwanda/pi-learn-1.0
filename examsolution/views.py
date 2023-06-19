@@ -538,7 +538,13 @@ def index_test_yourself(request):
         'Econ_9700_2022_November_multiple_choice_available_list' :Econ_9700_2022_November_multiple_choice_available_list,
     }
     
+    
+    
     return render(request, 'examsolution/test_yourself.html', context)
+    
+
+    
+    
 
 def taking_test(request,question_id):
     
@@ -563,7 +569,10 @@ def taking_test(request,question_id):
         
     }
     
+    
     return render(request,'examsolution/taking_test.html',context)
+    
+
 
 def test_grading(request,question_id):
     

@@ -7,37 +7,33 @@
 
 <section class="question_answer">
 
+    {% if march_past_papers_selected_list %}
     <div class="view_panel_heading">
         <p class="individual_reselect" > {{subject_selected}} March {{year}} <p>
         <a class="individual_reselect" href="{% url 'examsolution:year_past_papers' exam_board subject_selected %}">Reselect Year</a>
     </div>
 
     <div class="session_question_list">
-        {% if march_past_papers_selected_list %}
+        
 
-            {% for extra in  march_extras %}
+    {% for extra in  march_extras %}
+    
+        <a href="{% static extra.extra_directory %}" class="extras"> {{extra.extra_name}} </a>
+        <br>
+
+    {% endfor %}
+
+    {% for question_answer in march_past_papers_selected_list %}
+
+        <div class="past_paper_mark_scheme_display">
+            <a href="{% static question_answer.full_question_directory %}" class="past_paper_mark_scheme">{{question_answer.full_question_name}}</a>
+            <a href="{% static question_answer.full_answersheet_directory %}" class="past_paper_mark_scheme">{{question_answer.full_answersheet_name}}</a>
+            <br>
+        </div>
+    
+    {% endfor %}
             
-                <a href="{% static extra.extra_directory %}" class="extras"> {{extra.extra_name}} </a>
-                <br>
-
-            {% endfor %}
-
-            {% for question_answer in march_past_papers_selected_list %}
-
-                <div class="past_paper_mark_scheme_display">
-                    <a href="{% static question_answer.full_question_directory %}" class="past_paper_mark_scheme">{{question_answer.full_question_name}}</a>
-                    <a href="{% static question_answer.full_answersheet_directory %}" class="past_paper_mark_scheme">{{question_answer.full_answersheet_name}}</a>
-                    <br>
-                </div>
-            
-            {% endfor %}
-            
-
-        {% else %}
-
-            <p>March Past papers not available.</p>
-
-        {% endif %}
+    {% endif %}
     </div>
 
     <div class="view_panel_heading">

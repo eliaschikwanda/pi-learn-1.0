@@ -16,9 +16,13 @@
             <a href="{% url 'examsolution:topical_past_paper' %}">Reselect exam board</a>
         </div>
 
-        {% for subject in exam_board_selected.subject_set.all  %}
+        {% comment %} {% for subject in exam_board_selected.subject_set.all  %}
                 <a class="subject" href="{% url 'examsolution:topics_topical_past_paper' exam_board_selected.exam_board subject.subject %}">{{subject.subject}}</a>
-        {% endfor %}
+        {% endfor %} {% endcomment %}
+
+        <a class="subject" href="{% url 'examsolution:topics_topical_past_paper' exam_board_selected.exam_board 'Mathematics ~ 9709' %}">Mathematics ~ 9709</a>
+        <a class="subject" href="{% url 'examsolution:topics_topical_past_paper' exam_board_selected.exam_board 'Further Mathematics ~ 9231' %}">Further Mathematics ~ 9231</a>
+        
 
     {% else %}
         <div class="panel_heading">

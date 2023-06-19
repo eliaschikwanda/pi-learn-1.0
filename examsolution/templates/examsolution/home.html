@@ -4,6 +4,68 @@
 
 {% block content %}
 
+<style>
+    .get_started_today {
+        display: flex;
+        margin-top:2rem;
+        padding: 1rem;
+        border-radius: 2.5rem;
+    }
+    .home_explanation {
+        width: 50%;
+        background-color: #FAFAFA;
+        border-radius: 2.5rem;
+        padding: 2rem;
+        margin-right: 2.5rem;
+        font-size: 3rem;
+        color: grey;
+        text-align: center;
+        
+
+    }
+    .get_started_picture_container {
+        width: 50%;
+        padding: 3rem;
+        background-color: white;
+        
+
+    }
+
+    img.get_started_picture {
+        border-radius: 2.5rem;
+        -webkik-box-shadow: 2px 2px 13px -4px rgba(0,0,0,0.21);
+        box-shadow: 2px 2px 13px -4px rgba(0,0,0,0.21);
+    }
+
+    .get_started_picture {
+        max-width:100%;
+    }
+
+    .home_service_heading {
+        text-align:center;
+        margin-top: 3rem;
+        font-size:5rem;
+        padding: 1rem;
+        color: purple;
+    }
+
+    @media (max-width:920px) {
+        .get_started_today {
+            display:grid;
+        }
+
+        .home_explanation, .get_started_picture_container {
+            width: 100%;
+            margin-left: 0;
+        }
+        .home_explanation{
+            margin-bottom:2rem;
+            border-radius: 1.5rem;
+            
+        }
+    }
+</style>
+
 <section class="home">
 
     <div class="welcome">
@@ -11,9 +73,100 @@
             {% if request.user.is_authenticated %}
                 {{request.user.username|title}}, 
             {% endif %}
-        welcome to <br><span><strong>Pii Learn</strong></span></p>
+        welcome to <br><span><strong>Pii Learn</strong></span> <br>start improving your grades today!</p> 
         <p><img class="inside" src="{% static home_page_img.home_logo %}"  alt="" id="home_logo"></p>
     <div>
+
+
+    <p class="home_service_heading" >TestYourseft</p>
+
+    <div class="get_started_today">
+        <div class="home_explanation"><p>
+            Go to <a href="{% url 'examsolution:test_yourself' %}" style="color:blue;">TestYourself</a> 
+            and pick any multiple choice paper you want to complete. Subjects available
+            are Cambridge As and A level Physics, Chemistry, Biology and Economics with all multiple choice papers from 2020.
+            You don't need to separately download the paper, unless you're on mobile, as it will be available on the other side of the screen.
+            <br>
+            As we're going to add more papers and subjects be sure to sign up for our mailing list for updates.
+        </p></div>
+        <div class="get_started_picture_container">
+            <img class="get_started_picture" src="{% static 'WesbitePics/IMG_0461.jpg' %}">
+        </div>
+    </div>
+
+    <div class="get_started_today">
+        <div class="home_explanation"><p>
+            After completing your test, submit your answers using the submit button right at the end of the answering panel. 
+            Immediately Pii Learn will mark your test, tell you which questions you got wrong, grade your test according to the 
+            thresholds of that paper. If you want to keep record of that paper make sure record using the button on the same page.
+        </p></div>
+        <div class="get_started_picture_container">
+            <img class="get_started_picture" src="{% static 'WesbitePics/IMG_0462.jpg' %}">
+        </div>
+    </div>
+
+    <div class="get_started_today">
+        <div class="home_explanation"><p>
+            Some questions have exam report comments. The comments are, sometimes, explantions on their respective
+            question. You may find them useful in tackling a question you got wrong or that one you guessed.
+        </p></div>
+        <div class="get_started_picture_container">
+            <img class="get_started_picture" src="{% static 'WesbitePics/IMG_0463.jpg' %}">
+        </div>
+    </div>
+
+    <p class="home_service_heading">My Progess</p>
+
+    <div class="get_started_today">
+        <div class="home_explanation"><p>
+            With Pii Learn you can see your progress from the question papers you completed. When you allow Pii Learn to 
+            record you data it will record the date you completed the paper, your raw mark, percentage and grade.
+            You will also have a chance to revist the paper correct the mistakes you made before.
+        </p></div>
+        <div class="get_started_picture_container">
+            <img class="get_started_picture" src="{% static 'WesbitePics/IMG_0464.jpg' %}">
+        </div>
+    </div>
+
+    <p class="home_service_heading">My ToDo List</p>
+
+    <div class="get_started_today">
+        <div class="home_explanation"><p>
+            Pii Learn has a <a href=" {% url 'examsolution:my_to_do_list' %} " style="color: blue">To Do List</a> 
+            that is helpful to students who want to plan their day.
+        </p></div>
+        <div class="get_started_picture_container">
+            <img class="get_started_picture" src="{% static 'WesbitePics/IMG_0465.jpg' %}">
+        </div>
+    </div>
+
+    <p class="home_service_heading">PastPaper</p>
+
+    <div class="get_started_today">
+        <div class="home_explanation"><p>
+            Looking for full up-to-date <a href="{% url 'examsolution:past_papers' %}" style="color: blue;">past papers</a>? Pii Learn got your back! prepare for your exams conveniently
+            using Pii Learn
+        </p></div>
+        <div class="get_started_picture_container">
+            <img class="get_started_picture" src="{% static 'WesbitePics/IMG_0460.jpg' %}">
+        </div>
+    </div>
+
+    <p class="home_service_heading">TopicalQuestions</p>
+
+    <div class="get_started_today">
+        <div class="home_explanation"><p>
+            You wanna solidfy that one topic troubling you? Pii Learn, again, got you. with Pii Learn <a href="{% url 'examsolution:topical_past_paper' %}" style="color:blue;">topical past papers</a>
+            you can choose any topic you wanna study and each question has an exam report comment that helps you to understand
+            better.
+        </p></div>
+        <div class="get_started_picture_container">
+            <img class="get_started_picture" src="{% static 'WesbitePics/IMG_0460.jpg' %}">
+        </div>
+    </div>
+
+
+
 
 
     <br>
@@ -24,16 +177,29 @@
     <div class="why_pilearn">
 
         <div class="services">
+            <h1>Free To Anyone</h1>
+            <p>
+                all Pii Learn services are free. Pii Learn is here to help you improve your grades 
+                without stressing about your finances.
+            </p>
+
+        </div>
+
+        <div class="services">
             <h1>Reliable</h1>
-            <p>pii learn servers will be up 24/7 use our services any time</p>
+            <p>
+                Pii Learn servers will be up 24/7 use our services any time.
+                Pii Learn is compatible with many browsers and devices. you can use our services on 
+                a mobile phone, iPad, tablet or PC.
+            </p>
         </div>
 
         <div class="services">
 
             <h1>Full Past Papers</h1>
             <p>
-                looking for full up-to-date past papers? pi-lean got your back! prepare for your exams conveniently
-                using pii learn
+                up-to-date past papers available. prepare for your exams conveniently
+                using Pii Learn
             </p>
 
         </div>
@@ -41,8 +207,8 @@
         <div class="services">
             <h1>Topical Past Papers</h1>
             <p>
-                you wanna solidfy that one topic troubling you? pii learn, again, got you. with pii learn topical past papers
-                you can choose any topic you wanna study and each question has an exam report comment that allows you to understand
+                you wanna solidfy that one topic troubling you? with Pii Learn topical past papers
+                you can choose any topic you wanna study and each question has an exam report comment that helps you to understand
                 better.
             </p>
         </div>
@@ -50,16 +216,16 @@
         <div class="services">
             <h1>Test Yourself</h1>
             <p>
-                save time with pii learn and keep track of your progress when you complete any multiple choice question paper.
-                pii learn will calculate your mark and give you your grade according to the grade threshold of the paper you wrote.
-                when signed in, you can see your progress on charts and record all the questions you got wrong.
+                save time with Pii Learn and keep track of your progress when you complete any multiple choice question paper.
+                Pii Learn will calculate your mark and give you your grade according to the grade threshold of the paper you wrote.
+                when signed in, you can see your progress.
             </p>
         </div>
 
-        <div class="services">
-            <h1>Notes</h1>
+         <div class="services">
+            <h1>To Do List</h1>
             <p>
-                pii learn has notes available for some subjects and be sure to check them out. 
+                plan your day, using Pii Learn's to do list. 
             </p>
 
         </div>
