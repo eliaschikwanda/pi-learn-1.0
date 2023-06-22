@@ -412,7 +412,7 @@ def subject_past_papers(request,exam_board):
     return render(request,'examsolution/subject_past_papers.html',context)
 
 def year_past_papers(request,exam_board,subject_selected):
-    
+   
     website_logo = website_pics.objects.get(id=1)
     years_available_list = Year.objects.all()
     
