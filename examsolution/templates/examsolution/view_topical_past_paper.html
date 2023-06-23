@@ -53,7 +53,7 @@
 
                 {% for question in new_selected_topic_paper_set %}
                     <button class="questions" id="question{{forloop.counter}}" onclick="view_question('{{question.question_google_drive_link}}','question{{forloop.counter}}')" >Question{{forloop.counter}}</button>
-                    <button class="answers" id="answer{{forloop.counter}}" onclick="view_answer('{% static question.answer_directory %}','answer{{forloop.counter}}')">Answer{{forloop.counter}}</button>
+                    <button class="answers" id="answer{{forloop.counter}}" onclick="view_answer('{{question.answer_google_drive_link}}','answer{{forloop.counter}}')">Answer{{forloop.counter}}</button>
                     <button class="questions" id="exam_report_comment{{forloop.counter}}" onclick="view_er_comment('{{question.exam_report_comment}}','exam_report_comment{{forloop.counter}}')">ER Cmnt</button>
                     <br>
                 {% endfor %}
