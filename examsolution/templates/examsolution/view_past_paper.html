@@ -35,14 +35,14 @@
             
     {% endif %}
     </div>
-
+    {% if june_past_papers_selected_list %}
     <div class="view_panel_heading">
         <p class="individual_reselect" > {{subject_selected}} June {{year}} <p>
         <a class="individual_reselect" href="{% url 'examsolution:year_past_papers' exam_board subject_selected %}">Reselect Year</a>
     </div>
 
     <div class="session_question_list">
-    {% if june_past_papers_selected_list %}
+   
 
         {% for extra in  june_extras %}
                 
@@ -61,9 +61,6 @@
         
         {% endfor %}
 
-    {% else %}
-
-        <p>June Past papers not available.</p>
 
     {% endif %}
     </div>
