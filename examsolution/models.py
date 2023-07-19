@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.urls import reverse
 
 # Create your models here.
 
@@ -89,13 +88,10 @@ class FullQuestionAnswer(models.Model):
     general_exam_report_cmnt = models.CharField(max_length=20000,blank=True, null=True)
     
 
-   
+    
     
     def __str__(self):
         return str(self.year_key.year) + " ("+ self.session_key.session + ") "+ " " + self.subject_key.subject + " " + " (" + self.full_question_name + ") " + " (" + self.full_answersheet_name + ") "
-    
-
-    
 
     
 class ReportThreshPrep(models.Model):

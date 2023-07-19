@@ -368,7 +368,7 @@ def view_topical_past_paper(request,exam_board,subject_selected,topic_id):
     new_selected_topic_paper_set = topic_paper_object.questionanswer_set.filter(year_key=request.POST.get("year",False), session_key=request.POST.get("session",False))
     
 
-   
+    
 
     context = {
         'exam_board' : exam_board,
@@ -1091,6 +1091,3 @@ def terms_of_use(request):
     }
     
     return render(request, 'examsolution/terms_of_use.html',context)
-
-def site_map_view(request):
-    return render(request, 'examsolution/sitemap.xml')

@@ -15,18 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from django.contrib.sitemaps.views import sitemap
-
-from .sitemaps import FullQuestionAnswersSiteMap
-
-sitemaps = {
-    'fullquestionanswers' : FullQuestionAnswersSiteMap,
-    
-}
 
 urlpatterns = [
     path('', include('examsolution.urls')),
     path('admin/', admin.site.urls),
-    # new sitemap url below
-    # path('sitemap.xml',sitemap, {"sitemaps":sitemaps})
 ]
