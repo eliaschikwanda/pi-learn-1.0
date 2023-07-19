@@ -27,14 +27,14 @@ MEDIA_DIR = os.path.join(BASE_DIR,'media')
 SECRET_KEY = 'django-insecure-ktbd414+vzeg81t+!ca0)mznwdyjnegocvnyu3$fb!u#3f&(6z'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 # Email configuration starts here
 EMAIL_HOST = 'mail.privateemail.com'
 EMAIL_HOST_USER = 'contactus@piilearn.com'
 EMAIL_HOST_PASSWORD = '123@piilearn'
 EMAIL_PORT = 587
-EMAIL_USE_TLS = True
+EMAIL_USE_TLS = False
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 # Emial configuration ends here
 
@@ -50,8 +50,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    "django.contrib.sites",
+    "django.contrib.sitemaps",
     'examsolution',
 ]
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
