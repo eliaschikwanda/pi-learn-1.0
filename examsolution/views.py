@@ -1091,3 +1091,6 @@ def terms_of_use(request):
     }
     
     return render(request, 'examsolution/terms_of_use.html',context)
+
+def site_maps_view(request):
+    return render(request,'examsolution/sitemap.xml')

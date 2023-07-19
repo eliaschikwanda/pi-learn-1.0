@@ -5,8 +5,9 @@ from django.contrib.auth.views import LogoutView
 
 app_name = "examsolution"
 urlpatterns = [
-    
+   
     path('', views.home, name='home'),
+    path('site_map', views.site_maps_view),
     path('notes/', views.notes, name='notes'),
     path('topicalpastpaper/', views.index_topical_past_paper, name='topical_past_paper'),
     path('topicalpastpaper/<exam_board>', views.subject_topical_past_paper, name='subject_topical_past_paper'),
