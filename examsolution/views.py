@@ -1094,3 +1094,25 @@ def terms_of_use(request):
 
 def site_maps_view(request):
     return render(request,'examsolution/sitemap.xml')
+
+## Blog post Views
+
+def blog_post_home(request):
+        
+    all_blog_post = BlogPost.objects.all()
+
+    context = {
+        "all_blog_post" : all_blog_post,
+    }
+
+    return render(request,'examsolution/blog_post_home.html',context)
+
+def read_articlet(request,title,year,month,day,id):
+
+    post = BlogPost.objects.get(pk=id)
+
+    context = {
+        "post":post,
+    }
+
+    return render(request,"examsolution/read_post.html",context)

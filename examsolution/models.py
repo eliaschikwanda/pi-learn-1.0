@@ -183,3 +183,17 @@ class ContactUsInfo(models.Model):
     
     def __str__(self):
         return self.sender_name
+    
+## Blog Models
+
+class BlogPost(models.Model):
+    title = models.CharField(max_length=250)
+    #title of the blog post (varchar with max length 250 characters).
+    content = models.TextField()
+    #content of the blogpost in text format, can be long and contain images
+    #or other media files as well.(text field to store large amount of data.)
+    date_posted = models.DateTimeField(auto_now_add=True)
+    date_modified = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.title

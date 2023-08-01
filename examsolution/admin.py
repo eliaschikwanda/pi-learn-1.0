@@ -21,5 +21,6 @@ admin.site.register([
     people_image,
     UserProgressRecord,
     ContactUsInfo,
+    BlogPost,
 ])
 

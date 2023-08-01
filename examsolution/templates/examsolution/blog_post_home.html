@@ -1,0 +1,6 @@
+<h1>This is me trying some stuff here</h1>
+
+{% for post in all_blog_post %}
+    <a href="{% url 'examsolution:read_article' post.title post.date_modified.year post.date_modified.month post.date_modified.day post.id %}"> {{post.title}} </a>
+    <br>
+{% endfor %}

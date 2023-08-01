@@ -39,8 +39,9 @@ urlpatterns = [
     path('my_progress/', UserProgressList.as_view(),name='my_progress'),
     path('my_progress_record/', UserProgressRecordCreate.as_view(),name='my_progress_record'),
     path('revision/<paper_to_revise>/', views.full_revision_of_written_paper,name='full_revision_of_written_paper'),
-    
-    
+
+    path('blog/',views.blog_post_home, name='blog_post_home'),
+    path("<title>/<int:year>/<int:month>/<int:day>/<int:id>/", views.read_articlet, name="read_article")
     
 ]
 
