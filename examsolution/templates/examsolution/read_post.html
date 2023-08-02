@@ -1,11 +1,34 @@
-<h1>Read file</h1>
+{% extends 'examsolution/base.html' %}
+{% load static %}
+{% block title %}{{post.title}} | Pii Learn{% endblock title %}
 
-<p> object {{post}} </p>
-<p>title {{post.title}} </p>
-<p>content {{post.content}}</p>
-<p>date_posted {{post.date_posted}}</p>
-<p>date_modified {{post.date_modified}}</p>
-<p>year only {{post.date_modified.year}} </p>
-<p>month only {{post.date_modified.month}} </p>
-<p>day only {{post.date_modified.day}} </p>
-<p>id only {{post.id}} </p>
+{% block content %}
+
+<div class="article_content">
+    <div class="article_title_n_date">
+        <p id='post_title'>{{post.title}}</p>
+        <p id='post_date'>Date Published: {{post.date_posted.date}}</p>
+    </div>
+
+    <div class="article_text">
+        <p>{{post.content}}</p>
+    </div>
+
+    <div class="last_updated_date">
+        <p>Last Updated: {{post.date_modified.date}}</p>
+    </div>
+
+    {% comment %} <p> object {{post}} </p>
+    <p>title {{post.title}} </p>
+    <p>content {{post.content}}</p>
+    <p>date_posted {{post.date_posted}}</p>
+    <p>date_modified {{post.date_modified}}</p>
+    <p>year only {{post.date_modified.year}} </p>
+    <p>month only {{post.date_modified.month}} </p>
+    <p>day only {{post.date_modified.day}} </p>
+    <p>id only {{post.id}} </p> {% endcomment %}
+</div>
+
+
+
+{% endblock content %}

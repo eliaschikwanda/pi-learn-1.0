@@ -1,6 +1,29 @@
-<h1>This is me trying some stuff here</h1>
+{% extends 'examsolution/base.html' %}
+{% load static %}
+{% block title %}Blog | Pii Learn{% endblock title %}
 
-{% for post in all_blog_post %}
-    <a href="{% url 'examsolution:read_article' post.title post.date_modified.year post.date_modified.month post.date_modified.day post.id %}"> {{post.title}} </a>
-    <br>
-{% endfor %}
+
+{% block content %}
+
+<div class="all_articles_container">
+
+    <div class="blog_post_banner">
+        <img src="{% static 'BlogPics/poststhumbnail.png' %}">
+    </div>
+
+    <div class="posts_list">
+        
+        {% for post in all_blog_post %}
+            <div class="each_post_display">
+                <a href="{% url 'examsolution:read_article' post.title post.date_modified.year post.date_modified.month post.date_modified.day post.id %}">
+                    <img id="post_thumbanail" src="{% static 'BlogPics/poststhumbnailreal.png' %}">
+                    <br>
+                    <p>{{post.title}}</p>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+
+</div>
+
+{% endblock content %}

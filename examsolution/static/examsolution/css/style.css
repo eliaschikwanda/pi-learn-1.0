@@ -1042,6 +1042,108 @@ html::-webkit-scrollbar-thumb {
 
 /* userprogress_list.html styling ends here */
 
+/* blog_post_home.html styling starts here */
+.all_articles_container {
+    margin-top: 9rem;
+    margin-bottom: 5rem;
+    padding-bottom: 5rem;
+    background-color: white;
+    padding-top: 0rem;
+    margin-right: 2.5rem;
+    margin-left: 2.5rem;
+    padding-left: 0rem;
+    padding-right: 0rem;
+    border-radius: 1.5rem;
+    overflow: auto;
+}
+
+.blog_post_banner img {
+    width: 100%;
+    height: 40rem;
+}
+.blog_post_banner {
+    margin-bottom: 2.5rem;
+}
+
+.posts_list {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+    display: flex;
+    flex-wrap:wrap;
+    gap: 3rem;
+    float: left;
+    overflow: auto;
+
+}
+
+.each_post_display {
+    overflow: auto;
+    -webkik-box-shadow: 2px 2px 13px -4px rgba(0,0,0,0.21);
+    box-shadow: 2px 2px 13px -4px rgba(26, 25, 25, 0.21);
+    padding: 1rem;
+}
+
+.each_post_display #post_thumbanail{
+    height: 15rem;
+    border: 2px solid blue;
+    border-radius: 2.5rem;
+}
+
+.each_post_display p {
+    text-align: center;
+    color: #81413b;
+    font-size: 2.3rem;
+    font-family: 'Times New Roman', Times, serif;
+}
+/* Blog post styling ends here */
+
+/* read_post.html styling starts here */
+.article_content {
+    padding-top: 11rem;
+    padding-bottom: 5rem;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-right: 0;
+    padding-right: 2.5rem;
+    padding-left: 2.5rem;
+    background-color: #FAFAFA;
+    display: block;
+}
+
+.article_title_n_date {
+    display: flex;
+    flex-direction: left;
+    justify-content: space-between;
+    margin-bottom: 2.5rem;
+}
+
+.article_title_n_date #post_title {
+    font-size: 3.5rem;
+    color: grey;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.article_title_n_date #post_date, .last_updated_date p {
+    font-size: 1.5rem;
+    color: #777;
+}
+
+.article_text {
+    margin-bottom: 2.5rem;
+    margin-left: 2rem;
+}
+
+.article_text p {
+    font-size: 2rem;
+    font-family: 'Times New Roman', Times, serif;
+    color: black;
+}
+
+
+
+/* read_post.html ends here */
+
 /* media queries */
 
 @media (max-width:920px) {

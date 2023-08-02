@@ -1100,9 +1100,11 @@ def site_maps_view(request):
 def blog_post_home(request):
         
     all_blog_post = BlogPost.objects.all()
+    website_logo = website_pics.objects.get(id=1)
 
     context = {
         "all_blog_post" : all_blog_post,
+        'website_logo':website_logo,
     }
 
     return render(request,'examsolution/blog_post_home.html',context)
@@ -1110,9 +1112,12 @@ def blog_post_home(request):
 def read_articlet(request,title,year,month,day,id):
 
     post = BlogPost.objects.get(pk=id)
+    website_logo = website_pics.objects.get(id=1)
+    
 
     context = {
         "post":post,
+        'website_logo':website_logo,
     }
 
     return render(request,"examsolution/read_post.html",context)
